@@ -1,0 +1,1 @@
+aws s3 cp s3://lw-sap-sharedservices-hanadb-p-bkp-useast1/PROD/2022/02/23/SAPPB4DB01/DB_BHP/COMPLETE_DATA_BACKUP_Refresh_23022022_databackup_3_1 /SAPMedia/datacopy0711/

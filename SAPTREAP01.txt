@@ -1,0 +1,2666 @@
+Linux SAPTREAP01 4.12.14-95.93-default #1 SMP Fri Mar 4 16:48:12 UTC 2022 (8f58f5b/lp-2e681fd) x86_64 x86_64 x86_64 GNU/Linux
+SUSE Linux Enterprise Server 12 (x86_64)
+VERSION = 12
+PATCHLEVEL = 4
+# This file is deprecated and will be removed in a future service pack or release.
+# Please check /etc/os-release for details about this release.
+NAME="SLES"
+VERSION="12-SP4"
+VERSION_ID="12.4"
+PRETTY_NAME="SUSE Linux Enterprise Server 12 SP4"
+ID="sles"
+ANSI_COLOR="0;32"
+CPE_NAME="cpe:/o:suse:sles_sap:12:sp4"
+Tue May 17 22:50:58 UTC 2022
+
+[31;43m***** Network; Route; Netstat; *****[0m
+eth0      Link encap:Ethernet  HWaddr 0E:B6:44:CD:33:13  
+          inet addr:172.18.196.88  Bcast:172.18.196.127  Mask:255.255.255.128
+          inet6 addr: fe80::cb6:44ff:fecd:3313/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:9001  Metric:1
+          RX packets:24338 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:36986 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:5591470 (5.3 Mb)  TX bytes:9693389 (9.2 Mb)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:160084 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:160084 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:132579921 (126.4 Mb)  TX bytes:132579921 (126.4 Mb)
+
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         172.18.196.1    0.0.0.0         UG    0      0        0 eth0
+172.18.196.0    0.0.0.0         255.255.255.128 U     0      0        0 eth0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+0.0.0.0         172.18.196.1    0.0.0.0         UG        0 0          0 eth0
+172.18.196.0    0.0.0.0         255.255.255.128 U         0 0          0 eth0
+Kernel Interface table
+Iface   MTU Met    RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+eth0   9001   0    24340      0      0      0    36986      0      0      0 BMRU
+lo    65536   0   160084      0      0      0   160084      0      0      0 LRU
+
+[31;43m***** DF; Fdisk; FSTAB; GRUB; Mount *****[0m
+Filesystem                                          Size  Used Avail Use% Mounted on
+devtmpfs                                            7.7G     0  7.7G   0% /dev
+tmpfs                                                36G  268K   36G   1% /dev/shm
+tmpfs                                               7.7G   17M  7.7G   1% /run
+tmpfs                                               7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                                      100G   13G   88G  13% /
+/dev/mapper/usr_sap_TRE-usr_sap_TRE                 100G   23G   78G  23% /usr/sap/TRD
+/dev/nvme0n1p1                                      297M  139M  158M  47% /boot
+fs-b36da833.efs.us-east-1.amazonaws.com:/           8.0E   24T  8.0E   1% /SAPMedia
+fs-021b82436c7f5b360.efs.us-east-1.amazonaws.com:/  8.0E  2.0M  8.0E   1% /sapmnt/TRD
+tmpfs                                               1.6G     0  1.6G   0% /run/user/1002
+tmpfs                                               1.6G     0  1.6G   0% /run/user/1725064823
+Disk /dev/nvme1n1: 32 GiB, 34359738368 bytes, 67108864 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/nvme3n1: 100 GiB, 107374182400 bytes, 209715200 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/nvme2n1: 20 GiB, 21474836480 bytes, 41943040 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/nvme4n1: 20 GiB, 21474836480 bytes, 41943040 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/nvme0n1: 100 GiB, 107374182400 bytes, 209715200 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xddd6f2e3
+
+Device         Boot  Start       End   Sectors  Size Id Type
+/dev/nvme0n1p1        2048    616447    614400  300M 83 Linux
+/dev/nvme0n1p2      616448 209715166 209098719 99.7G 83 Linux
+
+
+Disk /dev/mapper/usr_sap_TRE-usr_sap_TRE: 100 GiB, 107369988096 bytes, 209707008 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/var_log_audit-var_log_audit: 20 GiB, 21470642176 bytes, 41934848 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/var_tmp-var_tmp: 20 GiB, 21470642176 bytes, 41934848 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+LABEL=ROOT / xfs defaults 1 1
+LABEL=BOOT /boot xfs defaults 0 0
+UUID=2659ba2e-8956-4e37-b6c2-cd6cf3f7d14c swap swap defaults 0 0 
+tmpfs /dev/shm tmpfs defaults,nodev,nosuid 0 0
+#tmpfs /tmp tmpfs defaults,nodev,nosuid 0 0
+#fs-8ea36c0c.efs.us-east-1.amazonaws.com:/ /sapmnt/TRD nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=60,retrans=2,_netdev 0 0
+fs-b36da833.efs.us-east-1.amazonaws.com:/ /SAPMedia nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,soft,timeo=60,retrans=2,_netdev 0 0
+/dev/mapper/usr_sap_TRE-usr_sap_TRE /usr/sap/TRD xfs rw,relatime,attr2,nobarrier,inode64,logbsize=256k,noquota 0 0
+fs-b36da833.efs.us-east-1.amazonaws.com:/ /SAPMedia nfs4 rw,relatime,vers=4.1,rsize=1048576,wsize=1048576,namlen=255,hard,noresvport,proto=tcp,timeo=600,retrans=2,sec=sys,clientaddr=172.18.196.88,local_lock=none,addr=172.18.136.231 0 0
+fs-021b82436c7f5b360.efs.us-east-1.amazonaws.com:/ /sapmnt/TRD nfs4 rw,relatime,vers=4.1,rsize=1048576,wsize=1048576,namlen=255,hard,noresvport,proto=tcp,timeo=600,retrans=2,sec=sys,clientaddr=172.18.196.88,local_lock=none,addr=172.18.196.51 0 0
+#UUID=51a5b525-9b1b-4f39-b085-6dd2f4bc1ca4 /var xfs nodev,nosuid,noexec 0 0
+#UUID=bcf724d8-c6a3-4815-b5c9-93ab13a48f6d /var/tmp xfs nodev,nosuid,noexec 0 0
+#UUID=8e1dfd53-255d-44cf-a9e8-9979eae81873 /var/log xfs nodev,nosuid,noexec 0 0
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+devtmpfs on /dev type devtmpfs (rw,nosuid,size=8060560k,nr_inodes=2015140,mode=755)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,size=37272576k)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,mode=755)
+tmpfs on /sys/fs/cgroup type tmpfs (ro,nosuid,nodev,noexec,mode=755)
+cgroup on /sys/fs/cgroup/systemd type cgroup (rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/usr/lib/systemd/systemd-cgroups-agent,name=systemd)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime)
+cgroup on /sys/fs/cgroup/rdma type cgroup (rw,nosuid,nodev,noexec,relatime,rdma)
+cgroup on /sys/fs/cgroup/cpu,cpuacct type cgroup (rw,nosuid,nodev,noexec,relatime,cpu,cpuacct)
+cgroup on /sys/fs/cgroup/perf_event type cgroup (rw,nosuid,nodev,noexec,relatime,perf_event)
+cgroup on /sys/fs/cgroup/blkio type cgroup (rw,nosuid,nodev,noexec,relatime,blkio)
+cgroup on /sys/fs/cgroup/hugetlb type cgroup (rw,nosuid,nodev,noexec,relatime,hugetlb)
+cgroup on /sys/fs/cgroup/pids type cgroup (rw,nosuid,nodev,noexec,relatime,pids)
+cgroup on /sys/fs/cgroup/net_cls,net_prio type cgroup (rw,nosuid,nodev,noexec,relatime,net_cls,net_prio)
+cgroup on /sys/fs/cgroup/memory type cgroup (rw,nosuid,nodev,noexec,relatime,memory)
+cgroup on /sys/fs/cgroup/devices type cgroup (rw,nosuid,nodev,noexec,relatime,devices)
+cgroup on /sys/fs/cgroup/freezer type cgroup (rw,nosuid,nodev,noexec,relatime,freezer)
+cgroup on /sys/fs/cgroup/cpuset type cgroup (rw,nosuid,nodev,noexec,relatime,cpuset)
+/dev/nvme0n1p2 on / type xfs (rw,relatime,attr2,inode64,noquota)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=27,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=13236)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime)
+mqueue on /dev/mqueue type mqueue (rw,relatime)
+debugfs on /sys/kernel/debug type debugfs (rw,relatime)
+sunrpc on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw,relatime)
+nfsd on /proc/fs/nfsd type nfsd (rw,relatime)
+/dev/mapper/usr_sap_TRE-usr_sap_TRE on /usr/sap/TRD type xfs (rw,relatime,attr2,nobarrier,inode64,logbsize=256k,noquota)
+/dev/nvme0n1p1 on /boot type xfs (rw,relatime,attr2,inode64,noquota)
+binfmt_misc on /proc/sys/fs/binfmt_misc type binfmt_misc (rw,relatime)
+fs-b36da833.efs.us-east-1.amazonaws.com:/ on /SAPMedia type nfs4 (rw,relatime,vers=4.1,rsize=1048576,wsize=1048576,namlen=255,soft,proto=tcp,timeo=60,retrans=2,sec=sys,clientaddr=172.18.196.88,local_lock=none,addr=172.18.136.231,_netdev)
+fs-021b82436c7f5b360.efs.us-east-1.amazonaws.com:/ on /sapmnt/TRD type nfs4 (rw,relatime,vers=4.1,rsize=1048576,wsize=1048576,namlen=255,hard,noresvport,proto=tcp,timeo=600,retrans=2,sec=sys,clientaddr=172.18.196.88,local_lock=none,addr=172.18.196.51)
+tmpfs on /run/user/1002 type tmpfs (rw,nosuid,nodev,relatime,size=1614280k,mode=700,uid=1002,gid=79)
+tmpfs on /run/user/1725064823 type tmpfs (rw,nosuid,nodev,relatime,size=1614280k,mode=700,uid=1725064823,gid=1725000513)
+
+[31;43m***** DISK & DM info from FDISK *****[0m
+Disk /dev/nvme1n1: 32 GiB, 34359738368 bytes, 67108864 sectors
+Disk /dev/nvme3n1: 100 GiB, 107374182400 bytes, 209715200 sectors
+Disk /dev/nvme2n1: 20 GiB, 21474836480 bytes, 41943040 sectors
+Disk /dev/nvme4n1: 20 GiB, 21474836480 bytes, 41943040 sectors
+Disk /dev/nvme0n1: 100 GiB, 107374182400 bytes, 209715200 sectors
+Disklabel type: dos
+Disk identifier: 0xddd6f2e3
+Disk /dev/mapper/usr_sap_TRE-usr_sap_TRE: 100 GiB, 107369988096 bytes, 209707008 sectors
+Disk /dev/mapper/var_log_audit-var_log_audit: 20 GiB, 21470642176 bytes, 41934848 sectors
+Disk /dev/mapper/var_tmp-var_tmp: 20 GiB, 21470642176 bytes, 41934848 sectors
+
+[31;43m***** PP process; All Running Procs; PP/Multipath devices Info *****[0m
+root     12305 12287  0 22:50 pts/1    00:00:00 grep Powerpath
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 12:59 ?        00:00:02 /usr/lib/systemd/systemd --switched-root --system --deserialize 23
+root         2     0  0 12:59 ?        00:00:00 [kthreadd]
+root         4     2  0 12:59 ?        00:00:00 [kworker/0:0H]
+root         6     2  0 12:59 ?        00:00:00 [mm_percpu_wq]
+root         7     2  0 12:59 ?        00:00:00 [ksoftirqd/0]
+root         8     2  0 12:59 ?        00:00:02 [rcu_sched]
+root         9     2  0 12:59 ?        00:00:00 [rcu_bh]
+root        10     2  0 12:59 ?        00:00:00 [migration/0]
+root        11     2  0 12:59 ?        00:00:00 [watchdog/0]
+root        12     2  0 12:59 ?        00:00:00 [cpuhp/0]
+root        13     2  0 12:59 ?        00:00:00 [cpuhp/1]
+root        14     2  0 12:59 ?        00:00:00 [watchdog/1]
+root        15     2  0 12:59 ?        00:00:00 [migration/1]
+root        16     2  0 12:59 ?        00:00:00 [ksoftirqd/1]
+root        18     2  0 12:59 ?        00:00:00 [kworker/1:0H]
+root        19     2  0 12:59 ?        00:00:00 [cpuhp/2]
+root        20     2  0 12:59 ?        00:00:00 [watchdog/2]
+root        21     2  0 12:59 ?        00:00:00 [migration/2]
+root        22     2  0 12:59 ?        00:00:00 [ksoftirqd/2]
+root        24     2  0 12:59 ?        00:00:00 [kworker/2:0H]
+root        25     2  0 12:59 ?        00:00:00 [cpuhp/3]
+root        26     2  0 12:59 ?        00:00:00 [watchdog/3]
+root        27     2  0 12:59 ?        00:00:00 [migration/3]
+root        28     2  0 12:59 ?        00:00:00 [ksoftirqd/3]
+root        30     2  0 12:59 ?        00:00:00 [kworker/3:0H]
+root        32     2  0 12:59 ?        00:00:00 [kdevtmpfs]
+root        33     2  0 12:59 ?        00:00:00 [netns]
+root        36     2  0 12:59 ?        00:00:00 [khungtaskd]
+root        37     2  0 12:59 ?        00:00:00 [oom_reaper]
+root        38     2  0 12:59 ?        00:00:00 [writeback]
+root        39     2  0 12:59 ?        00:00:00 [kcompactd0]
+root        40     2  0 12:59 ?        00:00:00 [ksmd]
+root        41     2  0 12:59 ?        00:00:00 [khugepaged]
+root        43     2  0 12:59 ?        00:00:00 [crypto]
+root        44     2  0 12:59 ?        00:00:00 [kintegrityd]
+root        45     2  0 12:59 ?        00:00:00 [kblockd]
+root        46     2  0 12:59 ?        00:00:00 [edac-poller]
+root        47     2  0 12:59 ?        00:00:00 [devfreq_wq]
+root        48     2  0 12:59 ?        00:00:00 [watchdogd]
+root        51     2  0 12:59 ?        00:00:00 [kauditd]
+root        52     2  0 12:59 ?        00:00:00 [kswapd0]
+root       102     2  0 12:59 ?        00:00:00 [kthrotld]
+root       103     2  0 12:59 ?        00:00:00 [ipv6_addrconf]
+root       154     2  0 12:59 ?        00:00:00 [kaluad]
+root       156     2  0 12:59 ?        00:00:00 [kmpath_rdacd]
+root       160     2  0 12:59 ?        00:00:00 [kmpathd]
+root       161     2  0 12:59 ?        00:00:00 [kmpath_handlerd]
+root       284     2  0 12:59 ?        00:00:00 [nvme-wq]
+root       285     2  0 12:59 ?        00:00:00 [ena]
+root       287     2  0 12:59 ?        00:00:00 [nvme-reset-wq]
+root       288     2  0 12:59 ?        00:00:00 [nvme-delete-wq]
+root       289     1  0 12:59 ?        00:00:00 @usr/sbin/plymouthd --mode=boot --pid-file=/run/plymouth/pid --attach-to-session
+root       318     2  0 12:59 ?        00:00:00 [xfsalloc]
+root       319     2  0 12:59 ?        00:00:00 [xfs_mru_cache]
+root       320     2  0 12:59 ?        00:00:00 [xfs-buf/nvme0n1]
+root       321     2  0 12:59 ?        00:00:00 [xfs-data/nvme0n]
+root       322     2  0 12:59 ?        00:00:00 [xfs-conv/nvme0n]
+root       323     2  0 12:59 ?        00:00:00 [xfs-cil/nvme0n1]
+root       324     2  0 12:59 ?        00:00:00 [xfs-reclaim/nvm]
+root       325     2  0 12:59 ?        00:00:00 [xfs-log/nvme0n1]
+root       326     2  0 12:59 ?        00:00:00 [xfs-eofblocks/n]
+root       327     2  0 12:59 ?        00:00:03 [xfsaild/nvme0n1]
+root       419     1  0 12:59 ?        00:00:00 /usr/lib/systemd/systemd-journald
+root       433     2  0 12:59 ?        00:00:00 [kworker/1:1H]
+root       434     2  0 12:59 ?        00:00:00 [kworker/2:1H]
+root       435     2  0 12:59 ?        00:00:00 [kworker/3:1H]
+root       436     2  0 12:59 ?        00:00:00 [kworker/0:1H]
+root       451     2  0 12:59 ?        00:00:00 [rpciod]
+root       452     2  0 12:59 ?        00:00:00 [xprtiod]
+root       458     1  0 12:59 ?        00:00:00 /usr/sbin/haveged -w 1024 -v 0 -F
+root       459     1  0 12:59 ?        00:00:00 /usr/lib/systemd/systemd-udevd
+root       517     2  0 12:59 ?        00:00:00 [xfs-buf/nvme0n1]
+root       519     2  0 12:59 ?        00:00:00 [xfs-data/nvme0n]
+root       521     2  0 12:59 ?        00:00:00 [xfs-conv/nvme0n]
+root       545     2  0 12:59 ?        00:00:00 [xfs-cil/nvme0n1]
+root       555     1  0 12:59 ?        00:00:00 /sbin/lvmetad -f
+root       573     2  0 12:59 ?        00:00:00 [xfs-reclaim/nvm]
+root       583     2  0 12:59 ?        00:00:00 [kdmflush]
+root       638     2  0 12:59 ?        00:00:00 [xfs-log/nvme0n1]
+root       640     2  0 12:59 ?        00:00:00 [xfs-eofblocks/n]
+root       658     2  0 12:59 ?        00:00:00 [xfsaild/nvme0n1]
+root       692     2  0 12:59 ?        00:00:00 [kdmflush]
+root       696     2  0 12:59 ?        00:00:00 [xfs-buf/dm-0]
+root       697     2  0 12:59 ?        00:00:00 [xfs-data/dm-0]
+root       698     2  0 12:59 ?        00:00:00 [xfs-conv/dm-0]
+root       699     2  0 12:59 ?        00:00:00 [xfs-cil/dm-0]
+root       700     2  0 12:59 ?        00:00:00 [xfs-reclaim/dm-]
+root       701     2  0 12:59 ?        00:00:00 [xfs-log/dm-0]
+root       702     2  0 12:59 ?        00:00:00 [xfs-eofblocks/d]
+root       703     2  0 12:59 ?        00:00:03 [xfsaild/dm-0]
+root       705     2  0 12:59 ?        00:00:00 [kdmflush]
+root       728     1  0 12:59 ?        00:00:00 /usr/sbin/rpc.idmapd
+root       729     1  0 12:59 ?        00:00:00 /sbin/auditd
+root       749     2  0 12:59 ?        00:00:00 [audit_prune_tre]
+message+   757     1  0 12:59 ?        00:00:00 /bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation
+root       758     1  0 12:59 ?        00:00:00 /usr/lib/wicked/bin/wickedd-dhcp6 --systemd --foreground
+root       759     1  0 12:59 ?        00:00:00 /usr/lib/wicked/bin/wickedd-auto4 --systemd --foreground
+root       763     1  0 12:59 ?        00:00:00 /usr/lib/wicked/bin/wickedd-dhcp4 --systemd --foreground
+root       766     1  0 12:59 ?        00:00:00 /usr/sbin/sssd -i --logger=files
+root       769     1  0 12:59 ?        00:00:00 /usr/sbin/irqbalance --foreground
+root       808     1  0 12:59 ?        00:00:00 /usr/sbin/rsyslogd -n
+root       815     1  0 12:59 ?        00:00:00 /usr/sbin/wickedd --systemd --foreground
+root       822     1  0 12:59 ?        00:00:00 /usr/sbin/wickedd-nanny --systemd --foreground
+root       825   766  0 12:59 ?        00:00:00 /usr/lib/sssd/sssd_be --domain lambweston.com --uid 0 --gid 0 --logger=files
+root       828   766  0 12:59 ?        00:00:00 /usr/lib/sssd/sssd_nss --uid 0 --gid 0 --logger=files
+root       829   766  0 12:59 ?        00:00:00 /usr/lib/sssd/sssd_pam --uid 0 --gid 0 --logger=files
+root       830     1  0 12:59 ?        00:00:00 /usr/lib/systemd/systemd-logind
+rpc       1377     1  0 12:59 ?        00:00:00 /sbin/rpcbind -w -f
+statd     1401     1  0 12:59 ?        00:00:00 /usr/sbin/rpc.statd --no-notify -p 4000 --nlm-port 4001 --nlm-udp-port 4001
+root      1415     1  0 12:59 ?        00:00:00 /usr/sbin/rpc.mountd
+awsdata   1421     1  0 12:59 ?        00:00:00 jsvc.exec -errfile /var/log/aws-dataprovider/jsvcerr.log -jvm server -showversion -pidfile /tmp/aws-dataprovider.pid -cp /usr/local/ec2/aws-dataprovider/lib/installer.jar:/usr/local/ec2/aws-dataprovider/lib/commons-daemon-1.2.4/commons-daemon-1.2.4.jar -Dcom.amazon.aws.aws-dataprovider.proxypath=/usr/local/ec2/aws-dataprovider -Dcom.amazon.aws.aws-dataprovider.access=https://s3.amazonaws.com/aws-sap-data-provider -DisStandaloneVersion=yes com.amazon.aws.dataprovider.AwsDataProvider /usr/local/ec2/aws-dataprovider -vhostmd -LogLevel=INFO
+awsdata   1423  1421  0 12:59 ?        00:00:15 jsvc.exec -errfile /var/log/aws-dataprovider/jsvcerr.log -jvm server -showversion -pidfile /tmp/aws-dataprovider.pid -cp /usr/local/ec2/aws-dataprovider/lib/installer.jar:/usr/local/ec2/aws-dataprovider/lib/commons-daemon-1.2.4/commons-daemon-1.2.4.jar -Dcom.amazon.aws.aws-dataprovider.proxypath=/usr/local/ec2/aws-dataprovider -Dcom.amazon.aws.aws-dataprovider.access=https://s3.amazonaws.com/aws-sap-data-provider -DisStandaloneVersion=yes com.amazon.aws.dataprovider.AwsDataProvider /usr/local/ec2/aws-dataprovider -vhostmd -LogLevel=INFO
+root      1425     2  0 12:59 ?        00:00:00 [lockd]
+root      1428     2  0 12:59 ?        00:00:00 [nfsd]
+root      1429     2  0 12:59 ?        00:00:00 [nfsd]
+root      1430     2  0 12:59 ?        00:00:00 [nfsd]
+root      1431     2  0 12:59 ?        00:00:00 [nfsd]
+root      1520     1  0 12:59 ?        00:00:00 /usr/bin/python /usr/bin/salt-minion
+root      1547     2  0 12:59 ?        00:00:00 [nfsiod]
+root      1549     1  0 12:59 ?        00:00:00 /usr/sbin/sshd -D
+root      1562     2  0 12:59 ?        00:00:00 [NFSv4 callback]
+root      1578     1  0 12:59 ?        00:00:00 /opt/ds_agent/ds_agent -w /var/opt/ds_agent -b -i -e /opt/ds_agent/ext
+root      1579  1578  0 12:59 ?        00:01:02 /opt/ds_agent/ds_agent -w /var/opt/ds_agent -b -i -e /opt/ds_agent/ext
+root      1593     1  0 12:59 tty1     00:00:00 /sbin/agetty --noclear tty1 linux
+root      1594     1  0 12:59 ttyS0    00:00:00 /sbin/agetty --keep-baud 115200,38400,9600 ttyS0 vt220
+root      1649     2  0 12:59 ?        00:00:00 [ds_kproc]
+root      1650     2  0 12:59 ?        00:00:00 [ds_kmemcg]
+root      1705  1520  0 12:59 ?        00:00:26 /usr/bin/python /usr/bin/salt-minion
+root      1769  1705  0 12:59 ?        00:00:00 /usr/bin/python /usr/bin/salt-minion
+ntp       1803     1  0 12:59 ?        00:00:01 /usr/sbin/ntpd -p /var/run/ntp/ntpd.pid -g -u ntp:ntp -c /etc/ntp.conf
+ntp       1805  1803  0 12:59 ?        00:00:00 ntpd: asynchronous dns resolver
+trdadm    1902     1  0 12:59 ?        00:00:00 /usr/lib/systemd/systemd --user
+trdadm    1907  1902  0 12:59 ?        00:00:00 (sd-pam)
+root      2080     1  0 12:59 ?        00:00:00 /usr/lib/postfix/bin//master -w
+postfix   2099  2080  0 12:59 ?        00:00:00 qmgr -l -t fifo -u
+root      2129     1  0 12:59 ?        00:00:00 /usr/sbin/cron -n
+trdadm    2328     1  0 12:59 ?        00:00:01 /usr/sap/TRD/TRX01/exe/sapstartsrv pf=/usr/sap/TRD/SYS/profile/TRD_TRX01_saptreap01 -D
+trdadm    2334     1  0 12:59 ?        00:00:00 /usr/sap/TRD/TRX01/exe/sapstart pf=/usr/sap/TRD/SYS/profile/TRD_TRX01_saptreap01
+trdadm    2519  2334  0 12:59 ?        00:00:00 /usr/sap/TRD/TRX01/saptreap01/trace/TRX.sapTRD_TRX01 -d -nw -f /usr/sap/TRD/TRX01/saptreap01/TREXDaemon.ini pf=/usr/sap/TRD/SYS/profile/TRD_TRX01_saptreap01
+trdadm    2541  2519  0 12:59 ?        00:00:13 TREXNameServer.x
+trdadm    2713  2519  0 12:59 ?        00:00:02 TREXPreprocessor.x -port 30102
+trdadm    2738  2519  0 12:59 ?        00:00:21 TREXIndexServer.x -port 30103
+trdadm    2836  2519  0 12:59 ?        00:00:02 TREXQueueServer.x -port 30104
+trdadm    2867  2519  0 12:59 ?        00:00:38 python alertserver.py
+trdadm    2868  2519  0 12:59 ?        00:00:02 TREXCruiser.x
+trdadm    2882  2519  0 12:59 ?        00:00:00 python cron.py
+trdadm    2883  2519  0 12:59 ?        00:00:03 TREXRfcServer2.x -r -host=sapgseap01.lambweston.com -instance=sapgw00 -service=Trex_GSD_20200821055244
+postfix  10451  2080  0 21:19 ?        00:00:00 pickup -l -t fifo -u
+root     11145     2  0 21:59 ?        00:00:00 [kworker/u8:0]
+root     11256     2  0 22:10 ?        00:00:00 [kworker/0:0]
+root     11314     2  0 22:15 ?        00:00:00 [kworker/2:0]
+root     11633     2  0 22:30 ?        00:00:00 [kworker/0:1]
+root     11662     2  0 22:35 ?        00:00:00 [kworker/1:1]
+root     11664     2  0 22:36 ?        00:00:00 [kworker/3:2]
+root     11667     2  0 22:38 ?        00:00:00 [kworker/u8:2]
+root     11681     2  0 22:40 ?        00:00:00 [kworker/2:2]
+root     11692     2  0 22:41 ?        00:00:00 [kworker/1:0]
+root     11693     2  0 22:41 ?        00:00:00 [kworker/3:0]
+root     11755     2  0 22:46 ?        00:00:00 [kworker/1:2]
+root     11758     2  0 22:47 ?        00:00:00 [kworker/3:1]
+root     11760  1549  0 22:49 ?        00:00:00 sshd: AVJ1007 [priv]
+AVJ1007  11762     1  0 22:49 ?        00:00:00 /usr/lib/systemd/systemd --user
+AVJ1007  11763 11762  0 22:49 ?        00:00:00 (sd-pam)
+AVJ1007  11766 11760  0 22:49 ?        00:00:00 sshd: AVJ1007@pts/1
+AVJ1007  11767 11766  0 22:49 pts/1    00:00:00 -bash
+root     11809 11767  0 22:49 pts/1    00:00:00 sudo su -
+root     11810 11809  0 22:49 pts/1    00:00:00 su -
+root     11811 11810  0 22:49 pts/1    00:00:00 -bash
+root     11860     2  0 22:49 ?        00:00:00 [kworker/u8:1]
+root     11875     2  0 22:50 ?        00:00:00 [kworker/2:1]
+root     11880     2  0 22:50 ?        00:00:00 [kworker/0:2]
+root     11882     2  0 22:50 ?        00:00:00 [kworker/u8:3]
+root     12287 11811  0 22:50 pts/1    00:00:00 -bash
+root     12306 12287  0 22:50 pts/1    00:00:00 ps -eaf
+0
+
+[31;43m***** Services; Chkconfig status; CPU/MEM/ *****[0m
+after-local.service                  loaded active exited  /etc/init.d/after.local Compatibility
+auditd.service                       loaded active running Security Auditing Service
+aws-dataprovider.service             loaded active running AWS Data Provider for SAP
+cloud-config.service                 loaded active exited  Apply the settings specified in cloud-config
+cloud-final.service                  loaded active exited  Execute cloud user/final scripts
+cloud-init-local.service             loaded active exited  Initial cloud-init job (pre-networking)
+cloud-init.service                   loaded active exited  Initial cloud-init job (metadata service crawler)
+cron.service                         loaded active running Command Scheduler
+dbus.service                         loaded active running D-Bus System Message Bus
+detect-part-label-duplicates.service loaded active exited  Detect if the system suffers from bsc#1089761
+dracut-shutdown.service              loaded active exited  Restore /run/initramfs on shutdown
+ds_agent.service                     loaded active running LSB: Trend Micro Deep Security Agent
+getty@tty1.service                   loaded active running Getty on tty1
+haveged.service                      loaded active running Entropy Daemon based on the HAVEGE algorithm
+irqbalance.service                   loaded active running irqbalance daemon
+iscsi.service                        loaded active exited  Login and scanning of iSCSI devices
+jexec.service                        loaded active exited  LSB: Supports the direct execution of binary formats.
+kmod-static-nodes.service            loaded active exited  Create list of required static device nodes for the current kernel
+lvm2-lvmetad.service                 loaded active running LVM2 metadata daemon
+lvm2-pvscan@259:1.service            loaded active exited  LVM2 PV scan on device 259:1
+lvm2-pvscan@259:2.service            loaded active exited  LVM2 PV scan on device 259:2
+lvm2-pvscan@259:3.service            loaded active exited  LVM2 PV scan on device 259:3
+nfs-idmapd.service                   loaded active running NFSv4 ID-name mapping service
+nfs-mountd.service                   loaded active running NFS Mount Daemon
+nfs-server.service                   loaded active exited  NFS server and services
+nfsserver.service                    loaded active exited  Alias for NFS server
+ntpd.service                         loaded active running NTP Server Daemon
+postfix.service                      loaded active running Postfix Mail Transport Agent
+rc-local.service                     loaded failed failed  /etc/init.d/boot.local Compatibility
+rpc-statd.service                    loaded active running NFS status monitor for NFSv2/3 locking.
+rpcbind.service                      loaded active running RPC Bind
+rsyslog.service                      loaded active running System Logging Service
+salt-minion.service                  loaded active running The Salt Minion
+sapinit.service                      loaded active exited  LSB: Start the sapstartsrv
+saptune.service                      loaded active exited  Optimise system for running SAP workloads
+serial-getty@ttyS0.service           loaded active running Serial Getty on ttyS0
+sshd.service                         loaded active running OpenSSH Daemon
+sssd.service                         loaded active running System Security Services Daemon
+sysstat.service                      loaded active exited  Write information about system start to sysstat log
+systemd-fsck-root.service            loaded active exited  File System Check on Root Device
+systemd-journal-flush.service        loaded active exited  Flush Journal to Persistent Storage
+systemd-journald.service             loaded active running Journal Service
+systemd-logind.service               loaded active running Login Service
+systemd-modules-load.service         loaded active exited  Load Kernel Modules
+systemd-random-seed.service          loaded active exited  Load/Save Random Seed
+systemd-remount-fs.service           loaded active exited  Remount Root and Kernel File Systems
+systemd-sysctl.service               loaded active exited  Apply Kernel Variables
+systemd-tmpfiles-setup-dev.service   loaded active exited  Create Static Device Nodes in /dev
+systemd-tmpfiles-setup.service       loaded active exited  Create Volatile Files and Directories
+systemd-udev-root-symlink.service    loaded active exited  Rule generator for /dev/root symlink
+systemd-udev-settle.service          loaded active exited  udev Wait for Complete Device Initialization
+systemd-udev-trigger.service         loaded active exited  udev Coldplug all Devices
+systemd-udevd.service                loaded active running udev Kernel Device Manager
+systemd-update-utmp.service          loaded active exited  Update UTMP about System Boot/Shutdown
+systemd-user-sessions.service        loaded active exited  Permit User Sessions
+systemd-vconsole-setup.service       loaded active exited  Setup Virtual Console
+user@1002.service                    loaded active running User Manager for UID 1002
+user@1725064823.service              loaded active running User Manager for UID 1725064823
+wicked.service                       loaded active exited  wicked managed network interfaces
+wickedd-auto4.service                loaded active running wicked AutoIPv4 supplicant service
+wickedd-dhcp4.service                loaded active running wicked DHCPv4 supplicant service
+wickedd-dhcp6.service                loaded active running wicked DHCPv6 supplicant service
+wickedd-nanny.service                loaded active running wicked network nanny service
+wickedd.service                      loaded active running wicked network management service daemon
+after.local               0:off  1:off  2:off  3:off  4:off  5:off  6:off
+chargen                   0:off  1:off  2:off  3:off  4:off  5:off  6:off
+chargen-udp               0:off  1:off  2:off  3:off  4:off  5:off  6:off
+csync2                    0:off  1:off  2:off  3:off  4:off  5:off  6:off
+daytime                   0:off  1:off  2:off  3:off  4:off  5:off  6:off
+daytime-udp               0:off  1:off  2:off  3:off  4:off  5:off  6:off
+discard                   0:off  1:off  2:off  3:off  4:off  5:off  6:off
+discard-udp               0:off  1:off  2:off  3:off  4:off  5:off  6:off
+ds_agent                  0:off  1:off  2:on   3:on   4:on   5:on   6:off
+echo                      0:off  1:off  2:off  3:off  4:off  5:off  6:off
+echo-udp                  0:off  1:off  2:off  3:off  4:off  5:off  6:off
+jexec                     0:off  1:on   2:on   3:on   4:on   5:on   6:off
+netstat                   0:off  1:off  2:off  3:off  4:off  5:off  6:off
+openct                    0:off  1:off  2:on   3:on   4:on   5:on   6:off
+rpmconfigcheck            0:off  1:off  2:off  3:off  4:off  5:off  6:off
+rsync                     0:off  1:off  2:off  3:off  4:off  5:off  6:off
+sapinit                   0:off  1:off  2:off  3:on   4:off  5:on   6:off
+servers                   0:off  1:off  2:off  3:off  4:off  5:off  6:off
+services                  0:off  1:off  2:off  3:off  4:off  5:off  6:off
+snmpd                     0:off  1:off  2:off  3:off  4:off  5:off  6:off
+snmptrapd                 0:off  1:off  2:off  3:off  4:off  5:off  6:off
+systat                    0:off  1:off  2:off  3:off  4:off  5:off  6:off
+time                      0:off  1:off  2:off  3:off  4:off  5:off  6:off
+time-udp                  0:off  1:off  2:off  3:off  4:off  5:off  6:off
+vnc                       0:off  1:off  2:off  3:off  4:off  5:off  6:off
+vsftpd                    0:off  1:off  2:off  3:off  4:off  5:off  6:off
+xinetd based services:
+        chargen:            off
+        chargen-udp:        off
+        csync2:             off
+        daytime:            off
+        daytime-udp:        off
+        discard:            off
+        discard-udp:        off
+        echo:               off
+        echo-udp:           off
+        netstat:            off
+        rsync:              off
+        servers:            off
+        services:           off
+        systat:             off
+        time:               off
+        time-udp:           off
+        vnc:                off
+        vsftpd:             off
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name   
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      1/systemd           
+tcp        0      0 0.0.0.0:20048           0.0.0.0:*               LISTEN      1415/rpc.mountd     
+tcp        0      0 0.0.0.0:30101           0.0.0.0:*               LISTEN      2541/TREXNameServer 
+tcp        0      0 0.0.0.0:30102           0.0.0.0:*               LISTEN      2713/TREXPreprocess 
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1549/sshd           
+tcp        0      0 0.0.0.0:30103           0.0.0.0:*               LISTEN      2738/TREXIndexServe 
+tcp        0      0 0.0.0.0:30104           0.0.0.0:*               LISTEN      2836/TREXQueueServe 
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      2080/master         
+tcp        0      0 0.0.0.0:30107           0.0.0.0:*               LISTEN      2883/TREXRfcServer2 
+tcp        0      0 0.0.0.0:30108           0.0.0.0:*               LISTEN      2868/TREXCruiser.x  
+tcp        0      0 0.0.0.0:30111           0.0.0.0:*               LISTEN      2867/python         
+tcp        0      0 0.0.0.0:4000            0.0.0.0:*               LISTEN      1401/rpc.statd      
+tcp        0      0 0.0.0.0:50113           0.0.0.0:*               LISTEN      2328/sapstartsrv    
+tcp        0      0 0.0.0.0:4001            0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:2049            0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:30116           0.0.0.0:*               LISTEN      2738/TREXIndexServe 
+tcp        0      0 :::111                  :::*                    LISTEN      1/systemd           
+tcp        0      0 :::20048                :::*                    LISTEN      1415/rpc.mountd     
+tcp        0      0 :::4118                 :::*                    LISTEN      1579/ds_agent       
+tcp        0      0 :::22                   :::*                    LISTEN      1549/sshd           
+tcp        0      0 127.0.0.1:8888          :::*                    LISTEN      1423/jsvc.exec      
+tcp        0      0 ::1:25                  :::*                    LISTEN      2080/master         
+tcp        0      0 :::4000                 :::*                    LISTEN      1401/rpc.statd      
+tcp        0      0 :::4001                 :::*                    LISTEN      -                   
+tcp        0      0 :::2049                 :::*                    LISTEN      -                   
+udp     5376      0 0.0.0.0:68              0.0.0.0:*                           763/wickedd-dhcp4   
+udp        0      0 0.0.0.0:111             0.0.0.0:*                           1/systemd           
+udp        0      0 172.18.196.88:123       0.0.0.0:*                           1803/ntpd           
+udp        0      0 127.0.0.1:123           0.0.0.0:*                           1803/ntpd           
+udp        0      0 0.0.0.0:123             0.0.0.0:*                           1803/ntpd           
+udp        0      0 0.0.0.0:705             0.0.0.0:*                           1377/rpcbind        
+udp        0      0 127.0.0.1:732           0.0.0.0:*                           1401/rpc.statd      
+udp        0      0 0.0.0.0:2049            0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:20048           0.0.0.0:*                           1415/rpc.mountd     
+udp        0      0 0.0.0.0:4000            0.0.0.0:*                           1401/rpc.statd      
+udp        0      0 0.0.0.0:4001            0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:40531           0.0.0.0:*                           808/rsyslogd        
+udp        0      0 :::111                  :::*                                1/systemd           
+udp        0      0 fe80::cb6:44ff:fecd:123 :::*                                1803/ntpd           
+udp        0      0 ::1:123                 :::*                                1803/ntpd           
+udp        0      0 :::123                  :::*                                1803/ntpd           
+udp        0      0 :::705                  :::*                                1377/rpcbind        
+udp        0      0 :::2049                 :::*                                -                   
+udp        0      0 :::20048                :::*                                1415/rpc.mountd     
+udp        0      0 :::4000                 :::*                                1401/rpc.statd      
+udp        0      0 :::4001                 :::*                                -                   
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 106
+model name	: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz
+stepping	: 6
+microcode	: 0xd000331
+cpu MHz		: 2899.966
+cache size	: 55296 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 2
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 27
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves ida arat avx512vbmi pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq rdpid md_clear flush_l1d arch_capabilities
+bugs		: spectre_v1 spectre_v2 spec_store_bypass swapgs
+bogomips	: 5799.93
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 106
+model name	: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz
+stepping	: 6
+microcode	: 0xd000331
+cpu MHz		: 2899.966
+cache size	: 55296 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 2
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 27
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves ida arat avx512vbmi pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq rdpid md_clear flush_l1d arch_capabilities
+bugs		: spectre_v1 spectre_v2 spec_store_bypass swapgs
+bogomips	: 5799.93
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 106
+model name	: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz
+stepping	: 6
+microcode	: 0xd000331
+cpu MHz		: 2899.966
+cache size	: 55296 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 2
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 27
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves ida arat avx512vbmi pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq rdpid md_clear flush_l1d arch_capabilities
+bugs		: spectre_v1 spectre_v2 spec_store_bypass swapgs
+bogomips	: 5799.93
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 106
+model name	: Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz
+stepping	: 6
+microcode	: 0xd000331
+cpu MHz		: 2899.966
+cache size	: 55296 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 2
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 27
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves ida arat avx512vbmi pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg tme avx512_vpopcntdq rdpid md_clear flush_l1d arch_capabilities
+bugs		: spectre_v1 spectre_v2 spec_store_bypass swapgs
+bogomips	: 5799.93
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+MemTotal:       16142776 kB
+MemFree:        14294708 kB
+MemAvailable:   14767948 kB
+Buffers:            2128 kB
+Cached:           772816 kB
+SwapCached:            0 kB
+Active:          1080364 kB
+Inactive:         518436 kB
+Active(anon):     826588 kB
+Inactive(anon):    70132 kB
+Active(file):     253776 kB
+Inactive(file):   448304 kB
+Unevictable:          80 kB
+Mlocked:              80 kB
+SwapTotal:      33554428 kB
+SwapFree:       33554428 kB
+Dirty:                60 kB
+Writeback:             0 kB
+AnonPages:        764312 kB
+Mapped:           221632 kB
+Shmem:             72864 kB
+Slab:              95304 kB
+SReclaimable:      47608 kB
+SUnreclaim:        47696 kB
+KernelStack:        5664 kB
+PageTables:        12692 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    41625816 kB
+Committed_AS:    2285264 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:    411648 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:      155556 kB
+DirectMap2M:     5857280 kB
+DirectMap1G:    10485760 kB
+  --- Physical volume ---
+  PV Name               /dev/nvme4n1
+  VG Name               var_tmp
+  PV Size               20.00 GiB / not usable 4.00 MiB
+  Allocatable           yes (but full)
+  PE Size               4.00 MiB
+  Total PE              5119
+  Free PE               0
+  Allocated PE          5119
+  PV UUID               eyJkWU-7kSi-qwKQ-Jdt3-hpND-MgXx-ReojEj
+   
+  --- Physical volume ---
+  PV Name               /dev/nvme2n1
+  VG Name               var_log_audit
+  PV Size               20.00 GiB / not usable 4.00 MiB
+  Allocatable           yes (but full)
+  PE Size               4.00 MiB
+  Total PE              5119
+  Free PE               0
+  Allocated PE          5119
+  PV UUID               kDMrSQ-Pd2I-LkLI-GrvC-wkKO-iiLR-TnmhTD
+   
+  --- Physical volume ---
+  PV Name               /dev/nvme3n1
+  VG Name               usr_sap_TRE
+  PV Size               100.00 GiB / not usable 4.00 MiB
+  Allocatable           yes (but full)
+  PE Size               4.00 MiB
+  Total PE              25599
+  Free PE               0
+  Allocated PE          25599
+  PV UUID               uO4cVz-iClJ-Guoz-mVtz-d4jg-6rab-eF1abe
+   
+  --- Volume group ---
+  VG Name               var_tmp
+  System ID             
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  2
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               0
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               20.00 GiB
+  PE Size               4.00 MiB
+  Total PE              5119
+  Alloc PE / Size       5119 / 20.00 GiB
+  Free  PE / Size       0 / 0   
+  VG UUID               xcMvIb-9Wiw-P72I-AstS-40z3-xkgQ-IUAv8Q
+   
+  --- Volume group ---
+  VG Name               var_log_audit
+  System ID             
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  2
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               0
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               20.00 GiB
+  PE Size               4.00 MiB
+  Total PE              5119
+  Alloc PE / Size       5119 / 20.00 GiB
+  Free  PE / Size       0 / 0   
+  VG UUID               Ji5yl0-X5oT-HoIA-cAwz-45yk-0F46-VGlZkK
+   
+  --- Volume group ---
+  VG Name               usr_sap_TRE
+  System ID             
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  4
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               100.00 GiB
+  PE Size               4.00 MiB
+  Total PE              25599
+  Alloc PE / Size       25599 / 100.00 GiB
+  Free  PE / Size       0 / 0   
+  VG UUID               WLmUJo-h41g-u2CT-FAJZ-5oQK-UgcR-mr30L5
+   
+  --- Logical volume ---
+  LV Path                /dev/var_tmp/var_tmp
+  LV Name                var_tmp
+  VG Name                var_tmp
+  LV UUID                cowTZ4-1o35-871J-xdl7-giPI-X62I-cRhVw8
+  LV Write Access        read/write
+  LV Creation host, time SAPTREAP01, 2022-05-02 11:55:40 +0000
+  LV Status              available
+  # open                 0
+  LV Size                20.00 GiB
+  Current LE             5119
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     1024
+  Block device           254:2
+   
+  --- Logical volume ---
+  LV Path                /dev/var_log_audit/var_log_audit
+  LV Name                var_log_audit
+  VG Name                var_log_audit
+  LV UUID                hCCDfc-EUdm-ZDqe-Nrfh-I8lf-yrDi-RcoTYm
+  LV Write Access        read/write
+  LV Creation host, time SAPTREAP01, 2022-05-02 11:55:32 +0000
+  LV Status              available
+  # open                 0
+  LV Size                20.00 GiB
+  Current LE             5119
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     1024
+  Block device           254:1
+   
+  --- Logical volume ---
+  LV Path                /dev/usr_sap_TRE/usr_sap_TRE
+  LV Name                usr_sap_TRE
+  VG Name                usr_sap_TRE
+  LV UUID                5dT6Qf-w2l2-TbKV-pLvp-9yHP-HMG3-8yVe8F
+  LV Write Access        read/write
+  LV Creation host, time SAPTRDAP01, 2020-08-17 08:14:47 +0000
+  LV Status              available
+  # open                 1
+  LV Size                100.00 GiB
+  Current LE             25599
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     1024
+  Block device           254:0
+   
+             total       used       free     shared    buffers     cached
+Mem:         15764       1804      13959         71          2        801
+-/+ buffers/cache:       1001      14762
+Swap:        32767          0      32767
+
+[31;43m***** NTPD status *****[0m
+● ntpd.service - NTP Server Daemon
+   Loaded: loaded (/usr/lib/systemd/system/ntpd.service; enabled; vendor preset: disabled)
+  Drop-In: /run/systemd/generator/ntpd.service.d
+           └─50-insserv.conf-$time.conf
+   Active: active (running) since Tue 2022-05-17 12:59:34 UTC; 9h ago
+     Docs: man:ntpd(1)
+  Process: 1369 ExecStart=/usr/sbin/start-ntpd start (code=exited, status=0/SUCCESS)
+ Main PID: 1803 (ntpd)
+    Tasks: 2 (limit: 512)
+   CGroup: /system.slice/ntpd.service
+           ├─1803 /usr/sbin/ntpd -p /var/run/ntp/ntpd.pid -g -u ntp:ntp -c /etc/ntp.conf
+           └─1805 ntpd: asynchronous dns resolver                                       
+
+May 17 12:59:34 SAPTREAP01 ntpd[1803]: proto: precision = 0.052 usec (-24)
+May 17 12:59:34 SAPTREAP01 ntpd[1803]: line 101 column 22 syntax error, unexpected T_String, expecting T_EOC
+May 17 12:59:34 SAPTREAP01 ntpd[1803]: syntax error in /etc/ntp.conf line 101, column 22
+May 17 12:59:34 SAPTREAP01 ntpd[1803]: line 102 column 22 syntax error, unexpected T_String, expecting T_EOC
+May 17 12:59:34 SAPTREAP01 ntpd[1803]: syntax error in /etc/ntp.conf line 102, column 22
+May 17 12:59:34 SAPTREAP01 ntpd[1803]: basedate set to 2020-06-13
+May 17 12:59:34 SAPTREAP01 ntpd[1803]: gps base set to 2020-06-14 (week 2110)
+May 17 12:59:34 SAPTREAP01 ntpd[1803]: switching logging to file /var/log/ntp
+May 17 12:59:34 SAPTREAP01 start-ntpd[1369]: Starting network time protocol daemon (NTPD)
+May 17 12:59:34 SAPTREAP01 systemd[1]: Started NTP Server Daemon.
+     remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
++ip-172-30-144-2 17.253.26.125    2 u  897 1024  377   77.483   +0.044   0.213
+*ip-172-30-144-2 17.253.4.253     2 u  449 1024  377   77.490   -0.466   0.182
+
+******************************************
+SAPTREAP01
+4.12.14-95.93-default
+SUSE Linux Enterprise Server 12 (x86_64)
+VERSION = 12
+PATCHLEVEL = 4
+# This file is deprecated and will be removed in a future service pack or release.
+# Please check /etc/os-release for details about this release.
+NAME="SLES"
+VERSION="12-SP4"
+VERSION_ID="12.4"
+PRETTY_NAME="SUSE Linux Enterprise Server 12 SP4"
+ID="sles"
+ANSI_COLOR="0;32"
+CPE_NAME="cpe:/o:suse:sles_sap:12:sp4"
+ 22:50pm  up   9:51,  1 user,  load average: 0.03, 0.01, 0.00
+################################################################################
+## /etc/ntp.conf
+##
+## Sample NTP configuration file.
+## See package 'ntp-doc' for documentation, Mini-HOWTO and FAQ.
+## Copyright (c) 1998 S.u.S.E. GmbH Fuerth, Germany.
+##
+## Author: Michael Andres,  <ma@suse.de>
+##         Michael Skibbe,  <mskibbe@suse.de>
+##
+################################################################################
+
+##
+## Radio and modem clocks by convention have addresses in the 
+## form 127.127.t.u, where t is the clock type and u is a unit 
+## number in the range 0-3. 
+##
+## Most of these clocks require support in the form of a 
+## serial port or special bus peripheral. The particular  
+## device is normally specified by adding a soft link 
+## /dev/device-u to the particular hardware device involved, 
+## where u correspond to the unit number above. 
+## 
+## Generic DCF77 clock on serial port (Conrad DCF77)
+## Address:     127.127.8.u
+## Serial Port: /dev/refclock-u
+##  
+## (create soft link /dev/refclock-0 to the particular ttyS?)
+##
+# #server 127.127.8.0 mode 5 prefer
+
+##
+## Undisciplined Local Clock. This is a fake driver intended for backup
+## and when no outside source of synchronized time is available.
+##
+# #server 127.127.1.0		# local clock (LCL)
+# #fudge  127.127.1.0 stratum 10	# LCL is unsynchronized
+
+##
+## Add external Servers using
+## # rcntpd addserver <yourserver>
+## The servers will only be added to the currently running instance, not
+## to /etc/ntp.conf.
+##
+
+# Access control configuration; see /usr/share/doc/packages/ntp/html/accopt.html for
+# details.  The web page <http://support.ntp.org/bin/view/Support/AccessRestrictions>
+# might also be helpful.
+#
+# Note that "restrict" applies to both servers and clients, so a configuration
+# that might be intended to block requests from certain clients could also end
+# up blocking replies from your own upstream servers.
+
+# By default, exchange time with everybody, but don't allow configuration.
+restrict -4 default kod limited nomodify notrap nopeer noquery
+restrict -6 default kod limited nomodify notrap nopeer noquery
+
+# Local users may interrogate the ntp server more closely.
+restrict 127.0.0.1
+restrict ::1
+
+# Clients from this (example!) subnet have unlimited access, but only if
+# cryptographically authenticated.
+#restrict 192.168.123.0 mask 255.255.255.0 notrust
+
+##
+## Miscellaneous stuff
+##
+
+driftfile /var/lib/ntp/drift/ntp.drift # path for drift file
+
+logfile   /var/log/ntp		# alternate log file
+# logconfig =syncstatus + sysevents
+# logconfig =all
+
+# statsdir /tmp/		# directory for statistics files
+# filegen peerstats  file peerstats  type day enable
+# filegen loopstats  file loopstats  type day enable
+# filegen clockstats file clockstats type day enable
+
+#
+# Authentication stuff
+#
+#keys /etc/ntp.keys		# path for keys file
+#trustedkey 1			# define trusted #keys
+#requestkey 1			# key (7) for accessing server variables
+controlkey 1			# key (6) for accessing server variables
+
+#server 169.254.169.123 iburst
+#server 0.pool.ntp.org
+#server 1.pool.ntp.org
+#server 2.pool.ntp.org
+#server 3.pool.ntp.org
+#
+# Authentication stuff
+#
+keys /etc/ntp.keys              # path for keys file
+trustedkey 1                    # define trusted keys
+requestkey 1                    # key (7) for accessing server variables
+
+server 172.30.144.243 ibrust
+server 172.30.144.244 ibrust
+     remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
++ip-172-30-144-2 17.253.26.125    2 u  897 1024  377   77.483   +0.044   0.213
+*ip-172-30-144-2 17.253.4.253     2 u  449 1024  377   77.490   -0.466   0.182
+libsmartcols1-2.29.2-9.17.1.x86_64            Mon May  2 11:50:49 2022
+uuidd-2.29.2-9.17.1.x86_64                    Mon May  2 11:50:43 2022
+util-linux-lang-2.29.2-9.17.1.noarch          Mon May  2 11:50:40 2022
+util-linux-2.29.2-9.17.1.x86_64               Mon May  2 11:50:39 2022
+adjtimex-1.29-3.1.x86_64                      Mon May  2 11:50:39 2022
+libblkid1-2.29.2-9.17.1.x86_64                Mon May  2 11:50:36 2022
+libuuid1-2.29.2-9.17.1.x86_64                 Mon May  2 11:50:33 2022
+util-linux-systemd-2.29.2-9.17.1.x86_64       Mon May  2 11:50:29 2022
+libfdisk1-2.29.2-9.17.1.x86_64                Mon May  2 11:50:26 2022
+libmount1-2.29.2-9.17.1.x86_64                Mon May  2 11:50:23 2022
+mozilla-nss-certs-3.68.3-58.69.1.x86_64       Mon May  2 11:50:20 2022
+python-xml-2.7.18-33.8.1.x86_64               Mon May  2 11:50:16 2022
+python-base-2.7.18-33.8.1.x86_64              Mon May  2 11:50:15 2022
+python-2.7.18-33.8.1.x86_64                   Mon May  2 11:50:12 2022
+libpython2_7-1_0-2.7.18-33.8.1.x86_64         Mon May  2 11:50:08 2022
+xz-lang-5.0.5-6.7.1.noarch                    Mon May  2 11:50:05 2022
+xz-5.0.5-6.7.1.x86_64                         Mon May  2 11:50:02 2022
+liblzma5-5.0.5-6.7.1.x86_64                   Mon May  2 11:49:59 2022
+libsss_nss_idmap0-1.16.1-4.40.1.x86_64        Mon May  2 11:49:56 2022
+libsss_idmap0-1.16.1-4.40.1.x86_64            Mon May  2 11:49:53 2022
+libsss_simpleifp0-1.16.1-4.40.1.x86_64        Mon May  2 11:49:50 2022
+libsss_certmap0-1.16.1-4.40.1.x86_64          Mon May  2 11:49:45 2022
+sssd-ldap-1.16.1-4.40.1.x86_64                Mon May  2 11:49:35 2022
+sssd-krb5-common-1.16.1-4.40.1.x86_64         Mon May  2 11:49:35 2022
+sssd-1.16.1-4.40.1.x86_64                     Mon May  2 11:49:34 2022
+xen-tools-domU-4.11.4_28-2.73.1.x86_64        Mon May  2 11:49:09 2022
+xen-libs-4.11.4_28-2.73.1.x86_64              Mon May  2 11:49:09 2022
+gzip-1.6-9.6.2.x86_64                         Mon May  2 11:49:05 2022
+libexif12-0.6.22-8.13.1.x86_64                Mon May  2 11:49:02 2022
+python3-3.4.10-25.88.1.x86_64                 Fri Apr 22 13:54:01 2022
+mozilla-nss-3.68.3-58.69.1.x86_64             Fri Apr 22 13:53:53 2022
+libsoftokn3-hmac-3.68.3-58.69.1.x86_64        Fri Apr 22 13:53:53 2022
+libsoftokn3-3.68.3-58.69.1.x86_64             Fri Apr 22 13:53:53 2022
+libfreebl3-hmac-3.68.3-58.69.1.x86_64         Fri Apr 22 13:53:53 2022
+libfreebl3-3.68.3-58.69.1.x86_64              Fri Apr 22 13:53:53 2022
+perl-apparmor-2.8.2-51.21.5.x86_64            Mon Apr 18 15:38:30 2022
+apparmor-utils-2.8.2-51.21.5.noarch           Mon Apr 18 15:38:30 2022
+perl-RPC-XML-0.77-4.151.noarch                Mon Apr 18 15:38:29 2022
+perl-PlRPC-0.2020-23.10.x86_64                Mon Apr 18 15:38:29 2022
+perl-Net-Daemon-0.48-11.19.noarch             Mon Apr 18 15:38:29 2022
+perl-DBI-1.628-5.6.1.x86_64                   Mon Apr 18 15:38:29 2022
+perl-DBD-SQLite-1.40-3.175.x86_64             Mon Apr 18 15:38:29 2022
+selinux-policy-20140730-36.5.2.noarch         Mon Apr 18 15:38:28 2022
+policycoreutils-python-2.5-10.3.1.x86_64      Mon Apr 18 15:38:28 2022
+setools-libs-3.3.7-10.72.x86_64               Mon Apr 18 15:38:27 2022
+selinux-tools-2.5-8.79.x86_64                 Mon Apr 18 15:38:27 2022
+python2-audit-2.8.1-10.8.1.x86_64             Mon Apr 18 15:38:27 2022
+python-yum-3.4.3-16.1.x86_64                  Mon Apr 18 15:38:27 2022
+python-urlgrabber-3.9.1-15.2.noarch           Mon Apr 18 15:38:27 2022
+python-setools-3.3.7-10.72.x86_64             Mon Apr 18 15:38:27 2022
+python-semanage-2.5-9.3.1.x86_64              Mon Apr 18 15:38:27 2022
+python-selinux-2.5-8.19.x86_64                Mon Apr 18 15:38:27 2022
+policycoreutils-2.5-10.3.1.x86_64             Mon Apr 18 15:38:27 2022
+checkpolicy-2.5-3.34.x86_64                   Mon Apr 18 15:38:27 2022
+yum-metadata-parser-1.1.2-128.13.x86_64       Mon Apr 18 15:38:26 2022
+python-ipy-0.81-1.6.noarch                    Mon Apr 18 15:38:26 2022
+python-gobject2-2.28.6-24.80.x86_64           Mon Apr 18 15:38:26 2022
+aide-0.16-20.15.1.x86_64                      Mon Apr 18 15:38:25 2022
+libz1-1.2.11-3.6.1.x86_64                     Mon Apr 18 10:53:17 2022
+salt-minion-3000-53.1.x86_64                  Fri Apr 15 11:42:45 2022
+salt-3000-53.1.x86_64                         Fri Apr 15 11:42:05 2022
+python2-salt-3000-53.1.x86_64                 Fri Apr 15 11:42:05 2022
+sles-kgraft_en-pdf-12-8.2.noarch              Thu Apr 14 16:29:04 2022
+sle-live-patching-release-POOL-12.4-1.51.x86_64 Thu Apr 14 16:29:04 2022
+sle-live-patching-release-12.4-1.51.x86_64    Thu Apr 14 16:29:04 2022
+patterns-lp-lp_sles-12-4.6.x86_64             Thu Apr 14 16:29:04 2022
+lifecycle-data-sle-live-patching-1-10.100.1.noarch Thu Apr 14 16:29:04 2022
+kgraft-manual_en-12-8.2.noarch                Thu Apr 14 16:29:04 2022
+openssh-fips-7.2p2-78.13.1.x86_64             Fri Apr  1 15:10:27 2022
+openssh-helpers-7.2p2-78.13.1.x86_64          Fri Apr  1 15:10:04 2022
+openssh-askpass-gnome-7.2p2-78.13.1.x86_64    Fri Apr  1 15:09:44 2022
+python-bind-9.11.22-3.40.1.noarch             Fri Apr  1 13:21:02 2022
+bind-utils-9.11.22-3.40.1.x86_64              Fri Apr  1 13:21:02 2022
+SAPHanaSR-0.155.0-3.17.3.noarch               Fri Apr  1 13:21:02 2022
+kgraft-patch-4_12_14-95_93-default-1-6.5.1.x86_64 Fri Apr  1 13:20:48 2022
+kgraft-patch-4_12_14-95_83-default-4-2.1.x86_64 Fri Apr  1 13:20:48 2022
+crmsh-4.1.1+git.1646015979.1be4546d-2.71.1.noarch Fri Apr  1 13:20:48 2022
+pacemaker-cli-1.1.19+20181105.ccd6b5b10-3.31.1.x86_64 Fri Apr  1 13:20:47 2022
+pacemaker-1.1.19+20181105.ccd6b5b10-3.31.1.x86_64 Fri Apr  1 13:20:47 2022
+ocfs2-kmp-default-4.12.14-95.93.1.x86_64      Fri Apr  1 13:20:46 2022
+libpacemaker3-1.1.19+20181105.ccd6b5b10-3.31.1.x86_64 Fri Apr  1 13:20:46 2022
+ldirectord-4.3.018.a7fb5035-3.89.1.x86_64     Fri Apr  1 13:20:46 2022
+crmsh-scripts-4.1.1+git.1646015979.1be4546d-2.71.1.noarch Fri Apr  1 13:20:46 2022
+resource-agents-4.3.018.a7fb5035-3.89.1.x86_64 Fri Apr  1 13:20:45 2022
+python3-curses-3.4.10-25.85.2.x86_64          Fri Apr  1 13:20:45 2022
+dlm-kmp-default-4.12.14-95.93.1.x86_64        Fri Apr  1 13:20:45 2022
+python3-base-3.4.10-25.85.1.x86_64            Fri Apr  1 13:20:44 2022
+python-Twisted-15.2.1-9.11.1.x86_64           Fri Apr  1 13:20:44 2022
+supportutils-plugin-suse-public-cloud-1.0.6-6.13.1.noarch Fri Apr  1 13:20:43 2022
+libpython3_4m1_0-3.4.10-25.85.1.x86_64        Fri Apr  1 13:20:43 2022
+libbind9-161-9.11.22-3.40.1.x86_64            Fri Apr  1 13:20:43 2022
+nfs-kernel-server-1.3.0-34.34.2.x86_64        Fri Apr  1 13:20:42 2022
+kernel-default-4.12.14-95.93.1.x86_64         Fri Apr  1 13:20:18 2022
+libisccfg163-9.11.22-3.40.1.x86_64            Fri Apr  1 13:20:14 2022
+glibc-locale-2.22-114.19.1.x86_64             Fri Apr  1 13:20:14 2022
+suse-build-key-12.0-7.15.1.noarch             Fri Apr  1 13:20:12 2022
+nfs-client-1.3.0-34.34.2.x86_64               Fri Apr  1 13:20:12 2022
+kernel-firmware-20190618-5.22.1.noarch        Fri Apr  1 13:20:12 2022
+cyrus-sasl-saslauthd-2.1.26-14.5.1.x86_64     Fri Apr  1 13:20:12 2022
+openldap2-client-2.4.41-22.5.1.x86_64         Fri Apr  1 13:20:06 2022
+cyrus-sasl-gssapi-2.1.26-14.5.1.x86_64        Fri Apr  1 13:20:06 2022
+tcpdump-4.9.2-14.20.1.x86_64                  Fri Apr  1 13:20:05 2022
+openssl-1_0_0-1.0.2p-3.48.1.x86_64            Fri Apr  1 13:20:05 2022
+libldap-2_4-2-2.4.41-22.5.1.x86_64            Fri Apr  1 13:20:05 2022
+libisccc161-9.11.22-3.40.1.x86_64             Fri Apr  1 13:20:05 2022
+libisc1107-9.11.22-3.40.1.x86_64              Fri Apr  1 13:20:05 2022
+libdns1110-9.11.22-3.40.1.x86_64              Fri Apr  1 13:20:05 2022
+expat-2.1.0-21.22.1.x86_64                    Fri Apr  1 13:20:05 2022
+cyrus-sasl-plain-2.1.26-14.5.1.x86_64         Fri Apr  1 13:20:05 2022
+cyrus-sasl-digestmd5-2.1.26-14.5.1.x86_64     Fri Apr  1 13:20:05 2022
+cyrus-sasl-2.1.26-14.5.1.x86_64               Fri Apr  1 13:20:05 2022
+coreutils-lang-8.25-13.13.1.noarch            Fri Apr  1 13:20:05 2022
+zsh-5.0.5-6.19.1.x86_64                       Fri Apr  1 13:20:04 2022
+nscd-2.22-114.19.1.x86_64                     Fri Apr  1 13:20:04 2022
+libtiff5-4.0.9-44.45.1.x86_64                 Fri Apr  1 13:20:04 2022
+libsasl2-3-2.1.26-14.5.1.x86_64               Fri Apr  1 13:20:04 2022
+coreutils-8.25-13.13.1.x86_64                 Fri Apr  1 13:20:04 2022
+libopenssl1_0_0-1.0.2p-3.48.1.x86_64          Fri Apr  1 13:20:03 2022
+libopenssl0_9_8-0.9.8j-106.33.1.x86_64        Fri Apr  1 13:20:03 2022
+liblwres161-9.11.22-3.40.1.x86_64             Fri Apr  1 13:20:03 2022
+libirs161-9.11.22-3.40.1.x86_64               Fri Apr  1 13:20:03 2022
+libexpat1-2.1.0-21.22.1.x86_64                Fri Apr  1 13:20:03 2022
+glibc-i18ndata-2.22-114.19.1.noarch           Fri Apr  1 13:20:03 2022
+SAPHanaSR-doc-0.155.0-3.17.3.noarch           Fri Apr  1 13:20:03 2022
+glibc-2.22-114.19.1.x86_64                    Fri Apr  1 13:19:59 2022
+aws-sap-dataprovider-standalone-4.1-0.amzn2.x86_64 Mon Mar 21 09:53:27 2022
+jre1.8-1.8.0_321-fcs.x86_64                   Mon Mar 21 09:53:18 2022
+patterns-sles-yast2-12-7.3.1.x86_64           Thu Feb 17 10:18:02 2022
+yast2-vpn-3.1.6-3.43.noarch                   Thu Feb 17 10:17:35 2022
+kgraft-patch-4_12_14-95_88-default-1-6.5.1.x86_64 Thu Feb 17 10:17:35 2022
+ocfs2-kmp-default-4.12.14-95.88.1.x86_64      Thu Feb 17 10:17:34 2022
+ctdb-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:33 2022
+libsmbldap0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:32 2022
+libqb0-1.0.3+20171226.6d62b64-4.6.1.x86_64    Thu Feb 17 10:17:32 2022
+dlm-kmp-default-4.12.14-95.88.1.x86_64        Thu Feb 17 10:17:32 2022
+samba-libs-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:31 2022
+libwbclient0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:31 2022
+libsmbconf0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:31 2022
+libsamdb0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:31 2022
+libsamba-util0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:31 2022
+libsamba-passdb0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:31 2022
+libnetapi0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:31 2022
+libndr-nbt0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:31 2022
+libndr-krb5pac0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:31 2022
+libdcerpc-binding0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:31 2022
+libsamba-hostconfig0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:30 2022
+libsamba-credentials0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:30 2022
+libndr0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:30 2022
+libndr-standard0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:30 2022
+libdcerpc0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:30 2022
+polkit-0.113-5.24.1.x86_64                    Thu Feb 17 10:17:29 2022
+libtevent-util0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:17:29 2022
+libpolkit0-0.113-5.24.1.x86_64                Thu Feb 17 10:17:29 2022
+kernel-default-4.12.14-95.88.1.x86_64         Thu Feb 17 10:16:55 2022
+libsamba-errors0-4.6.16+git.320.a2d80a7efef-3.70.1.x86_64 Thu Feb 17 10:16:50 2022
+saptune-3.0.2-4.10.1.x86_64                   Thu Feb 17 10:16:49 2022
+javapackages-tools-2.0.1-15.2.x86_64          Thu Feb 17 10:16:44 2022
+yast2-update-3.2.4-5.3.3.x86_64               Thu Jan 20 09:37:25 2022
+perl-SNMP-5.7.3-6.9.1.x86_64                  Thu Jan 20 09:37:25 2022
+net-snmp-5.7.3-6.9.1.x86_64                   Thu Jan 20 09:37:25 2022
+libvirt-client-4.0.0-8.26.1.x86_64            Thu Jan 20 09:37:25 2022
+yast2-installation-3.3.2-4.9.2.noarch         Thu Jan 20 09:37:24 2022
+libsnmp30-5.7.3-6.9.1.x86_64                  Thu Jan 20 09:37:24 2022
+libvirt-libs-4.0.0-8.26.1.x86_64              Thu Jan 20 09:37:23 2022
+libefivar1-31-3.3.1.x86_64                    Thu Jan 20 09:37:23 2022
+yast2-3.2.51-4.10.2.x86_64                    Thu Jan 20 09:37:22 2022
+snmp-mibs-5.7.3-6.9.1.x86_64                  Thu Jan 20 09:37:22 2022
+libsndfile1-1.0.25-36.26.1.x86_64             Thu Jan 20 09:37:22 2022
+python3-pip-10.0.1-13.6.1.noarch              Tue Dec 28 10:28:25 2021
+cloud-netconfig-ec2-1.6-24.1.noarch           Tue Dec 28 10:28:25 2021
+python-Pygments-2.4.2-10.7.1.noarch           Tue Dec 28 10:28:24 2021
+hawk2-2.6.4+git.1618478925.fbddddd9-3.33.3.x86_64 Tue Dec 28 10:28:23 2021
+sbd-1.5.0+20210720.f4ca41f-3.18.1.x86_64      Tue Dec 28 10:28:18 2021
+ocfs2-tools-1.8.5-3.11.1.x86_64               Tue Dec 28 10:28:18 2021
+lvm2-cmirrord-2.02.180-9.54.1.x86_64          Tue Dec 28 10:28:18 2021
+lvm2-clvm-2.02.180-9.54.1.x86_64              Tue Dec 28 10:28:18 2021
+cluster-glue-1.0.12+v1.git.1485976882.03d61cd1-3.11.1.x86_64 Tue Dec 28 10:28:18 2021
+drbd-kmp-default-9.0.14+git.62f906cf_k4.12.14_95.71-4.20.1.x86_64 Tue Dec 28 10:27:44 2021
+corosync-2.3.6-9.22.1.x86_64                  Tue Dec 28 10:27:44 2021
+ocfs2-kmp-default-4.12.14-95.83.2.x86_64      Tue Dec 28 10:27:43 2021
+libglue2-1.0.12+v1.git.1485976882.03d61cd1-3.11.1.x86_64 Tue Dec 28 10:27:43 2021
+libcorosync4-2.3.6-9.22.1.x86_64              Tue Dec 28 10:27:43 2021
+fence-agents-4.9.0+git.1624456340.8d746be9-3.29.1.x86_64 Tue Dec 28 10:27:43 2021
+drbd-9.0.14+git.62f906cf-4.20.1.x86_64        Tue Dec 28 10:27:43 2021
+dlm-kmp-default-4.12.14-95.83.2.x86_64        Tue Dec 28 10:27:42 2021
+yast2-cluster-3.4.2-3.6.1.noarch              Tue Dec 28 10:27:41 2021
+drbd-utils-9.4.0-3.10.1.x86_64                Tue Dec 28 10:27:41 2021
+csync2-2.0+git.1368794815.cf835a7-3.9.5.x86_64 Tue Dec 28 10:27:41 2021
+ruby2.1-stdlib-2.1.9-19.6.1.x86_64            Tue Dec 28 10:27:39 2021
+ruby2.1-2.1.9-19.6.1.x86_64                   Tue Dec 28 10:27:39 2021
+openssh-7.2p2-78.13.1.x86_64                  Tue Dec 28 10:27:38 2021
+libruby2_1-2_1-2.1.9-19.6.1.x86_64            Tue Dec 28 10:27:38 2021
+curl-7.60.0-4.33.1.x86_64                     Tue Dec 28 10:27:38 2021
+libcurl4-7.60.0-4.33.1.x86_64                 Tue Dec 28 10:27:37 2021
+glib-networking-lang-2.48.2-6.3.1.noarch      Tue Dec 28 10:27:37 2021
+kernel-default-4.12.14-95.83.2.x86_64         Tue Dec 28 10:27:05 2021
+release-notes-sles-12.4.20211208-2.19.1.noarch Tue Dec 28 10:27:00 2021
+glib-networking-2.48.2-6.3.1.x86_64           Tue Dec 28 10:27:00 2021
+bzip2-1.0.6-30.14.1.x86_64                    Tue Dec 28 10:27:00 2021
+timezone-2021e-74.55.1.x86_64                 Tue Dec 28 10:26:59 2021
+suse-module-tools-12.6.1-27.6.1.x86_64        Tue Dec 28 10:26:59 2021
+libbz2-1-1.0.6-30.14.1.x86_64                 Tue Dec 28 10:26:59 2021
+permissions-20170707-3.30.1.x86_64            Tue Dec 28 10:26:58 2021
+ds_agent-20.0.0-2971.SuSE_12.x86_64           Thu Dec 23 12:55:45 2021
+binutils-2.37-9.44.1.x86_64                   Fri Nov 19 09:50:40 2021
+libpcre16-0-8.45-8.7.1.x86_64                 Fri Nov 19 09:50:32 2021
+libctf0-2.37-9.44.1.x86_64                    Fri Nov 19 09:50:32 2021
+opensc-0.13.0-3.19.1.x86_64                   Fri Nov 19 09:50:31 2021
+libpcre1-8.45-8.7.1.x86_64                    Fri Nov 19 09:50:31 2021
+libctf-nobfd0-2.37-9.44.1.x86_64              Fri Nov 19 09:50:31 2021
+SUSEConnect-0.3.32-3.49.1.x86_64              Fri Nov 19 09:50:31 2021
+openslp-server-2.0.0-24.2.1.x86_64            Fri Nov 19 09:50:30 2021
+liboauth0-0.9.4-21.2.1.x86_64                 Fri Nov 19 09:50:30 2021
+libFLAC8-1.3.0-18.2.1.x86_64                  Fri Nov 19 09:50:30 2021
+rsyslog-8.24.0-3.52.1.x86_64                  Fri Nov 19 09:50:29 2021
+libssh2-1-1.4.3-26.2.1.x86_64                 Fri Nov 19 09:50:29 2021
+libesmtp-1.0.6-23.2.1.x86_64                  Fri Nov 19 09:50:29 2021
+pam-1.1.8-24.46.1.x86_64                      Fri Nov 19 09:50:28 2021
+openslp-2.0.0-24.2.1.x86_64                   Fri Nov 19 09:50:28 2021
+libevent-2_0-5-2.0.21-12.2.1.x86_64           Fri Nov 19 09:50:28 2021
+libarchive13-3.3.3-32.2.1.x86_64              Fri Nov 19 09:50:28 2021
+zypper-1.13.60-21.41.3.x86_64                 Fri Nov 19 09:48:27 2021
+zypper-log-1.13.60-21.41.3.noarch             Fri Nov 19 09:48:24 2021
+python-solv-0.6.38-2.36.4.x86_64              Fri Nov 19 09:48:24 2021
+libzypp-16.22.3-33.1.x86_64                   Fri Nov 19 09:48:24 2021
+libsolv-tools-0.6.38-2.36.4.x86_64            Fri Nov 19 09:48:24 2021
+kgraft-2.0-1.17.x86_64                        Fri Nov 19 08:33:09 2021
+python3-urllib3-1.25.10-3.31.2.noarch         Fri Oct 22 09:13:34 2021
+mokutil-0.2.0-11.1.x86_64                     Fri Oct 22 09:13:24 2021
+python-urllib3-1.25.10-3.31.2.noarch          Fri Oct 22 09:13:23 2021
+grub2-systemd-sleep-plugin-2.02-121.12.1.noarch Fri Oct 22 09:13:23 2021
+grub2-snapper-plugin-2.02-121.12.1.noarch     Fri Oct 22 09:13:23 2021
+grub2-i386-pc-2.02-121.12.1.x86_64            Fri Oct 22 09:13:18 2021
+libstdc++6-11.2.1+git610-1.3.2.x86_64         Fri Oct 22 09:13:16 2021
+grub2-2.02-121.12.1.x86_64                    Fri Oct 22 09:13:15 2021
+rsync-3.1.0-13.16.1.x86_64                    Fri Oct 22 09:13:14 2021
+libgcc_s1-11.2.1+git610-1.3.2.x86_64          Fri Oct 22 09:13:05 2021
+libatomic1-11.2.1+git610-1.3.2.x86_64         Fri Oct 22 09:13:05 2021
+grub2-x86_64-xen-2.02-121.12.1.noarch         Fri Oct 22 09:13:05 2021
+ca-certificates-mozilla-2.44-12.34.1.noarch   Fri Oct 22 09:12:52 2021
+ghostscript-x11-9.52-23.42.1.x86_64           Fri Sep 24 10:00:16 2021
+file-5.22-10.21.1.x86_64                      Fri Sep 24 10:00:16 2021
+cryptconfig-0.3-99.2.1.x86_64                 Fri Sep 24 10:00:16 2021
+sqlite3-3.36.0-9.18.1.x86_64                  Fri Sep 24 10:00:15 2021
+libsqlite3-0-3.36.0-9.18.1.x86_64             Fri Sep 24 10:00:15 2021
+libmagic1-5.22-10.21.1.x86_64                 Fri Sep 24 10:00:15 2021
+cpio-lang-2.11-36.15.1.noarch                 Fri Sep 24 10:00:15 2021
+ghostscript-9.52-23.42.1.x86_64               Fri Sep 24 10:00:14 2021
+sapconf-5.0.3-40.68.1.noarch                  Fri Sep 24 10:00:11 2021
+mozilla-nspr-4.32-19.18.1.x86_64              Fri Sep 24 10:00:11 2021
+file-magic-5.22-10.21.1.x86_64                Fri Sep 24 10:00:10 2021
+python3-PyYAML-5.3.1-28.6.1.x86_64            Fri Sep 24 10:00:09 2021
+python-PyYAML-5.3.1-28.6.1.x86_64             Fri Sep 24 10:00:09 2021
+cpio-2.11-36.15.1.x86_64                      Fri Sep 24 10:00:09 2021
+supportutils-3.0.10-95.48.1.noarch            Fri Aug 20 10:31:02 2021
+libcares2-1.9.1-9.7.1.x86_64                  Fri Aug 20 10:31:02 2021
+dbus-1-1.8.22-29.21.1.x86_64                  Fri Aug 20 10:31:02 2021
+libdbus-1-3-1.8.22-29.21.1.x86_64             Fri Aug 20 10:31:01 2021
+python-paramiko-2.4.0-9.10.2.noarch           Thu Jul 22 09:07:32 2021
+python3-requests-2.24.0-8.14.3.noarch         Thu Jul 22 09:07:31 2021
+python-PyNaCl-1.2.1-2.3.6.x86_64              Thu Jul 22 09:07:31 2021
+libsodium23-1.0.16-3.1.x86_64                 Thu Jul 22 09:07:30 2021
+aws-cli-1.19.9-22.24.2.noarch                 Thu Jul 22 09:07:29 2021
+python-botocore-1.20.9-28.30.2.noarch         Thu Jul 22 09:07:17 2021
+python-boto3-1.17.9-14.24.2.noarch            Thu Jul 22 09:07:17 2021
+python-requests-2.24.0-8.11.4.noarch          Thu Jul 22 09:07:13 2021
+python-bcrypt-3.1.4-2.3.2.x86_64              Thu Jul 22 09:07:13 2021
+python3-six-1.14.0-13.10.3.noarch             Thu Jul 22 09:07:12 2021
+python-rsa-3.1.4-12.16.1.noarch               Thu Jul 22 09:07:12 2021
+python-pexpect-4.3.1-3.9.2.noarch             Thu Jul 22 09:07:12 2021
+python3-brotlipy-0.6.0-2.3.3.x86_64           Thu Jul 22 09:07:11 2021
+python-six-1.14.0-13.10.3.noarch              Thu Jul 22 09:07:11 2021
+python-ptyprocess-0.5.2-2.8.2.noarch          Thu Jul 22 09:07:11 2021
+python-colorama-0.4.4-4.4.2.noarch            Thu Jul 22 09:07:11 2021
+python-brotlipy-0.6.0-2.3.3.x86_64            Thu Jul 22 09:07:10 2021
+udev-228-150.98.1.x86_64                      Thu Jul 22 09:07:07 2021
+systemd-sysvinit-228-150.98.1.x86_64          Thu Jul 22 09:07:07 2021
+systemd-228-150.98.1.x86_64                   Thu Jul 22 09:07:05 2021
+systemd-bash-completion-228-150.98.1.noarch   Thu Jul 22 09:07:03 2021
+libudev1-228-150.98.1.x86_64                  Thu Jul 22 09:07:03 2021
+libsystemd0-228-150.98.1.x86_64               Thu Jul 22 09:07:03 2021
+python3-PyJWT-1.5.3-3.13.1.noarch             Mon Jun 28 08:58:52 2021
+supportutils-plugin-susemanager-client-4.2.2-6.21.1.noarch Mon Jun 28 08:58:51 2021
+python-PyJWT-1.5.3-3.13.1.noarch              Mon Jun 28 08:58:51 2021
+xterm-308-5.3.1.x86_64                        Mon Jun 28 08:58:50 2021
+libhogweed2-2.7.1-13.6.1.x86_64               Mon Jun 28 08:58:50 2021
+libavahi-client3-0.6.32-32.15.1.x86_64        Mon Jun 28 08:58:50 2021
+libX11-xcb1-1.6.2-12.21.1.x86_64              Mon Jun 28 08:58:50 2021
+libX11-6-1.6.2-12.21.1.x86_64                 Mon Jun 28 08:58:50 2021
+libwebpdemux1-0.4.3-4.7.1.x86_64              Mon Jun 28 08:58:49 2021
+libnettle4-2.7.1-13.6.1.x86_64                Mon Jun 28 08:58:49 2021
+libgcrypt20-1.6.1-16.77.1.x86_64              Mon Jun 28 08:58:49 2021
+libavahi-glib1-0.6.32-32.15.1.x86_64          Mon Jun 28 08:58:49 2021
+dhcp-client-4.3.3-10.22.1.x86_64              Mon Jun 28 08:58:49 2021
+libX11-data-1.6.2-12.21.1.noarch              Mon Jun 28 08:58:47 2021
+libwebp5-0.4.3-4.7.1.x86_64                   Mon Jun 28 08:58:01 2021
+libavahi-common3-0.6.32-32.15.1.x86_64        Mon Jun 28 08:58:01 2021
+dhcp-4.3.3-10.22.1.x86_64                     Mon Jun 28 08:58:01 2021
+python-cryptography-2.8-7.37.8.x86_64         Fri May 21 10:55:31 2021
+python3-cryptography-2.8-7.37.8.x86_64        Fri May 21 10:55:30 2021
+graphviz-gnome-2.28.0-29.6.1.x86_64           Fri May 21 10:55:29 2021
+sudo-1.8.20p2-3.23.1.x86_64                   Fri May 21 10:55:22 2021
+python3-cffi-1.11.5-5.16.2.x86_64             Fri May 21 10:55:22 2021
+cups-client-1.7.5-20.36.1.x86_64              Fri May 21 10:55:22 2021
+graphviz-gd-2.28.0-29.6.1.x86_64              Fri May 21 10:55:21 2021
+cups-libs-1.7.5-20.36.1.x86_64                Fri May 21 10:55:19 2021
+graphviz-2.28.0-29.6.1.x86_64                 Fri May 21 10:54:25 2021
+libxml2-tools-2.9.4-46.43.1.x86_64            Fri May 21 10:54:24 2021
+bash-doc-4.3-83.26.4.noarch                   Fri May 21 10:54:24 2021
+readline-doc-6.3-83.26.4.noarch               Fri May 21 10:54:23 2021
+bash-4.3-83.26.4.x86_64                       Fri May 21 10:54:23 2021
+libxml2-2-2.9.4-46.43.1.x86_64                Fri May 21 10:54:22 2021
+python-cffi-1.11.5-5.16.2.x86_64              Fri May 21 10:54:21 2021
+libreadline6-6.3-83.26.4.x86_64               Fri May 21 10:54:21 2021
+libcap2-2.26-14.6.1.x86_64                    Fri May 21 10:54:20 2021
+cifs-utils-6.9-13.17.1.x86_64                 Fri May 21 10:54:20 2021
+sle-manager-tools-release-12-10.3.1.x86_64    Fri May 21 10:33:56 2021
+gpg-pubkey-65176565-59787af5                  Fri May 21 10:33:56 2021
+sles-ltss-release-POOL-12.4-13.4.1.x86_64     Fri May 21 10:33:55 2021
+sles-ltss-release-12.4-13.4.1.x86_64          Fri May 21 10:33:55 2021
+sle-module-cap-tools-release-POOL-12-1.1.x86_64 Fri May 21 10:33:55 2021
+sle-module-cap-tools-release-12-1.1.x86_64    Fri May 21 10:33:55 2021
+sle-manager-tools-release-POOL-12-1.20.x86_64 Fri May 21 10:33:55 2021
+PackageHub-release-POOL-12.4-1.32.x86_64      Fri May 21 10:33:55 2021
+PackageHub-release-12.4-1.32.x86_64           Fri May 21 10:33:55 2021
+libnghttp2-14-1.39.2-3.5.1.x86_64             Thu Apr 22 09:24:17 2021
+crash-7.2.1-4.12.1.x86_64                     Thu Apr 22 09:24:17 2021
+tcsh-6.18.01-8.17.1.x86_64                    Thu Apr 22 09:24:09 2021
+crash-kmp-default-7.2.1_k4.12.14_95.71-4.12.1.x86_64 Thu Apr 22 09:23:22 2021
+supportutils-plugin-salt-1.1.5-6.13.1.noarch  Thu Apr 22 09:21:27 2021
+perl-XML-Twig-3.44-5.3.1.noarch               Tue Mar 23 09:08:11 2021
+python3-Jinja2-2.8-19.23.1.noarch             Tue Mar 23 09:08:09 2021
+perl-XML-XPathEngine-0.14-3.16.noarch         Tue Mar 23 09:08:09 2021
+perl-Tie-IxHash-1.23-3.19.noarch              Tue Mar 23 09:08:09 2021
+perl-HTML-Tidy-1.56-1.48.x86_64               Tue Mar 23 09:08:08 2021
+libtidyp-1_04-0-1.04-13.55.x86_64             Tue Mar 23 09:08:08 2021
+libgthread-2_0-0-2.48.2-12.22.1.x86_64        Tue Mar 23 09:08:01 2021
+glib2-tools-2.48.2-12.22.1.x86_64             Tue Mar 23 09:08:01 2021
+irqbalance-1.1.0-9.6.1.x86_64                 Tue Mar 23 09:08:00 2021
+glib2-lang-2.48.2-12.22.1.noarch              Tue Mar 23 09:08:00 2021
+libgio-2_0-0-2.48.2-12.22.1.x86_64            Tue Mar 23 09:07:59 2021
+open-iscsi-2.0.876-12.27.2.x86_64             Tue Mar 23 09:07:51 2021
+libgobject-2_0-0-2.48.2-12.22.1.x86_64        Tue Mar 23 09:07:51 2021
+libgmodule-2_0-0-2.48.2-12.22.1.x86_64        Tue Mar 23 09:07:51 2021
+libglib-2_0-0-2.48.2-12.22.1.x86_64           Tue Mar 23 09:07:44 2021
+libopeniscsiusr0_2_0-2.0.876-12.27.2.x86_64   Tue Mar 23 09:06:57 2021
+screen-4.0.4-23.6.1.x86_64                    Tue Mar 23 09:06:56 2021
+libjasper1-1.900.14-195.25.1.x86_64           Tue Mar 23 09:06:56 2021
+lvm2-2.02.180-9.51.1.x86_64                   Tue Feb 16 10:02:20 2021
+device-mapper-1.02.149-9.51.1.x86_64          Tue Feb 16 10:01:35 2021
+cloud-init-20.2-37.50.8.x86_64                Tue Jan 19 10:28:10 2021
+python3-oauthlib-0.7.2-3.9.20.noarch          Tue Jan 19 10:28:09 2021
+python3-pyserial-2.7-8.3.7.noarch             Tue Jan 19 10:28:08 2021
+python3-jsonpatch-1.1-10.4.1.noarch           Tue Jan 19 10:28:08 2021
+python3-configobj-5.0.6-20.5.1.noarch         Tue Jan 19 10:28:07 2021
+python-pyserial-2.7-8.3.7.noarch              Tue Jan 19 10:28:07 2021
+cloud-init-config-suse-20.2-37.50.8.x86_64    Tue Jan 19 10:28:06 2021
+python3-jsonschema-2.6.0-5.3.1.noarch         Tue Jan 19 10:28:05 2021
+python3-jsonpointer-1.0-10.3.1.noarch         Tue Jan 19 10:28:05 2021
+python3-ecdsa-0.13.3-5.10.1.noarch            Tue Jan 19 10:28:05 2021
+python3-blinker-1.4-3.3.1.noarch              Tue Jan 19 10:28:05 2021
+python3-pycrypto-2.6.1-10.6.3.x86_64          Tue Jan 19 10:28:04 2021
+python3-MarkupSafe-0.23-16.6.1.x86_64         Tue Jan 19 10:28:03 2021
+libQt5Widgets5-5.6.2-6.25.1.x86_64            Tue Dec 22 11:55:25 2020
+libQt5Network5-5.6.2-6.25.1.x86_64            Tue Dec 22 11:55:24 2020
+libQt5Gui5-5.6.2-6.25.1.x86_64                Tue Dec 22 11:55:24 2020
+libQt5DBus5-5.6.2-6.25.1.x86_64               Tue Dec 22 11:55:23 2020
+yast2-ruby-bindings-3.2.17-3.3.1.x86_64       Tue Dec 22 11:55:15 2020
+xorg-x11-Xvnc-1.6.0-22.17.1.x86_64            Tue Dec 22 11:55:15 2020
+libproxy1-0.4.13-18.3.1.x86_64                Tue Dec 22 11:55:15 2020
+libQt5Core5-5.6.2-6.25.1.x86_64               Tue Dec 22 11:55:15 2020
+libxcb-present0-1.10-4.5.1.x86_64             Tue Dec 22 11:55:13 2020
+libxcb-glx0-1.10-4.5.1.x86_64                 Tue Dec 22 11:55:13 2020
+libxcb-dri3-0-1.10-4.5.1.x86_64               Tue Dec 22 11:55:13 2020
+libxcb-dri2-0-1.10-4.5.1.x86_64               Tue Dec 22 11:55:13 2020
+libsoup-lang-2.62.2-5.9.1.noarch              Tue Dec 22 11:55:13 2020
+libxcb-xkb1-1.10-4.5.1.x86_64                 Tue Dec 22 11:55:12 2020
+libxcb-xinerama0-1.10-4.5.1.x86_64            Tue Dec 22 11:55:12 2020
+libxcb-xfixes0-1.10-4.5.1.x86_64              Tue Dec 22 11:55:12 2020
+libxcb-sync1-1.10-4.5.1.x86_64                Tue Dec 22 11:55:12 2020
+libxcb-shm0-1.10-4.5.1.x86_64                 Tue Dec 22 11:55:12 2020
+libxcb-shape0-1.10-4.5.1.x86_64               Tue Dec 22 11:55:12 2020
+libxcb-render0-1.10-4.5.1.x86_64              Tue Dec 22 11:55:12 2020
+libxcb-randr0-1.10-4.5.1.x86_64               Tue Dec 22 11:55:12 2020
+ft2demos-2.6.3-7.18.1.x86_64                  Tue Dec 22 11:55:10 2020
+libsoup-2_4-1-2.62.2-5.9.1.x86_64             Tue Dec 22 11:55:06 2020
+krb5-client-1.12.5-40.40.2.x86_64             Tue Dec 22 11:55:06 2020
+python-ipaddress-1.0.18-3.13.1.noarch         Tue Dec 22 11:55:02 2020
+libxcb1-1.10-4.5.1.x86_64                     Tue Dec 22 11:55:02 2020
+libfreetype6-2.6.3-7.18.1.x86_64              Tue Dec 22 11:55:01 2020
+libXvnc1-1.6.0-22.17.1.x86_64                 Tue Dec 22 11:55:00 2020
+krb5-1.12.5-40.40.2.x86_64                    Tue Dec 22 11:55:00 2020
+python-setuptools-40.6.2-4.18.1.noarch        Tue Dec 22 11:27:09 2020
+lifecycle-data-sle-module-toolchain-1-3.18.1.noarch Tue Dec 22 11:27:08 2020
+python3-setuptools-40.6.2-4.18.1.noarch       Tue Dec 22 11:27:01 2020
+kdump-0.8.16-11.10.1.x86_64                   Tue Dec 22 11:26:58 2020
+mutt-1.10.1-55.18.1.x86_64                    Tue Dec 22 11:26:37 2020
+mdadm-4.0-8.12.1.x86_64                       Tue Dec 22 11:26:36 2020
+libzmq3-4.0.4-15.6.1.x86_64                   Thu Nov 26 09:18:30 2020
+ntp-4.2.8p15-88.1.x86_64                      Tue Sep 22 09:21:17 2020
+unzip-6.00-33.13.3.x86_64                     Tue Sep 22 09:21:06 2020
+perl-IO-Tty-1.10-11.64.x86_64                 Tue Sep 22 09:21:06 2020
+perl-Expect-1.21-68.12.x86_64                 Tue Sep 22 09:21:06 2020
+hunspell-tools-1.3.2-18.1.x86_64              Tue Sep 22 09:21:06 2020
+hunspell-1.3.2-18.1.x86_64                    Tue Sep 22 09:21:06 2020
+perl-IO-Stty-0.03-15.19.noarch                Tue Sep 22 09:21:05 2020
+python3-packaging-17.1-2.7.1.noarch           Tue Sep 22 09:20:51 2020
+python3-ec2metadata-3.0.3-2.6.1.noarch        Tue Sep 22 09:20:51 2020
+python-packaging-17.1-2.7.1.noarch            Tue Sep 22 09:20:51 2020
+python3-chardet-3.0.4-5.6.1.noarch            Tue Sep 22 09:20:50 2020
+python3-certifi-2018.4.16-3.6.1.noarch        Tue Sep 22 09:20:50 2020
+python-chardet-3.0.4-5.6.1.noarch             Tue Sep 22 09:20:49 2020
+python-certifi-2018.4.16-3.6.1.noarch         Tue Sep 22 09:20:49 2020
+xclock-1.0.7-1.15.x86_64                      Mon Aug 17 11:58:01 2020
+libstdc++33-3.3.3-12.15.x86_64                Mon Aug 17 09:29:25 2020
+zisofs-tools-1.0.8-20.61.x86_64               Mon Aug 17 09:21:57 2020
+patterns-sles-sap_server-12-58.8.x86_64       Mon Aug 17 09:21:57 2020
+patterns-sles-base-12-58.8.x86_64             Mon Aug 17 09:21:57 2020
+patterns-sles-Minimal-12-58.8.x86_64          Mon Aug 17 09:21:57 2020
+FirmwareUpdateKit-1.6-5.14.x86_64             Mon Aug 17 09:21:57 2020
+python-s3transfer-0.3.3-8.10.1.noarch         Mon Aug 17 09:21:56 2020
+python-pyOpenSSL-17.1.0-4.23.1.noarch         Mon Aug 17 09:21:56 2020
+plymouth-dracut-0.9.2-35.12.2.x86_64          Mon Aug 17 09:21:56 2020
+genisoimage-1.1.11-26.4.1.x86_64              Mon Aug 17 09:21:56 2020
+cdrkit-cdrtools-compat-1.1.11-26.4.1.x86_64   Mon Aug 17 09:21:56 2020
+shared-python-startup-0.1-1.3.1.noarch        Mon Aug 17 09:21:55 2020
+python-jsonschema-2.6.0-5.3.1.noarch          Mon Aug 17 09:21:55 2020
+python-jsonpatch-1.1-10.4.1.noarch            Mon Aug 17 09:21:55 2020
+python-docutils-0.15.2-3.4.2.noarch           Mon Aug 17 09:21:55 2020
+plymouth-0.9.2-35.12.2.x86_64                 Mon Aug 17 09:21:55 2020
+icedax-1.1.11-26.4.1.x86_64                   Mon Aug 17 09:21:55 2020
+python-jsonpointer-1.0-10.3.1.noarch          Mon Aug 17 09:21:54 2020
+python-jmespath-0.9.3-10.9.1.noarch           Mon Aug 17 09:21:54 2020
+python-functools32-3.2.3.2-2.6.1.noarch       Mon Aug 17 09:21:54 2020
+vorbis-tools-lang-1.4.0-26.1.noarch           Mon Aug 17 09:21:53 2020
+rubygem-hiera-1-1.2.1-9.3.1.x86_64            Mon Aug 17 09:21:53 2020
+ruby2.1-rubygem-hiera-1-1.2.1-9.3.1.x86_64    Mon Aug 17 09:21:53 2020
+python-futures-3.0.2-15.3.1.noarch            Mon Aug 17 09:21:53 2020
+plymouth-branding-SLE-12-13.3.1.noarch        Mon Aug 17 09:21:39 2020
+vorbis-tools-1.4.0-26.1.x86_64                Mon Aug 17 09:21:38 2020
+python3-pyOpenSSL-17.1.0-4.23.1.noarch        Mon Aug 17 09:21:38 2020
+gdb-8.3.1-2.14.1.x86_64                       Mon Aug 17 09:21:38 2020
+btrfsmaintenance-0.2-18.1.noarch              Mon Aug 17 09:21:38 2020
+python3-pyparsing-2.2.0-3.3.1.noarch          Mon Aug 17 09:21:37 2020
+python3-asn1crypto-0.24.0-2.5.1.noarch        Mon Aug 17 09:21:37 2020
+python-pyparsing-2.2.0-3.3.1.noarch           Mon Aug 17 09:21:37 2020
+python-asn1crypto-0.24.0-2.5.1.noarch         Mon Aug 17 09:21:37 2020
+man-2.6.6-4.3.1.x86_64                        Mon Aug 17 09:21:37 2020
+gxditview-1.22.2-7.3.1.x86_64                 Mon Aug 17 09:21:37 2020
+groff-full-1.22.2-7.3.1.x86_64                Mon Aug 17 09:21:37 2020
+yast2-iscsi-client-3.1.32-3.6.1.noarch        Mon Aug 17 09:21:36 2020
+plymouth-scripts-0.9.2-35.12.2.x86_64         Mon Aug 17 09:21:36 2020
+mrsh-rsh-compat-2.12-6.3.2.x86_64             Mon Aug 17 09:21:36 2020
+mrsh-2.12-6.3.2.x86_64                        Mon Aug 17 09:21:36 2020
+libguile-2_0-22-2.0.9-9.3.1.x86_64            Mon Aug 17 09:21:36 2020
+groff-1.22.2-7.3.1.x86_64                     Mon Aug 17 09:21:36 2020
+ruby2.1-rubygem-ruby-shadow-2.3.4-6.1.x86_64  Mon Aug 17 09:21:35 2020
+ruby2.1-rubygem-json_pure-1.8.1-2.8.x86_64    Mon Aug 17 09:21:35 2020
+munge-0.5.14-3.6.1.x86_64                     Mon Aug 17 09:21:35 2020
+libtool-2.4.2-17.4.1.x86_64                   Mon Aug 17 09:21:35 2020
+libssh4-0.6.3-12.12.1.x86_64                  Mon Aug 17 09:21:35 2020
+libmunge2-0.5.14-3.6.1.x86_64                 Mon Aug 17 09:21:35 2020
+facter-2.4.6-12.3.1.x86_64                    Mon Aug 17 09:21:35 2020
+automake-1.13.4-6.2.noarch                    Mon Aug 17 09:21:35 2020
+autoconf-2.69-9.71.noarch                     Mon Aug 17 09:21:35 2020
+wireless-tools-30.pre9-34.15.x86_64           Mon Aug 17 09:21:34 2020
+librpcsecgss3-0.19-16.56.x86_64               Mon Aug 17 09:21:34 2020
+liboggkate1-0.4.1-20.65.x86_64                Mon Aug 17 09:21:34 2020
+libao-plugins4-1.2.0-1.13.x86_64              Mon Aug 17 09:21:34 2020
+time-1.7-5.13.x86_64                          Mon Aug 17 09:21:33 2020
+sharutils-4.11.1-14.64.x86_64                 Mon Aug 17 09:21:33 2020
+psutils-p17-1022.64.x86_64                    Mon Aug 17 09:21:33 2020
+pptp-1.7.2-43.64.x86_64                       Mon Aug 17 09:21:33 2020
+openct-0.6.20-21.12.x86_64                    Mon Aug 17 09:21:33 2020
+master-boot-code-1.22-16.27.x86_64            Mon Aug 17 09:21:33 2020
+libopenct1-0.6.20-21.12.x86_64                Mon Aug 17 09:21:33 2020
+libkate1-0.4.1-20.65.x86_64                   Mon Aug 17 09:21:33 2020
+libiw30-30.pre9-34.15.x86_64                  Mon Aug 17 09:21:33 2020
+libgssglue1-0.4-3.83.x86_64                   Mon Aug 17 09:21:33 2020
+libdm0-2.2.12-1.16.x86_64                     Mon Aug 17 09:21:33 2020
+libao4-1.2.0-1.13.x86_64                      Mon Aug 17 09:21:33 2020
+joe-3.7-28.141.x86_64                         Mon Aug 17 09:21:33 2020
+gpm-1.20.7-7.60.x86_64                        Mon Aug 17 09:21:33 2020
+gpart-0.1h-642.63.x86_64                      Mon Aug 17 09:21:33 2020
+gnu-unifont-bitmap-fonts-20080123-83.182.noarch Mon Aug 17 09:21:33 2020
+finger-1.3-163.62.x86_64                      Mon Aug 17 09:21:33 2020
+delayacct-utils-3.12.28-24.66.x86_64          Mon Aug 17 09:21:33 2020
+convmv-1.15-11.19.noarch                      Mon Aug 17 09:21:33 2020
+atmel-firmware-1.3-161.17.noarch              Mon Aug 17 09:21:33 2020
+efibootmgr-14-1.13.x86_64                     Mon Aug 17 09:21:32 2020
+vsftpd-3.0.2-40.11.1.x86_64                   Mon Aug 17 09:21:31 2020
+usbutils-008-9.2.x86_64                       Mon Aug 17 09:21:31 2020
+sap-locale-1.0-92.4.x86_64                    Mon Aug 17 09:21:31 2020
+mcelog-1.48-1.13.x86_64                       Mon Aug 17 09:21:31 2020
+grub2-branding-SLE-12-13.3.1.noarch           Mon Aug 17 09:21:31 2020
+zypper-migration-plugin-0.10-18.1.noarch      Mon Aug 17 09:21:30 2020
+vlan-1.9-144.1.x86_64                         Mon Aug 17 09:21:30 2020
+star-1.5final-71.1.x86_64                     Mon Aug 17 09:21:30 2020
+patch-2.7.5-8.5.1.x86_64                      Mon Aug 17 09:21:30 2020
+numactl-2.0.9-9.1.x86_64                      Mon Aug 17 09:21:30 2020
+libvorbisfile3-1.3.3-10.14.1.x86_64           Mon Aug 17 09:21:30 2020
+libunistring0-0.9.3-20.1.x86_64               Mon Aug 17 09:21:30 2020
+iscsiuio-0.7.8.2-30.13.1.x86_64               Mon Aug 17 09:21:30 2020
+inst-source-utils-2016.7.26-6.1.noarch        Mon Aug 17 09:21:30 2020
+autofs-5.0.9-28.15.1.x86_64                   Mon Aug 17 09:21:16 2020
+pcsc-lite-1.8.10-7.6.3.x86_64                 Mon Aug 17 09:21:15 2020
+dracut-044.2-10.32.1.x86_64                   Mon Aug 17 09:21:15 2020
+wicked-service-0.6.60-2.21.1.x86_64           Mon Aug 17 09:21:12 2020
+libpcsclite1-1.8.10-7.6.3.x86_64              Mon Aug 17 09:21:12 2020
+aaa_base-extras-13.2+git20140911.61c1681-38.22.1.x86_64 Mon Aug 17 09:21:12 2020
+aaa_base-13.2+git20140911.61c1681-38.22.1.x86_64 Mon Aug 17 09:19:40 2020
+ipmitool-1.8.18-5.9.1.x86_64                  Mon Aug 17 09:19:39 2020
+wicked-0.6.60-2.21.1.x86_64                   Mon Aug 17 09:19:38 2020
+sysstat-12.0.2-10.36.1.x86_64                 Mon Aug 17 09:19:38 2020
+smartmontools-6.6-6.6.3.x86_64                Mon Aug 17 09:19:38 2020
+audit-2.8.1-10.8.1.x86_64                     Mon Aug 17 09:19:37 2020
+Mesa-libGL1-18.0.2-8.3.2.x86_64               Mon Aug 17 09:19:36 2020
+Mesa-dri-18.0.2-8.3.2.x86_64                  Mon Aug 17 09:19:36 2020
+ppp-2.4.7-4.3.1.x86_64                        Mon Aug 17 09:19:35 2020
+plymouth-plugin-script-0.9.2-35.12.2.x86_64   Mon Aug 17 09:19:35 2020
+plymouth-plugin-label-ft-0.9.2-35.12.2.x86_64 Mon Aug 17 09:19:35 2020
+plymouth-plugin-label-0.9.2-35.12.2.x86_64    Mon Aug 17 09:19:35 2020
+libbind9-160-9.11.2-3.17.1.x86_64             Mon Aug 17 09:19:35 2020
+elfutils-0.158-7.13.3.x86_64                  Mon Aug 17 09:19:35 2020
+autoyast2-3.2.36.6-3.25.3.noarch              Mon Aug 17 09:19:35 2020
+libboost_regex1_54_0-1.54.0-26.9.1.x86_64     Mon Aug 17 09:19:34 2020
+wodim-1.1.11-26.4.1.x86_64                    Mon Aug 17 09:19:32 2020
+vim-7.4.326-17.6.1.x86_64                     Mon Aug 17 09:19:32 2020
+makedumpfile-1.6.3-3.3.1.x86_64               Mon Aug 17 09:19:32 2020
+libply-splash-graphics4-0.9.2-35.12.2.x86_64  Mon Aug 17 09:19:32 2020
+libisccfg160-9.11.2-3.17.1.x86_64             Mon Aug 17 09:19:32 2020
+libicu52_1-52.1-8.10.1.x86_64                 Mon Aug 17 09:19:32 2020
+libasm1-0.158-7.13.3.x86_64                   Mon Aug 17 09:19:32 2020
+autoyast2-installation-3.2.36.6-3.25.3.noarch Mon Aug 17 09:19:32 2020
+Mesa-18.0.2-8.3.2.x86_64                      Mon Aug 17 09:19:32 2020
+libxslt-tools-1.1.28-17.9.1.x86_64            Mon Aug 17 09:19:31 2020
+libply-splash-core4-0.9.2-35.12.2.x86_64      Mon Aug 17 09:19:31 2020
+libisccc160-9.11.2-3.17.1.x86_64              Mon Aug 17 09:19:31 2020
+libebl1-0.158-7.13.3.x86_64                   Mon Aug 17 09:19:31 2020
+libdns169-9.11.2-3.17.1.x86_64                Mon Aug 17 09:19:31 2020
+libboost_thread1_54_0-1.54.0-26.9.1.x86_64    Mon Aug 17 09:19:31 2020
+e2fsprogs-1.43.8-3.14.1.x86_64                Mon Aug 17 09:19:31 2020
+cups-filters-ghostscript-1.0.58-19.5.1.x86_64 Mon Aug 17 09:19:31 2020
+yast2-auth-client-3.3.20-3.3.1.noarch         Mon Aug 17 09:19:30 2020
+xfsprogs-4.15.0-3.3.1.x86_64                  Mon Aug 17 09:19:29 2020
+vim-data-7.4.326-17.6.1.noarch                Mon Aug 17 09:19:29 2020
+libboost_system1_54_0-1.54.0-26.9.1.x86_64    Mon Aug 17 09:19:22 2020
+yast2-ca-management-3.2.3-3.3.1.noarch        Mon Aug 17 09:19:21 2020
+perl-TimeDate-1.20-26.5.1.noarch              Mon Aug 17 09:19:21 2020
+p11-kit-tools-0.20.7-3.6.1.x86_64             Mon Aug 17 09:19:21 2020
+netpbm-10.66.3-8.7.2.x86_64                   Mon Aug 17 09:19:21 2020
+libisc166-9.11.2-3.17.1.x86_64                Mon Aug 17 09:19:21 2020
+libext2fs2-1.43.8-3.14.1.x86_64               Mon Aug 17 09:19:21 2020
+libelf1-0.158-7.13.3.x86_64                   Mon Aug 17 09:19:21 2020
+libaudiofile1-0.3.6-11.7.8.x86_64             Mon Aug 17 09:19:21 2020
+Mesa-libEGL1-18.0.2-8.3.2.x86_64              Mon Aug 17 09:19:21 2020
+yast2-sudo-3.1.3-5.6.1.noarch                 Mon Aug 17 09:19:20 2020
+psmisc-lang-22.21-6.13.1.noarch               Mon Aug 17 09:19:20 2020
+perl-5.18.2-12.23.1.x86_64                    Mon Aug 17 09:19:20 2020
+libxslt1-1.1.28-17.9.1.x86_64                 Mon Aug 17 09:19:20 2020
+libply-boot-client4-0.9.2-35.12.2.x86_64      Mon Aug 17 09:19:20 2020
+libauparse0-2.8.1-10.8.1.x86_64               Mon Aug 17 09:19:20 2020
+gdk-pixbuf-loader-rsvg-2.40.21-5.9.1.x86_64   Mon Aug 17 09:19:20 2020
+gd-2.1.0-24.17.1.x86_64                       Mon Aug 17 09:19:20 2020
+cpp48-4.8.5-31.23.2.x86_64                    Mon Aug 17 09:19:19 2020
+Mesa-libglapi0-18.0.2-8.3.2.x86_64            Mon Aug 17 09:19:19 2020
+libvpx1-1.3.0-3.6.1.x86_64                    Mon Aug 17 09:19:18 2020
+librsvg-2-2-2.40.21-5.9.1.x86_64              Mon Aug 17 09:19:18 2020
+libpng12-0-1.2.50-20.3.2.x86_64               Mon Aug 17 09:19:18 2020
+libply4-0.9.2-35.12.2.x86_64                  Mon Aug 17 09:19:18 2020
+libp11-kit0-0.20.7-3.6.1.x86_64               Mon Aug 17 09:19:18 2020
+libnetpbm11-10.66.3-8.7.2.x86_64              Mon Aug 17 09:19:18 2020
+libldb1-1.1.29-3.8.1.x86_64                   Mon Aug 17 09:19:18 2020
+libidn-tools-1.28-5.6.1.x86_64                Mon Aug 17 09:19:18 2020
+libgbm1-18.0.2-8.3.2.x86_64                   Mon Aug 17 09:19:18 2020
+libdw1-0.158-7.13.3.x86_64                    Mon Aug 17 09:19:18 2020
+libcom_err2-1.43.8-3.14.1.x86_64              Mon Aug 17 09:19:18 2020
+psmisc-22.21-6.13.1.x86_64                    Mon Aug 17 09:19:17 2020
+perl-base-5.18.2-12.23.1.x86_64               Mon Aug 17 09:19:17 2020
+p11-kit-0.20.7-3.6.1.x86_64                   Mon Aug 17 09:19:17 2020
+liblwres160-9.11.2-3.17.1.x86_64              Mon Aug 17 09:19:17 2020
+libirs160-9.11.2-3.17.1.x86_64                Mon Aug 17 09:19:17 2020
+libaudit1-2.8.1-10.8.1.x86_64                 Mon Aug 17 09:19:17 2020
+libadns1-1.4-103.3.1.x86_64                   Mon Aug 17 09:19:17 2020
+libGeoIP1-1.5.1-5.3.1.x86_64                  Mon Aug 17 09:19:17 2020
+ed-1.9-4.4.5.x86_64                           Mon Aug 17 09:19:17 2020
+libicu52_1-data-52.1-8.10.1.x86_64            Mon Aug 17 09:19:16 2020
+yast2-schema-3.2.1-5.3.2.x86_64               Mon Aug 17 09:19:15 2020
+guile-modules-2_0-2.0.9-9.3.1.x86_64          Mon Aug 17 09:19:15 2020
+yast2-vm-3.2.2-2.3.14.x86_64                  Mon Aug 17 09:19:14 2020
+yast2-branding-SLE-3.1.0-2.6.noarch           Mon Aug 17 09:19:14 2020
+yast2-boot-server-3.1.2-5.5.noarch            Mon Aug 17 09:19:14 2020
+sharutils-lang-4.11.1-14.64.x86_64            Mon Aug 17 09:19:14 2020
+python-rpm-macros-20200207.5feb6c1-3.19.1.noarch Mon Aug 17 09:19:14 2020
+mpt-firmware-1.0-258.8.noarch                 Mon Aug 17 09:19:14 2020
+ipw-firmware-9-18.17.noarch                   Mon Aug 17 09:19:14 2020
+growpart-0.31-4.14.2.noarch                   Mon Aug 17 09:19:14 2020
+branding-SLE-12-13.3.1.noarch                 Mon Aug 17 09:19:14 2020
+boost-license1_54_0-1.54.0-26.9.1.noarch      Mon Aug 17 09:19:14 2020
+adaptec-firmware-1.35-22.17.noarch            Mon Aug 17 09:19:14 2020
+python-singledispatch-3.4.0.3-1.5.1.noarch    Mon Aug 17 09:08:04 2020
+python-netaddr-0.7.12-14.2.noarch             Mon Aug 17 08:37:29 2020
+python-pyzmq-14.0.0-9.3.1.x86_64              Mon Aug 17 08:37:28 2020
+python-zope.interface-4.0.5-5.2.x86_64        Mon Aug 17 08:37:27 2020
+python-tornado-4.2.1-17.3.1.x86_64            Mon Aug 17 08:37:27 2020
+python-psutil-5.2.2-15.6.2.x86_64             Mon Aug 17 08:37:27 2020
+python-pam-0.5.0-88.56.x86_64                 Mon Aug 17 08:37:27 2020
+python-msgpack-python-0.4.6-8.3.1.x86_64      Mon Aug 17 08:37:27 2020
+pam_ldap-186-10.2.x86_64                      Thu Jan 23 11:04:58 2020
+libref_array1-0.1.5-24.1.x86_64               Thu Jan 23 11:04:58 2020
+libpath_utils1-0.2.1-24.1.x86_64              Thu Jan 23 11:04:58 2020
+libini_config5-1.2.0-24.1.x86_64              Thu Jan 23 11:04:58 2020
+libdhash1-0.4.3-24.1.x86_64                   Thu Jan 23 11:04:58 2020
+libcollection4-0.7.0-24.1.x86_64              Thu Jan 23 11:04:58 2020
+libbasicobjects0-0.1.1-24.1.x86_64            Thu Jan 23 11:04:58 2020
+amazon-ssm-agent-2.3.814.0-1.x86_64           Thu Jan 23 11:01:19 2020
+amazon-cloudwatch-agent-1.232905.0-1.x86_64   Thu Jan 23 11:01:18 2020
+procps-3.3.9-11.21.1.x86_64                   Tue Dec 31 10:56:08 2019
+ncurses-utils-5.9-72.1.x86_64                 Tue Dec 31 10:56:07 2019
+cronie-1.4.11-59.13.1.x86_64                  Tue Dec 31 10:56:07 2019
+libncurses6-5.9-72.1.x86_64                   Tue Dec 31 10:56:06 2019
+libncurses5-5.9-72.1.x86_64                   Tue Dec 31 10:56:06 2019
+cron-4.2-59.13.1.x86_64                       Tue Dec 31 10:56:06 2019
+yast2-network-3.4.9-3.21.1.noarch             Tue Dec 31 10:56:00 2019
+update-alternatives-1.18.4-16.3.1.x86_64      Tue Dec 31 10:56:00 2019
+terminfo-base-5.9-72.1.x86_64                 Tue Dec 31 10:56:00 2019
+terminfo-5.9-72.1.x86_64                      Tue Dec 31 10:56:00 2019
+man-pages-4.02-6.6.1.noarch                   Tue Dec 31 10:55:58 2019
+lio-utils-4.1-17.9.1.x86_64                   Tue Dec 31 10:55:57 2019
+libprocps3-3.3.9-11.21.1.x86_64               Tue Dec 31 10:55:57 2019
+libpng16-16-1.6.8-15.5.2.x86_64               Tue Dec 31 10:55:57 2019
+python-ecdsa-0.13.3-5.10.1.noarch             Tue Dec 31 10:55:28 2019
+sle-module-legacy-release-12-10.10.1.x86_64   Tue Dec 31 10:55:27 2019
+libjpeg8-8.1.2-31.19.1.x86_64                 Fri Nov 15 06:13:47 2019
+libjpeg62-62.2.0-31.19.1.x86_64               Fri Nov 15 06:13:47 2019
+python3-parallax-1.0.5-2.11.1.noarch          Fri Nov 15 06:13:45 2019
+libseccomp2-2.4.1-11.3.2.x86_64               Tue Nov 12 18:33:33 2019
+ha-cluster-bootstrap-0.5-3.6.2.noarch         Thu Nov  7 06:01:51 2019
+zypper-lifecycle-plugin-0.6.1490613702.a925823-1.35.noarch Thu Nov  7 06:01:47 2019
+libdlm-4.0.7-3.3.2.x86_64                     Thu Nov  7 06:01:47 2019
+python-decorator-4.1.2-4.4.2.noarch           Thu Nov  7 06:01:44 2019
+python3-py-1.5.2-8.8.2.noarch                 Thu Nov  7 06:01:42 2019
+python3-idna-2.5-3.10.2.noarch                Thu Nov  7 06:01:42 2019
+python3-PySocks-1.6.8-3.3.1.noarch            Thu Nov  7 06:01:42 2019
+python-py-1.5.2-8.8.2.noarch                  Thu Nov  7 06:01:42 2019
+python-ply-3.4-3.3.1.noarch                   Thu Nov  7 06:01:42 2019
+python-oauthlib-0.7.2-3.9.20.noarch           Thu Nov  7 06:01:42 2019
+python-idna-2.5-3.10.2.noarch                 Thu Nov  7 06:01:42 2019
+python-PySocks-1.6.8-3.3.1.noarch             Thu Nov  7 06:01:42 2019
+python-MarkupSafe-0.23-16.6.1.x86_64          Thu Nov  7 06:01:42 2019
+python-simplejson-3.8.2-12.1.x86_64           Thu Nov  7 06:01:39 2019
+multipath-tools-0.7.3+153+suse.80d9ed4-2.16.1.x86_64 Thu Nov  7 06:01:29 2019
+kpartx-0.7.3+153+suse.80d9ed4-2.16.1.x86_64   Thu Nov  7 06:01:28 2019
+postfix-3.2.10-3.21.2.x86_64                  Thu Nov  7 06:01:27 2019
+rpcbind-0.2.3-24.9.1.x86_64                   Thu Nov  7 05:59:33 2019
+gpg2-lang-2.0.24-9.8.1.noarch                 Thu Nov  7 05:59:29 2019
+gpg2-2.0.24-9.8.1.x86_64                      Thu Nov  7 05:59:28 2019
+pciutils-ids-2019.08.30-12.6.1.noarch         Thu Nov  7 05:59:24 2019
+yast2-users-3.2.19-3.3.1.x86_64               Thu Nov  7 05:59:22 2019
+libpcap1-1.8.1-10.3.1.x86_64                  Thu Nov  7 05:59:19 2019
+yast2-storage-3.2.20.1-3.3.2.x86_64           Thu Nov  7 05:59:09 2019
+yast2-proxy-3.1.8-5.6.1.noarch                Thu Nov  7 05:59:09 2019
+wireless-regdb-2019.06.03-4.22.1.noarch       Thu Nov  7 05:59:09 2019
+libapparmor1-2.8.2-51.21.5.x86_64             Thu Nov  7 05:59:01 2019
+libXi6-1.7.4-18.6.1.x86_64                    Thu Nov  7 05:59:01 2019
+xorg-x11-fonts-7.6-29.45.noarch               Thu Nov  7 05:58:46 2019
+sle-module-containers-release-12-6.9.1.x86_64 Thu Nov  7 05:58:43 2019
+lifecycle-data-sle-module-legacy-1-5.9.1.x86_64 Thu Nov  7 05:58:43 2019
+libdlm3-4.0.7-3.3.2.x86_64                    Thu Nov  7 05:58:43 2019
+typelib-1_0-Gtk-3_0-3.20.10-17.10.46.x86_64   Thu Jul  4 10:36:27 2019
+python3-gobject-Gdk-3.20.1-8.2.x86_64         Thu Jul  4 10:36:27 2019
+gtk3-lang-3.20.10-17.10.46.noarch             Thu Jul  4 10:36:27 2019
+gcr-viewer-3.20.0-8.2.x86_64                  Thu Jul  4 10:36:27 2019
+gcr-lang-3.20.0-8.2.noarch                    Thu Jul  4 10:36:27 2019
+libgdata22-0.17.5-5.4.x86_64                  Thu Jul  4 10:36:26 2019
+libgdata-lang-0.17.5-5.4.noarch               Thu Jul  4 10:36:26 2019
+libgcr-3-1-3.20.0-8.2.x86_64                  Thu Jul  4 10:36:26 2019
+icewm-lite-1.3.12-11.90.1.x86_64              Thu Jul  4 10:36:26 2019
+icewm-1.3.12-11.90.1.x86_64                   Thu Jul  4 10:36:26 2019
+gvfs-lang-1.28.3-18.3.68.noarch               Thu Jul  4 10:36:26 2019
+gvfs-fuse-1.28.3-18.3.68.x86_64               Thu Jul  4 10:36:26 2019
+gvfs-backends-1.28.3-18.3.68.x86_64           Thu Jul  4 10:36:26 2019
+gvfs-1.28.3-18.3.68.x86_64                    Thu Jul  4 10:36:26 2019
+gcr-prompter-3.20.0-8.2.x86_64                Thu Jul  4 10:36:26 2019
+libgtk-3-0-3.20.10-17.10.46.x86_64            Thu Jul  4 10:36:25 2019
+icewm-default-1.3.12-11.90.1.x86_64           Thu Jul  4 10:36:25 2019
+adwaita-icon-theme-3.20-3.2.noarch            Thu Jul  4 10:36:25 2019
+gtk3-tools-3.20.10-17.10.46.x86_64            Thu Jul  4 10:36:20 2019
+yast2-snapper-3.2.1-1.29.x86_64               Thu Jul  4 10:35:52 2019
+xlockmore-5.43-5.33.x86_64                    Thu Jul  4 10:35:52 2019
+snapper-zypp-plugin-0.5.0-3.5.1.noarch        Thu Jul  4 10:35:52 2019
+pulseaudio-lang-5.0-4.1.noarch                Thu Jul  4 10:35:52 2019
+pulseaudio-esound-compat-5.0-4.1.x86_64       Thu Jul  4 10:35:52 2019
+pulseaudio-5.0-4.1.x86_64                     Thu Jul  4 10:35:52 2019
+os-prober-1.61-29.1.x86_64                    Thu Jul  4 10:35:52 2019
+librest0-0.8.0-11.3.x86_64                    Thu Jul  4 10:35:52 2019
+libesd0-0.2.41-27.63.x86_64                   Thu Jul  4 10:35:52 2019
+gsettings-backend-dconf-0.26.0-11.6.x86_64    Thu Jul  4 10:35:52 2019
+alsa-plugins-pulse-1.0.27-4.74.x86_64         Thu Jul  4 10:35:52 2019
+snapper-0.5.0-3.5.1.x86_64                    Thu Jul  4 10:35:51 2019
+rtkit-0.11_git201205151338-8.17.x86_64        Thu Jul  4 10:35:51 2019
+openssh-askpass-1.2.4.1-7.5.x86_64            Thu Jul  4 10:35:51 2019
+libsecret-lang-0.18.5-8.3.8.noarch            Thu Jul  4 10:35:51 2019
+libgck-1-0-3.20.0-8.2.x86_64                  Thu Jul  4 10:35:51 2019
+libdconf1-0.26.0-11.6.x86_64                  Thu Jul  4 10:35:51 2019
+json-glib-lang-1.2.2-5.2.noarch               Thu Jul  4 10:35:51 2019
+gsettings-desktop-schemas-lang-3.20.0-6.2.noarch Thu Jul  4 10:35:51 2019
+gcr-data-3.20.0-8.2.x86_64                    Thu Jul  4 10:35:51 2019
+dmraid-1.0.0.rc16-35.3.1.x86_64               Thu Jul  4 10:35:51 2019
+dconf-0.26.0-11.6.x86_64                      Thu Jul  4 10:35:51 2019
+udisks2-lang-2.1.3-3.5.1.noarch               Thu Jul  4 10:35:50 2019
+libsemanage1-2.5-9.3.1.x86_64                 Thu Jul  4 10:35:50 2019
+libsecret-1-0-0.18.5-8.3.8.x86_64             Thu Jul  4 10:35:50 2019
+libqt5-qtimageformats-5.6.2-1.31.x86_64       Thu Jul  4 10:35:50 2019
+libjson-glib-1_0-0-1.2.2-5.2.x86_64           Thu Jul  4 10:35:50 2019
+libcolord2-1.3.3-12.13.x86_64                 Thu Jul  4 10:35:50 2019
+gsettings-desktop-schemas-3.20.0-6.2.x86_64   Thu Jul  4 10:35:50 2019
+udisks2-2.1.3-3.5.1.x86_64                    Thu Jul  4 10:35:49 2019
+polkit-default-privs-13.2-22.9.1.noarch       Thu Jul  4 10:35:17 2019
+libudisks2-0-2.1.3-3.5.1.x86_64               Thu Jul  4 10:35:17 2019
+yast2-iscsi-lio-server-3.2.2-3.5.1.noarch     Thu Jul  4 10:34:57 2019
+pam_mount-2.14-5.3.1.x86_64                   Thu Jul  4 10:34:57 2019
+btrfsprogs-4.5.3-17.11.2.x86_64               Thu Jul  4 10:34:54 2019
+OpenIPMI-2.0.21-10.6.24.x86_64                Thu Jul  4 10:34:54 2019
+logrotate-3.11.0-2.14.1.x86_64                Thu Jul  4 10:34:53 2019
+rollback-helper-1.0+git20181112.65db4d0-11.6.4.noarch Thu Jul  4 10:34:52 2019
+libgoa-1_0-0-3.20.8-10.4.50.x86_64            Thu Jul  4 10:33:21 2019
+gtk3-data-3.20.10-17.10.46.noarch             Thu Jul  4 10:33:21 2019
+quota-4.05-6.3.1.x86_64                       Thu Jul  4 10:33:19 2019
+python-ec2utilsbase-2.0.2-17.2.1.noarch       Thu Jul  4 10:33:19 2019
+python-ec2uploadimg-3.0.1-28.3.1.noarch       Thu Jul  4 10:33:19 2019
+fonts-config-20180430-6.8.1.noarch            Thu Jul  4 10:33:19 2019
+python3-python-dateutil-2.6.1-2.3.1.noarch    Thu Jul  4 10:33:17 2019
+python-python-dateutil-2.6.1-2.3.1.noarch     Thu Jul  4 10:33:17 2019
+python-enum34-1.1.3-8.3.3.noarch              Thu Jul  4 10:33:17 2019
+python3-gobject-cairo-3.20.1-8.2.x86_64       Thu Jul  4 10:33:16 2019
+python3-M2Crypto-0.29.0-23.3.5.x86_64         Thu Jul  4 10:33:16 2019
+mkfontdir-1.0.7-8.9.x86_64                    Thu Jul  4 10:33:16 2019
+libvorbisenc2-1.3.3-10.14.1.x86_64            Thu Jul  4 10:33:16 2019
+libpulse0-5.0-4.1.x86_64                      Thu Jul  4 10:33:16 2019
+libgphoto2-6-lang-2.5.4.1-3.12.noarch         Thu Jul  4 10:33:16 2019
+libftgl2-2.1.2.99.5-31.96.x86_64              Thu Jul  4 10:33:16 2019
+libcdio_paranoia1-10.2+0.90-3.51.x86_64       Thu Jul  4 10:33:16 2019
+libcdio_cdda1-10.2+0.90-3.51.x86_64           Thu Jul  4 10:33:16 2019
+zypp-plugin-python-0.6.3-3.6.1.noarch         Thu Jul  4 10:33:15 2019
+yast2-migration-3.2.0-4.3.81.noarch           Thu Jul  4 10:33:15 2019
+python3-zypp-plugin-0.6.3-3.6.1.noarch        Thu Jul  4 10:33:15 2019
+python3-typing-3.6.4-1.5.1.noarch             Thu Jul  4 10:33:15 2019
+python3-pycparser-2.14-1.1.noarch             Thu Jul  4 10:33:15 2019
+python3-pyasn1-0.1.9-4.6.1.noarch             Thu Jul  4 10:33:15 2019
+python3-gobject-3.20.1-8.2.x86_64             Thu Jul  4 10:33:15 2019
+mtools-4.0.18-6.15.x86_64                     Thu Jul  4 10:33:15 2019
+libvorbis0-1.3.3-10.14.1.x86_64               Thu Jul  4 10:33:15 2019
+libtirpc1-0.2.3-20.5.x86_64                   Thu Jul  4 10:33:15 2019
+libsnapper4-0.5.0-3.5.1.x86_64                Thu Jul  4 10:33:15 2019
+libmng1-1.0.10-113.5.x86_64                   Thu Jul  4 10:33:15 2019
+libgphoto2-6-2.5.4.1-3.12.x86_64              Thu Jul  4 10:33:15 2019
+fuse-2.9.3-6.3.1.x86_64                       Thu Jul  4 10:33:15 2019
+crda-1.1.3-4.5.1.x86_64                       Thu Jul  4 10:33:15 2019
+cantarell-fonts-0.0.24-3.1.noarch             Thu Jul  4 10:33:15 2019
+bash-completion-2.1-12.13.1.noarch            Thu Jul  4 10:33:15 2019
+mkfontscale-1.1.1-3.65.x86_64                 Thu Jul  4 10:33:14 2019
+libspeexdsp1-1.1.999_1.2rc1-22.64.x86_64      Thu Jul  4 10:33:14 2019
+libspeex1-1.1.999_1.2rc1-22.64.x86_64         Thu Jul  4 10:33:14 2019
+liborc-0_4-0-0.4.21-1.4.x86_64                Thu Jul  4 10:33:14 2019
+libogg0-1.3.0-9.61.x86_64                     Thu Jul  4 10:33:14 2019
+libmtp9-1.1.6-5.29.x86_64                     Thu Jul  4 10:33:14 2019
+liblcms2-2-2.7-9.7.1.x86_64                   Thu Jul  4 10:33:14 2019
+liblcms1-1.19-17.31.x86_64                    Thu Jul  4 10:33:14 2019
+libgudev-1_0-0-230-1.5.x86_64                 Thu Jul  4 10:33:14 2019
+libfftw3-3-3.3.3-5.166.x86_64                 Thu Jul  4 10:33:14 2019
+libepoxy0-1.3.1-4.1.x86_64                    Thu Jul  4 10:33:14 2019
+libelf0-0.8.13-18.64.x86_64                   Thu Jul  4 10:33:14 2019
+libcdio14-0.90-6.3.1.x86_64                   Thu Jul  4 10:33:14 2019
+libcairo-gobject2-1.15.2-25.3.2.x86_64        Thu Jul  4 10:33:14 2019
+libbluray1-0.4.0-5.1.x86_64                   Thu Jul  4 10:33:14 2019
+libatk-bridge-2_0-0-2.20.1-7.2.x86_64         Thu Jul  4 10:33:14 2019
+libatasmart4-0.19-5.64.x86_64                 Thu Jul  4 10:33:14 2019
+libXfont2-2-2.0.3-1.19.x86_64                 Thu Jul  4 10:33:14 2019
+libGLU1-9.0.0-18.1.x86_64                     Thu Jul  4 10:33:14 2019
+fribidi-0.19.2-12.66.x86_64                   Thu Jul  4 10:33:14 2019
+libwebrtc_audio_processing0-0.1-10.85.x86_64  Thu Jul  4 10:33:13 2019
+yast2-registration-3.2.18-3.3.2.noarch        Thu Jul  4 10:33:12 2019
+yast2-add-on-3.2.3-3.3.1.noarch               Thu Jul  4 10:33:11 2019
+python-dbus-python-1.2.4-2.5.2.x86_64         Thu Jul  4 10:33:11 2019
+libcryptmount0-2.14-5.3.1.x86_64              Thu Jul  4 10:33:09 2019
+wget-1.14-21.10.1.x86_64                      Thu Jul  4 10:33:08 2019
+w3m-0.5.3.git20161120-161.3.4.x86_64          Thu Jul  4 10:33:08 2019
+sysvinit-tools-2.88+-101.3.1.x86_64           Thu Jul  4 10:33:07 2019
+libtirpc3-1.0.1-17.13.1.x86_64                Thu Jul  4 10:33:07 2019
+libtasn1-4.9-3.10.1.x86_64                    Thu Jul  4 10:33:07 2019
+kmod-compat-25-3.4.1.x86_64                   Thu Jul  4 10:33:07 2019
+yast2-ntp-client-3.2.18-3.3.1.noarch          Thu Jul  4 10:33:06 2019
+yast2-instserver-3.1.7-8.6.1.noarch           Thu Jul  4 10:33:06 2019
+yast2-firewall-3.4.0-6.3.2.noarch             Thu Jul  4 10:33:06 2019
+yast2-bootloader-3.3.1-3.3.1.x86_64           Thu Jul  4 10:33:06 2019
+blog-2.19-4.3.2.x86_64                        Thu Jul  4 10:33:05 2019
+hwinfo-21.63-2.17.1.x86_64                    Thu Jul  4 10:33:01 2019
+pam-config-0.89-5.3.2.x86_64                  Thu Jul  4 10:32:46 2019
+libtasn1-6-4.9-3.10.1.x86_64                  Thu Jul  4 10:32:46 2019
+kmod-25-3.4.1.x86_64                          Thu Jul  4 10:32:46 2019
+systemd-presets-branding-SLE-12.2-10.3.1.noarch Thu Jul  4 10:32:41 2019
+sg3_utils-1.43+46.4b09c76-16.23.1.x86_64      Thu Jul  4 10:32:41 2019
+libLLVM6-6.0.0-2.3.2.x86_64                   Thu Jul  4 10:32:38 2019
+procinfo-18-221.3.1.x86_64                    Thu Jul  4 10:32:37 2019
+libcroco-0_6-3-0.6.11-12.3.1.x86_64           Thu Jul  4 10:32:36 2019
+acl-2.2.52-7.3.1.x86_64                       Thu Jul  4 10:32:36 2019
+libunwind-devel-1.1-11.3.1.x86_64             Thu Jul  4 10:32:35 2019
+libkmod2-25-3.4.1.x86_64                      Thu Jul  4 10:32:35 2019
+libidn11-1.28-5.6.1.x86_64                    Thu Jul  4 10:32:34 2019
+libbtrfs0-4.5.3-17.11.2.x86_64                Thu Jul  4 10:32:34 2019
+libacl1-2.2.52-7.3.1.x86_64                   Thu Jul  4 10:32:34 2019
+ethtool-4.13-14.3.7.x86_64                    Thu Jul  4 10:32:34 2019
+dmidecode-3.0-10.3.1.x86_64                   Thu Jul  4 10:32:34 2019
+xrdb-1.1.0-5.5.1.x86_64                       Thu Jul  4 10:32:33 2019
+libunwind-1.1-11.3.1.x86_64                   Thu Jul  4 10:32:33 2019
+libsgutils2-2-1.43+46.4b09c76-16.23.1.x86_64  Thu Jul  4 10:32:33 2019
+libtirpc-netconfig-1.0.1-17.13.1.x86_64       Thu Jul  4 10:32:32 2019
+typelib-1_0-GdkPixbuf-2_0-2.34.0-19.17.1.x86_64 Thu Jul  4 10:32:28 2019
+typelib-1_0-Atk-1_0-2.20.0-4.5.x86_64         Thu Jul  4 10:32:28 2019
+release-notes-ha-12.4.20181207-2.3.1.noarch   Thu Jul  4 10:32:28 2019
+libqt5-qttranslations-5.6.2-1.30.x86_64       Thu Jul  4 10:32:28 2019
+desktop-translations-13.1-32.1.noarch         Thu Jul  4 10:32:28 2019
+btrfsprogs-udev-rules-4.5.3-17.11.2.noarch    Thu Jul  4 10:32:28 2019
+gpg-pubkey-50a3dd1c-50f35137                  Mon Dec 10 16:26:30 2018
+gpg-pubkey-39db7c82-5847eb1f                  Mon Dec 10 16:26:30 2018
+yast2-ftp-server-3.4.1-5.38.noarch            Mon Dec 10 16:25:56 2018
+yast2-nis-server-3.1.4-5.6.noarch             Mon Dec 10 16:25:55 2018
+yast2-mail-3.1.11-1.63.noarch                 Mon Dec 10 16:25:55 2018
+yast2-inetd-3.1.13-4.6.noarch                 Mon Dec 10 16:25:55 2018
+yast2-auth-server-3.1.18-6.7.x86_64           Mon Dec 10 16:25:55 2018
+patterns-ha-ha_sles-12-15.7.x86_64            Mon Dec 10 16:25:55 2018
+yast2-tune-3.2.0-1.63.x86_64                  Mon Dec 10 16:25:54 2018
+yast2-nis-client-3.2.1-1.17.x86_64            Mon Dec 10 16:25:54 2018
+yast2-ldap-3.1.14-3.86.x86_64                 Mon Dec 10 16:25:54 2018
+yast2-http-server-3.2.2-1.85.noarch           Mon Dec 10 16:25:54 2018
+yast2-dns-server-3.2.0-1.124.noarch           Mon Dec 10 16:25:54 2018
+yast2-dhcp-server-3.2.2-1.106.noarch          Mon Dec 10 16:25:54 2018
+xorg-x11-fonts-core-7.6-29.45.noarch          Mon Dec 10 16:25:53 2018
+yast2-kdump-3.2.8-3.78.x86_64                 Mon Dec 10 16:25:52 2018
+libstorage-ruby-2.26.15-1.19.x86_64           Mon Dec 10 16:25:44 2018
+libstorage7-2.26.15-1.19.x86_64               Mon Dec 10 16:25:41 2018
+parted-3.1-37.19.x86_64                       Mon Dec 10 16:25:34 2018
+kexec-tools-2.0.16-1.18.x86_64                Mon Dec 10 16:25:34 2018
+yast2-samba-client-3.1.20-1.9.noarch          Mon Dec 10 16:25:33 2018
+sles-manuals_en-12.4-1.3.noarch               Mon Dec 10 16:25:33 2018
+yast2-support-3.2.1-3.3.1.noarch              Mon Dec 10 16:25:31 2018
+yast2-services-manager-3.2.2-2.4.3.noarch     Mon Dec 10 16:25:31 2018
+yast2-security-3.2.3-6.5.noarch               Mon Dec 10 16:25:31 2018
+yast2-nfs-client-3.1.18-5.1.noarch            Mon Dec 10 16:25:31 2018
+yast2-drbd-3.3.0-13.3.28.noarch               Mon Dec 10 16:25:31 2018
+yast2-audit-laf-3.1.5-6.5.noarch              Mon Dec 10 16:25:31 2018
+icewm-theme-branding-1.2.2-9.1.noarch         Mon Dec 10 16:25:31 2018
+yast2-isns-3.1.7-3.5.noarch                   Mon Dec 10 16:25:30 2018
+yast2-iplb-3.1.6-5.5.noarch                   Mon Dec 10 16:25:30 2018
+yast2-tftp-server-3.1.3-5.5.noarch            Mon Dec 10 16:25:29 2018
+yast2-sysconfig-3.1.4-3.5.noarch              Mon Dec 10 16:25:29 2018
+yast2-squid-3.1.5-5.6.x86_64                  Mon Dec 10 16:25:29 2018
+yast2-slp-server-3.1.5-4.5.noarch             Mon Dec 10 16:25:29 2018
+yast2-online-update-frontend-3.1.11-3.3.noarch Mon Dec 10 16:25:29 2018
+yast2-nfs-server-3.1.9-5.5.noarch             Mon Dec 10 16:25:29 2018
+yast2-online-update-3.1.11-3.3.noarch         Mon Dec 10 16:25:28 2018
+yast2-metapackage-handler-3.1.4-3.3.noarch    Mon Dec 10 16:25:28 2018
+yast2-slp-3.1.11-1.85.x86_64                  Mon Dec 10 16:25:27 2018
+yast2-printer-3.2.0-1.65.x86_64               Mon Dec 10 16:25:27 2018
+yast2-pam-3.1.2-3.21.noarch                   Mon Dec 10 16:25:27 2018
+xinit-1.3.3-9.1.x86_64                        Mon Dec 10 16:25:26 2018
+xdg-menu-0.2-214.18.noarch                    Mon Dec 10 16:25:26 2018
+ksh-93vu-18.1.x86_64                          Mon Dec 10 16:25:26 2018
+dejavu-fonts-2.34-3.189.noarch                Mon Dec 10 16:25:26 2018
+yast2-sap-scp-1.0.3-11.2.noarch               Mon Dec 10 16:25:25 2018
+pssh-2.3.1-16.1.noarch                        Mon Dec 10 16:25:25 2018
+google-opensans-fonts-1.0-9.128.noarch        Mon Dec 10 16:25:25 2018
+yast2-sap-scp-prodlist-1.0.4-5.6.1.noarch     Mon Dec 10 16:25:24 2018
+yast2-country-3.2.16-1.10.x86_64              Mon Dec 10 16:25:22 2018
+yast2-control-center-3.2.1-6.32.x86_64        Mon Dec 10 16:25:22 2018
+python-pssh-2.3.1-16.1.noarch                 Mon Dec 10 16:25:22 2018
+yast2-packager-3.2.30-2.13.12.x86_64          Mon Dec 10 16:25:21 2018
+yast2-control-center-qt-3.2.1-6.32.x86_64     Mon Dec 10 16:25:21 2018
+yast2-dbus-server-3.1.1-1.61.x86_64           Mon Dec 10 16:25:18 2018
+syslog-service-2.0-778.1.noarch               Mon Dec 10 16:25:18 2018
+SuSEfirewall2-3.6.312.333-3.13.1.noarch       Mon Dec 10 16:25:18 2018
+tuned-2.4.1-9.6.2.noarch                      Mon Dec 10 16:25:15 2018
+sysconfig-netconfig-0.84.0-13.1.x86_64        Mon Dec 10 16:25:15 2018
+sysconfig-0.84.0-13.1.x86_64                  Mon Dec 10 16:25:15 2018
+mlocate-0.26-12.1.x86_64                      Mon Dec 10 16:25:15 2018
+haveged-1.9.1-16.1.x86_64                     Mon Dec 10 16:25:15 2018
+at-3.1.14-8.6.1.x86_64                        Mon Dec 10 16:25:14 2018
+xinetd-2.3.15-8.8.1.x86_64                    Mon Dec 10 16:25:12 2018
+libyui-qt7-2.47.1.1-3.3.3.x86_64              Mon Dec 10 16:25:09 2018
+lockdev-1.0.3_git201003141408-27.1.x86_64     Mon Dec 10 16:25:08 2018
+libyui-qt6-2.46.13-1.44.x86_64                Mon Dec 10 16:25:08 2018
+liblockdev1-1.0.3_git201003141408-27.1.x86_64 Mon Dec 10 16:25:08 2018
+ipvsadm-1.26-19.7.x86_64                      Mon Dec 10 16:25:08 2018
+dbus-1-glib-0.100.2-3.58.x86_64               Mon Dec 10 16:25:08 2018
+at-spi2-core-2.20.2-14.3.1.x86_64             Mon Dec 10 16:25:06 2018
+libQt5X11Extras5-5.6.2-1.32.x86_64            Mon Dec 10 16:25:05 2018
+cryptsetup-1.6.4-4.1.x86_64                   Mon Dec 10 16:25:05 2018
+libparted0-3.1-37.19.x86_64                   Mon Dec 10 16:25:03 2018
+yast2-transfer-3.1.3-3.7.x86_64               Mon Dec 10 16:25:02 2018
+yast2-hardware-detection-3.1.8-1.39.x86_64    Mon Dec 10 16:25:02 2018
+libgtk-2_0-0-2.24.31-9.6.28.x86_64            Mon Dec 10 16:25:02 2018
+yast2-country-data-3.2.16-1.10.x86_64         Mon Dec 10 16:25:01 2018
+ruby2.1-rubygem-cfa_grub2-0.6.5-1.10.x86_64   Mon Dec 10 16:25:01 2018
+ruby2.1-rubygem-cfa-0.6.1-1.9.x86_64          Mon Dec 10 16:25:01 2018
+libcryptsetup4-1.6.4-4.1.x86_64               Mon Dec 10 16:25:01 2018
+gtk2-tools-2.24.31-9.6.28.x86_64              Mon Dec 10 16:25:01 2018
+typelib-1_0-Pango-1_0-1.40.1-9.5.x86_64       Mon Dec 10 16:25:00 2018
+ruby2.1-rubygem-cheetah-0.5.0-4.1.x86_64      Mon Dec 10 16:25:00 2018
+ruby2.1-rubygem-abstract_method-1.2.1-4.1.x86_64 Mon Dec 10 16:25:00 2018
+python-gobject-3.20.1-8.2.x86_64              Mon Dec 10 16:25:00 2018
+libpango-1_0-0-1.40.1-9.5.x86_64              Mon Dec 10 16:25:00 2018
+libcairo2-1.15.2-25.3.2.x86_64                Mon Dec 10 16:25:00 2018
+desktop-data-SLE-12-5.3.1.noarch              Mon Dec 10 16:25:00 2018
+xkbcomp-1.2.4-9.59.x86_64                     Mon Dec 10 16:24:59 2018
+telnet-1.2-165.63.x86_64                      Mon Dec 10 16:24:59 2018
+shadow-4.2.1-27.19.1.x86_64                   Mon Dec 10 16:24:59 2018
+setxkbmap-1.3.0-7.58.x86_64                   Mon Dec 10 16:24:59 2018
+scout-0.1.0-57.8.noarch                       Mon Dec 10 16:24:59 2018
+ruby2.1-rubygem-ruby-dbus-0.9.3-3.6.x86_64    Mon Dec 10 16:24:59 2018
+ruby2.1-rubygem-ruby-augeas-0.5.0-1.40.x86_64 Mon Dec 10 16:24:59 2018
+ruby2.1-rubygem-fast_gettext-0.9.2-1.1.x86_64 Mon Dec 10 16:24:59 2018
+ruby-2.1-1.6.x86_64                           Mon Dec 10 16:24:59 2018
+icmpinfo-1.11-710.63.x86_64                   Mon Dec 10 16:24:59 2018
+command-not-found-0.1.0-57.8.noarch           Mon Dec 10 16:24:59 2018
+yast2-perl-bindings-3.2.0-1.38.x86_64         Mon Dec 10 16:24:58 2018
+xdg-utils-20140630-6.3.1.noarch               Mon Dec 10 16:24:58 2018
+ruby2.1-rubygem-simpleidn-0.0.9-1.22.x86_64   Mon Dec 10 16:24:58 2018
+ruby2.1-rubygem-gem2rpm-0.10.1-4.1.x86_64     Mon Dec 10 16:24:58 2018
+ruby2.1-rubygem-bundler-1.7.3-3.8.x86_64      Mon Dec 10 16:24:58 2018
+ruby-common-2.1-19.1.noarch                   Mon Dec 10 16:24:58 2018
+perl-libwww-perl-6.05-5.2.noarch              Mon Dec 10 16:24:58 2018
+perl-XML-LibXML-2.0019-6.3.5.x86_64           Mon Dec 10 16:24:58 2018
+perl-Net-DNS-0.73-4.1.x86_64                  Mon Dec 10 16:24:58 2018
+perl-Date-Calc-6.3-25.1.x86_64                Mon Dec 10 16:24:58 2018
+perl-Bootloader-0.923-1.7.x86_64              Mon Dec 10 16:24:58 2018
+libXaw7-1.0.12-5.3.1.x86_64                   Mon Dec 10 16:24:58 2018
+yast2-xml-3.1.2-2.3.1.x86_64                  Mon Dec 10 16:24:50 2018
+perl-Net-HTTP-6.06-5.2.noarch                 Mon Dec 10 16:24:50 2018
+libxkbfile1-1.0.8-11.1.x86_64                 Mon Dec 10 16:24:50 2018
+netcfg-11.5-29.1.noarch                       Mon Dec 10 16:24:47 2018
+libgdk_pixbuf-2_0-0-2.34.0-19.17.1.x86_64     Mon Dec 10 16:24:47 2018
+libatspi0-2.20.2-14.3.1.x86_64                Mon Dec 10 16:24:47 2018
+perl-XML-Simple-2.20-4.2.noarch               Mon Dec 10 16:24:41 2018
+perl-XML-SAX-Expat-0.50-3.8.noarch            Mon Dec 10 16:24:41 2018
+perl-Net-DBus-1.0.0-8.53.x86_64               Mon Dec 10 16:24:41 2018
+perl-HTTP-Negotiate-6.01-7.11.noarch          Mon Dec 10 16:24:41 2018
+perl-HTTP-Message-6.06-3.14.noarch            Mon Dec 10 16:24:41 2018
+perl-HTTP-Daemon-6.01-7.11.noarch             Mon Dec 10 16:24:41 2018
+perl-HTTP-Cookies-6.01-7.11.noarch            Mon Dec 10 16:24:41 2018
+perl-HTML-Parser-3.71-1.178.x86_64            Mon Dec 10 16:24:41 2018
+perl-File-Listing-6.04-7.15.noarch            Mon Dec 10 16:24:41 2018
+perl-Carp-Clan-6.04-23.11.noarch              Mon Dec 10 16:24:41 2018
+perl-Bit-Vector-7.3-3.171.x86_64              Mon Dec 10 16:24:41 2018
+xsetroot-1.1.1-3.57.x86_64                    Mon Dec 10 16:24:40 2018
+xauth-1.0.8-1.51.x86_64                       Mon Dec 10 16:24:40 2018
+perl-Crypt-SmbHash-0.12-156.12.x86_64         Mon Dec 10 16:24:40 2018
+libXmu6-1.1.2-3.60.x86_64                     Mon Dec 10 16:24:40 2018
+perl-X500-DN-0.29-106.14.x86_64               Mon Dec 10 16:24:38 2018
+perl-WWW-RobotRules-6.02-7.17.noarch          Mon Dec 10 16:24:38 2018
+perl-Test-Exception-0.32-3.14.noarch          Mon Dec 10 16:24:38 2018
+perl-MailTools-2.12-3.14.x86_64               Mon Dec 10 16:24:38 2018
+perl-IO-Socket-INET6-2.71-3.12.noarch         Mon Dec 10 16:24:38 2018
+perl-HTTP-Date-6.02-7.19.noarch               Mon Dec 10 16:24:38 2018
+perl-Digest-HMAC-1.03-18.16.noarch            Mon Dec 10 16:24:38 2018
+perl-Config-IniFiles-2.82-3.14.noarch         Mon Dec 10 16:24:38 2018
+perl-XML-XPath-1.13-99.19.x86_64              Mon Dec 10 16:24:37 2018
+perl-XML-SAX-0.99-22.8.x86_64                 Mon Dec 10 16:24:37 2018
+libxcb-image0-0.3.9-8.60.x86_64               Mon Dec 10 16:24:37 2018
+libXxf86vm1-1.1.3-3.54.x86_64                 Mon Dec 10 16:24:37 2018
+libXmuu1-1.1.2-3.60.x86_64                    Mon Dec 10 16:24:37 2018
+libXinerama1-1.1.3-3.55.x86_64                Mon Dec 10 16:24:37 2018
+libXft2-2.3.1-9.32.x86_64                     Mon Dec 10 16:24:37 2018
+libXdamage1-1.1.4-7.54.x86_64                 Mon Dec 10 16:24:37 2018
+libXcomposite1-0.4.4-7.53.x86_64              Mon Dec 10 16:24:37 2018
+xmodmap-1.0.8-3.57.x86_64                     Mon Dec 10 16:24:35 2018
+perl-Digest-SHA1-2.13-17.216.x86_64           Mon Dec 10 16:24:35 2018
+perl-Digest-MD4-1.9-3.203.x86_64              Mon Dec 10 16:24:35 2018
+perl-Config-Crontab-1.33-8.19.noarch          Mon Dec 10 16:24:35 2018
+libxcb-render-util0-0.3.8-8.52.x86_64         Mon Dec 10 16:24:35 2018
+libXt6-1.1.4-3.59.x86_64                      Mon Dec 10 16:24:35 2018
+cpp-4.8-6.189.x86_64                          Mon Dec 10 16:24:35 2018
+perl-Term-ReadKey-2.31-1.152.x86_64           Mon Dec 10 16:24:34 2018
+perl-Sub-Uplevel-0.240.0-11.19.noarch         Mon Dec 10 16:24:34 2018
+perl-Socket6-0.25-1.34.x86_64                 Mon Dec 10 16:24:34 2018
+perl-Parse-RecDescent-1.967009-7.19.x86_64    Mon Dec 10 16:24:34 2018
+perl-Net-Telnet-3.04-3.19.noarch              Mon Dec 10 16:24:34 2018
+perl-List-MoreUtils-0.33-7.63.x86_64          Mon Dec 10 16:24:34 2018
+perl-LWP-MediaTypes-6.02-7.19.noarch          Mon Dec 10 16:24:34 2018
+perl-IO-HTML-1.00-3.19.noarch                 Mon Dec 10 16:24:34 2018
+perl-HTML-Tagset-3.20-71.19.noarch            Mon Dec 10 16:24:34 2018
+perl-Encode-Locale-1.03-7.19.noarch           Mon Dec 10 16:24:34 2018
+perl-XML-Writer-0.623-3.19.noarch             Mon Dec 10 16:24:32 2018
+perl-XML-SAX-Base-1.08-8.20.noarch            Mon Dec 10 16:24:32 2018
+perl-XML-Parser-2.41-21.140.x86_64            Mon Dec 10 16:24:32 2018
+perl-XML-NamespaceSupport-1.11-21.13.x86_64   Mon Dec 10 16:24:32 2018
+perl-X11-Protocol-0.56-12.19.x86_64           Mon Dec 10 16:24:32 2018
+perl-URI-1.60-7.19.noarch                     Mon Dec 10 16:24:32 2018
+python-pycurl-7.19.0-16.5.x86_64              Mon Dec 10 16:24:31 2018
+perl-gettext-1.05-163.126.x86_64              Mon Dec 10 16:24:31 2018
+perl-camgm-1.0.7-1.4.x86_64                   Mon Dec 10 16:24:31 2018
+pam-modules-12.1-23.12.x86_64                 Mon Dec 10 16:24:31 2018
+libxkbcommon-x11-0-0.6.1-7.4.x86_64           Mon Dec 10 16:24:31 2018
+libxcb-util1-0.3.9-10.54.x86_64               Mon Dec 10 16:24:31 2018
+libxcb-keysyms1-0.3.9-8.54.x86_64             Mon Dec 10 16:24:31 2018
+libxcb-icccm4-0.4.0-1.16.x86_64               Mon Dec 10 16:24:31 2018
+libxkbcommon0-0.6.1-7.4.x86_64                Mon Dec 10 16:24:28 2018
+libXrandr2-1.5.0-6.2.x86_64                   Mon Dec 10 16:24:28 2018
+yast2-ycp-ui-bindings-3.2.0-1.23.x86_64       Mon Dec 10 16:24:27 2018
+xkeyboard-config-2.20-1.13.noarch             Mon Dec 10 16:24:27 2018
+fontconfig-2.11.1-7.1.x86_64                  Mon Dec 10 16:24:27 2018
+yast2-pkg-bindings-3.2.5-2.6.36.x86_64        Mon Dec 10 16:24:26 2018
+yast2-core-3.3.1-1.7.x86_64                   Mon Dec 10 16:24:25 2018
+python-ec2publishimg-1.1.3-13.1.noarch        Mon Dec 10 16:24:23 2018
+python-ec2deprecateimg-3.0.2-13.1.noarch      Mon Dec 10 16:24:23 2018
+libyui-ncurses-pkg7-2.48.4.1-1.5.x86_64       Mon Dec 10 16:24:23 2018
+iproute2-4.12-15.6.21.x86_64                  Mon Dec 10 16:24:23 2018
+libXtst6-1.2.2-7.1.x86_64                     Mon Dec 10 16:24:22 2018
+libXfixes3-5.0.1-7.1.x86_64                   Mon Dec 10 16:24:22 2018
+libXext6-1.3.2-4.3.1.x86_64                   Mon Dec 10 16:24:22 2018
+libXcursor1-1.1.14-4.6.1.x86_64               Mon Dec 10 16:24:22 2018
+libXrender1-0.9.8-7.1.x86_64                  Mon Dec 10 16:24:21 2018
+libXpm4-3.5.11-5.1.x86_64                     Mon Dec 10 16:24:21 2018
+iptables-1.4.21-6.1.x86_64                    Mon Dec 10 16:24:21 2018
+alsa-1.0.27.2-15.1.x86_64                     Mon Dec 10 16:24:21 2018
+perl-Net-SSLeay-1.64-3.2.x86_64               Mon Dec 10 16:24:20 2018
+kbd-2.0.4-8.10.2.x86_64                       Mon Dec 10 16:24:20 2018
+conntrack-tools-1.4.2-5.2.x86_64              Mon Dec 10 16:24:20 2018
+rpm-python-4.11.2-16.21.1.x86_64              Mon Dec 10 16:24:19 2018
+reiserfs-3.6.24-7.7.1.x86_64                  Mon Dec 10 16:24:19 2018
+alsa-utils-1.0.27.2-9.2.x86_64                Mon Dec 10 16:24:19 2018
+xtables-plugins-1.4.21-6.1.x86_64             Mon Dec 10 16:24:17 2018
+tar-1.27.1-15.3.7.x86_64                      Mon Dec 10 16:24:16 2018
+libnetfilter_cttimeout1-1.0.0-9.1.x86_64      Mon Dec 10 16:24:16 2018
+libnetfilter_cthelper0-1.0.0-7.1.x86_64       Mon Dec 10 16:24:16 2018
+blktrace-1.0.5-7.3.x86_64                     Mon Dec 10 16:24:13 2018
+libreiserfscore0-3.6.24-7.7.1.x86_64          Mon Dec 10 16:24:12 2018
+strace-4.10-3.1.x86_64                        Mon Dec 10 16:24:11 2018
+python-Jinja2-2.8-22.3.1.noarch               Mon Dec 10 16:24:11 2018
+pciutils-3.2.1-11.3.1.x86_64                  Mon Dec 10 16:24:11 2018
+lsof-4.89-27.5.1.x86_64                       Mon Dec 10 16:24:11 2018
+libinput10-1.1.1-2.1.x86_64                   Mon Dec 10 16:24:11 2018
+libharfbuzz0-1.4.5-7.5.x86_64                 Mon Dec 10 16:24:11 2018
+libXfont1-1.5.1-11.3.12.x86_64                Mon Dec 10 16:24:11 2018
+gdk-pixbuf-query-loaders-2.34.0-19.17.1.x86_64 Mon Dec 10 16:24:11 2018
+expect-5.45-18.56.x86_64                      Mon Dec 10 16:24:11 2018
+python-M2Crypto-0.29.0-23.3.5.x86_64          Mon Dec 10 16:24:10 2018
+python-lxml-3.6.1-6.2.x86_64                  Mon Dec 10 16:24:09 2018
+libgirepository-1_0-1-1.48.0-11.2.x86_64      Mon Dec 10 16:24:09 2018
+libatk-1_0-0-2.20.0-4.5.x86_64                Mon Dec 10 16:24:09 2018
+girepository-1_0-1.48.0-11.2.x86_64           Mon Dec 10 16:24:09 2018
+gio-branding-upstream-2.48.2-10.2.noarch      Mon Dec 10 16:24:09 2018
+syslinux-4.04-40.35.x86_64                    Mon Dec 10 16:24:08 2018
+shared-mime-info-1.6-11.3.x86_64              Mon Dec 10 16:24:08 2018
+libthai0-0.1.25-4.2.x86_64                    Mon Dec 10 16:24:08 2018
+python-cssselect-0.9.1-1.1.noarch             Mon Dec 10 16:24:07 2018
+gnutls-3.3.27-3.3.1.x86_64                    Mon Dec 10 16:24:07 2018
+libgnutls28-3.3.27-3.3.1.x86_64               Mon Dec 10 16:24:06 2018
+wallpaper-branding-SLE-12-13.3.1.noarch       Mon Dec 10 16:24:05 2018
+python-talloc-2.1.10-3.3.2.x86_64             Mon Dec 10 16:24:05 2018
+libyui6-3.1.4-1.34.x86_64                     Mon Dec 10 16:24:05 2018
+libsmi-0.4.8-18.63.x86_64                     Mon Dec 10 16:24:05 2018
+libfam0-gamin-0.1.10-11.25.x86_64             Mon Dec 10 16:24:05 2018
+dialog-1.2-5.36.x86_64                        Mon Dec 10 16:24:05 2018
+dbus-1-nox11-1.8.22-29.10.2.x86_64            Mon Dec 10 16:24:05 2018
+cpupower-4.10-3.3.1.x86_64                    Mon Dec 10 16:24:05 2018
+libnl3-200-3.2.23-2.21.x86_64                 Mon Dec 10 16:24:04 2018
+libnetfilter_queue1-1.0.2-6.59.x86_64         Mon Dec 10 16:24:04 2018
+libnetfilter_conntrack3-1.0.4-3.60.x86_64     Mon Dec 10 16:24:04 2018
+ofl-20140325-1.13.x86_64                      Mon Dec 10 16:24:02 2018
+libcloog-isl4-0.18.1-1.124.x86_64             Mon Dec 10 16:24:02 2018
+fipscheck-1.2.0-9.3.x86_64                    Mon Dec 10 16:24:02 2018
+ca-certificates-1_201403302107-6.2.noarch     Mon Dec 10 16:24:02 2018
+bing-1.0.5-158.59.x86_64                      Mon Dec 10 16:24:02 2018
+x86info-1.29-11.55.x86_64                     Mon Dec 10 16:24:01 2018
+opie-2.4-724.65.x86_64                        Mon Dec 10 16:24:01 2018
+libyui-ncurses6-2.46.6-1.56.x86_64            Mon Dec 10 16:24:01 2018
+libutempter0-1.1.6-5.114.x86_64               Mon Dec 10 16:24:01 2018
+libmpc3-1.0.2-1.123.x86_64                    Mon Dec 10 16:24:01 2018
+libedit0-3.1.snap20140620-1.13.x86_64         Mon Dec 10 16:24:01 2018
+libdialog11-1.2-5.36.x86_64                   Mon Dec 10 16:24:01 2018
+libSM6-1.2.2-3.59.x86_64                      Mon Dec 10 16:24:01 2018
+less-458-5.13.x86_64                          Mon Dec 10 16:24:01 2018
+iputils-s20121221-2.19.x86_64                 Mon Dec 10 16:24:01 2018
+gptfdisk-0.8.8-1.38.x86_64                    Mon Dec 10 16:24:01 2018
+gettext-runtime-0.19.2-1.103.x86_64           Mon Dec 10 16:23:59 2018
+gawk-4.1.0-3.663.x86_64                       Mon Dec 10 16:23:59 2018
+gamin-server-0.1.10-11.19.x86_64              Mon Dec 10 16:23:59 2018
+dmz-icon-theme-cursors-11.2.0-15.18.noarch    Mon Dec 10 16:23:59 2018
+yast2-trans-stats-2.19.0-15.22.noarch         Mon Dec 10 16:23:58 2018
+xbitmaps-1.1.1-10.9.noarch                    Mon Dec 10 16:23:58 2018
+which-2.20-3.180.x86_64                       Mon Dec 10 16:23:58 2018
+sysfsutils-2.1.0-151.65.x86_64                Mon Dec 10 16:23:58 2018
+recode-3.6-663.62.x86_64                      Mon Dec 10 16:23:58 2018
+prctl-1.5-17.61.x86_64                        Mon Dec 10 16:23:58 2018
+pkg-config-0.28-6.98.x86_64                   Mon Dec 10 16:23:58 2018
+mingetty-1.0.8s-19.63.x86_64                  Mon Dec 10 16:23:58 2018
+m4-1.4.16-15.74.x86_64                        Mon Dec 10 16:23:56 2018
+luit-2.0_20130217-4.57.x86_64                 Mon Dec 10 16:23:56 2018
+libxshmfence1-1.1-1.28.x86_64                 Mon Dec 10 16:23:56 2018
+libts-1_0-0-1.0-7.44.x86_64                   Mon Dec 10 16:23:56 2018
+libsmi2-0.4.8-18.63.x86_64                    Mon Dec 10 16:23:56 2018
+libsamplerate0-0.1.8-11.137.x86_64            Mon Dec 10 16:23:56 2018
+librsync1-0.9.7-193.18.x86_64                 Mon Dec 10 16:23:55 2018
+libqrencode3-3.4.3-1.31.x86_64                Mon Dec 10 16:23:55 2018
+libpipeline1-1.2.6-1.20.x86_64                Mon Dec 10 16:23:55 2018
+libnscd1-2.0.2-134.13.x86_64                  Mon Dec 10 16:23:55 2018
+libnl1-1.1.4-4.21.x86_64                      Mon Dec 10 16:23:55 2018
+libnl-config-3.2.23-2.21.noarch               Mon Dec 10 16:23:55 2018
+libnfnetlink0-1.0.1-6.58.x86_64               Mon Dec 10 16:23:55 2018
+libmtdev1-1.1.4-1.64.x86_64                   Mon Dec 10 16:23:55 2018
+libmnl0-1.0.3-9.18.x86_64                     Mon Dec 10 16:23:55 2018
+liblzo2-2-2.08-1.13.x86_64                    Mon Dec 10 16:23:55 2018
+liblogging0-1.0.4-1.6.x86_64                  Mon Dec 10 16:23:55 2018
+libldapcpp1-0.3.1-4.75.x86_64                 Mon Dec 10 16:23:53 2018
+libjson-c2-0.11-2.22.x86_64                   Mon Dec 10 16:23:53 2018
+libjbig2-2.0-12.13.x86_64                     Mon Dec 10 16:23:53 2018
+libisl10-0.12.2-1.121.x86_64                  Mon Dec 10 16:23:53 2018
+libgpgme11-1.5.1-1.12.x86_64                  Mon Dec 10 16:23:53 2018
+libgdbm4-1.10-9.70.x86_64                     Mon Dec 10 16:23:53 2018
+libfontenc1-1.1.2-3.56.x86_64                 Mon Dec 10 16:23:53 2018
+libfipscheck1-1.2.0-9.3.x86_64                Mon Dec 10 16:23:53 2018
+libevdev2-1.2-1.7.x86_64                      Mon Dec 10 16:23:53 2018
+libestr0-0.1.9-1.54.x86_64                    Mon Dec 10 16:23:53 2018
+libdatrie1-0.2.4-17.19.x86_64                 Mon Dec 10 16:23:53 2018
+libcap-ng0-0.7.3-4.125.x86_64                 Mon Dec 10 16:23:53 2018
+libcamgm100-1.0.7-1.4.x86_64                  Mon Dec 10 16:23:53 2018
+libaio1-0.3.109-17.15.x86_64                  Mon Dec 10 16:23:53 2018
+libXau6-1.0.8-4.58.x86_64                     Mon Dec 10 16:23:53 2018
+libHX28-3.18-1.19.x86_64                      Mon Dec 10 16:23:52 2018
+klogd-1.4.1-778.1.x86_64                      Mon Dec 10 16:23:52 2018
+keyutils-1.5.9-3.29.x86_64                    Mon Dec 10 16:23:51 2018
+initviocons-0.5-101.62.x86_64                 Mon Dec 10 16:23:51 2018
+hardlink-1.0-6.45.x86_64                      Mon Dec 10 16:23:51 2018
+libyui7-3.2.9-1.30.x86_64                     Mon Dec 10 16:23:50 2018
+libyui-ncurses7-2.48.2-1.17.x86_64            Mon Dec 10 16:23:50 2018
+fd0ssh-20140325-1.13.x86_64                   Mon Dec 10 16:23:50 2018
+fastjar-0.98-20.66.x86_64                     Mon Dec 10 16:23:50 2018
+dos2unix-6.0.4-1.133.x86_64                   Mon Dec 10 16:23:50 2018
+checkmedia-3.2-1.61.x86_64                    Mon Dec 10 16:23:50 2018
+bonnie-1.5-482.47.x86_64                      Mon Dec 10 16:23:50 2018
+bc-1.06.95-6.56.x86_64                        Mon Dec 10 16:23:50 2018
+attr-2.4.47-3.143.x86_64                      Mon Dec 10 16:23:50 2018
+yast2-trans-en_US-3.0.0-59.3.noarch           Mon Dec 10 16:23:48 2018
+libx86emu1-1.11-1.7.x86_64                    Mon Dec 10 16:23:48 2018
+libfastjson4-0.99.4-1.14.x86_64               Mon Dec 10 16:23:48 2018
+libdrm_radeon1-2.4.91-1.20.x86_64             Mon Dec 10 16:23:47 2018
+libdrm_nouveau2-2.4.91-1.20.x86_64            Mon Dec 10 16:23:47 2018
+libdrm_intel1-2.4.91-1.20.x86_64              Mon Dec 10 16:23:47 2018
+libdrm_amdgpu1-2.4.91-1.20.x86_64             Mon Dec 10 16:23:47 2018
+yast2-theme-SLE-3.2.4-1.12.noarch             Mon Dec 10 16:23:46 2018
+python3-lxml-3.6.1-1.2.x86_64                 Mon Dec 10 16:23:46 2018
+libdrm2-2.4.91-1.20.x86_64                    Mon Dec 10 16:23:45 2018
+python3-cssselect-0.8-3.5.1.noarch            Mon Dec 10 16:23:42 2018
+libmozjs-17_0-17.0-13.2.x86_64                Mon Dec 10 16:23:42 2018
+cracklib-2.9.0-7.1.x86_64                     Mon Dec 10 16:23:42 2018
+lua-5.2.4-6.1.x86_64                          Mon Dec 10 16:23:39 2018
+libcrack2-2.9.0-7.1.x86_64                    Mon Dec 10 16:23:38 2018
+db48-utils-4.8.30-29.6.x86_64                 Mon Dec 10 16:23:38 2018
+python-typing-3.6.4-1.5.1.noarch              Mon Dec 10 16:23:37 2018
+python-pyudev-0.16.1-3.2.1.noarch             Mon Dec 10 16:23:37 2018
+python-pycrypto-2.6.1-10.6.3.x86_64           Mon Dec 10 16:23:37 2018
+python-pycparser-2.10-5.6.1.noarch            Mon Dec 10 16:23:37 2018
+python-configobj-5.0.6-20.3.1.noarch          Mon Dec 10 16:23:37 2018
+zip-3.0-16.3.1.x86_64                         Mon Dec 10 16:23:36 2018
+netcat-openbsd-1.89-92.3.1.x86_64             Mon Dec 10 16:23:36 2018
+yp-tools-2.14-6.1.x86_64                      Mon Dec 10 16:23:35 2018
+tcl-8.6.7-3.3.3.x86_64                        Mon Dec 10 16:23:34 2018
+procmail-3.22-269.3.5.x86_64                  Mon Dec 10 16:23:34 2018
+pigz-2.3-5.1.x86_64                           Mon Dec 10 16:23:34 2018
+nfsidmap-0.25-7.3.1.x86_64                    Mon Dec 10 16:23:32 2018
+net-tools-1.60-765.5.4.x86_64                 Mon Dec 10 16:23:32 2018
+make-4.0-4.1.x86_64                           Mon Dec 10 16:23:32 2018
+mailx-12.5-28.1.x86_64                        Mon Dec 10 16:23:32 2018
+libyaml-0-2-0.1.6-7.1.x86_64                  Mon Dec 10 16:23:32 2018
+libyajl2-2.0.1-17.1.x86_64                    Mon Dec 10 16:23:31 2018
+libxtables10-1.4.21-6.1.x86_64                Mon Dec 10 16:23:31 2018
+libpciaccess0-0.13.2-5.1.x86_64               Mon Dec 10 16:23:30 2018
+libpci3-3.2.1-11.3.1.x86_64                   Mon Dec 10 16:23:30 2018
+libnuma1-2.0.9-9.1.x86_64                     Mon Dec 10 16:23:29 2018
+libmpfr4-3.1.2-7.1.x86_64                     Mon Dec 10 16:23:29 2018
+liblua5_2-5.2.4-6.1.x86_64                    Mon Dec 10 16:23:29 2018
+libltdl7-2.4.2-17.4.1.x86_64                  Mon Dec 10 16:23:29 2018
+libiptc0-1.4.21-6.1.x86_64                    Mon Dec 10 16:23:29 2018
+libgraphite2-3-1.3.1-10.3.1.x86_64            Mon Dec 10 16:23:28 2018
+libgc1-7.2d-5.1.x86_64                        Mon Dec 10 16:23:28 2018
+libfuse2-2.9.3-6.3.1.x86_64                   Mon Dec 10 16:23:27 2018
+libffi4-5.3.1+r233831-12.1.x86_64             Mon Dec 10 16:23:26 2018
+libdb-4_8-4.8.30-29.6.x86_64                  Mon Dec 10 16:23:26 2018
+libasound2-1.0.27.2-15.1.x86_64               Mon Dec 10 16:23:26 2018
+libXdmcp6-1.1.1-12.1.x86_64                   Mon Dec 10 16:23:26 2018
+libICE6-1.0.8-12.1.x86_64                     Mon Dec 10 16:23:26 2018
+kbd-legacy-2.0.4-8.10.2.noarch                Mon Dec 10 16:23:26 2018
+fping-3.5-5.3.1.x86_64                        Mon Dec 10 16:23:26 2018
+fdupes-1.61-7.1.x86_64                        Mon Dec 10 16:23:26 2018
+dosfstools-3.0.26-6.5.x86_64                  Mon Dec 10 16:23:24 2018
+deltarpm-3.6.1-5.1.x86_64                     Mon Dec 10 16:23:24 2018
+tcpd-7.6-886.3.x86_64                         Mon Dec 10 16:23:23 2018
+python-pyasn1-0.1.9-4.6.1.noarch              Mon Dec 10 16:23:23 2018
+python-blinker-1.4-3.3.1.noarch               Mon Dec 10 16:23:23 2018
+libwrap0-7.6-886.3.x86_64                     Mon Dec 10 16:23:23 2018
+libsnappy1-1.1.3-1.2.x86_64                   Mon Dec 10 16:23:23 2018
+cracklib-dict-small-2.9.0-7.1.x86_64          Mon Dec 10 16:23:23 2018
+yast2-nfs-common-3.1.9-5.5.noarch             Mon Dec 10 16:23:20 2018
+liburcu0-0.8.8-3.2.x86_64                     Mon Dec 10 16:23:20 2018
+libthai-data-0.1.25-4.2.x86_64                Mon Dec 10 16:23:20 2018
+libpixman-1-0-0.34.0-6.1.x86_64               Mon Dec 10 16:23:20 2018
+libhavege1-1.9.1-16.1.x86_64                  Mon Dec 10 16:23:20 2018
+tdb-tools-1.3.12-3.3.1.x86_64                 Mon Dec 10 16:23:19 2018
+lsscsi-0.29-7.3.1.x86_64                      Mon Dec 10 16:23:19 2018
+libtevent0-0.9.34-3.6.1.x86_64                Mon Dec 10 16:23:19 2018
+libtdb1-1.3.12-3.3.1.x86_64                   Mon Dec 10 16:23:19 2018
+libtalloc2-2.1.10-3.3.2.x86_64                Mon Dec 10 16:23:19 2018
+libsensors4-3.4.0-8.1.x86_64                  Mon Dec 10 16:23:19 2018
+libcpupower0-4.10-3.3.1.x86_64                Mon Dec 10 16:23:19 2018
+hicolor-icon-theme-0.15-4.1.noarch            Mon Dec 10 16:23:19 2018
+hdparm-9.43-8.1.x86_64                        Mon Dec 10 16:23:19 2018
+augeas-lenses-1.2.0-17.3.1.x86_64             Mon Dec 10 16:23:18 2018
+augeas-1.2.0-17.3.1.x86_64                    Mon Dec 10 16:23:18 2018
+rpm-4.11.2-16.21.1.x86_64                     Mon Dec 10 16:23:03 2018
+sle-module-web-scripting-release-12-10.3.1.x86_64 Mon Dec 10 16:22:59 2018
+sle-module-toolchain-release-12-8.1.x86_64    Mon Dec 10 16:22:59 2018
+sle-module-public-cloud-release-12-7.3.1.x86_64 Mon Dec 10 16:22:59 2018
+sle-module-hpc-release-12-3.3.1.x86_64        Mon Dec 10 16:22:59 2018
+sle-module-adv-systems-management-release-12-4.3.1.x86_64 Mon Dec 10 16:22:59 2018
+sed-4.2.2-7.3.1.x86_64                        Mon Dec 10 16:22:59 2018
+libusb-0_1-4-0.1.13-29.13.x86_64              Mon Dec 10 16:22:59 2018
+grep-2.16-3.1.x86_64                          Mon Dec 10 16:22:59 2018
+findutils-4.5.12-7.1.x86_64                   Mon Dec 10 16:22:59 2018
+dirmngr-1.1.1-13.1.x86_64                     Mon Dec 10 16:22:59 2018
+sle-sdk-release-12.4-1.52.x86_64              Mon Dec 10 16:22:58 2018
+pinentry-0.8.3-4.27.x86_64                    Mon Dec 10 16:22:58 2018
+openssl-1.0.2p-1.13.noarch                    Mon Dec 10 16:22:58 2018
+libzio1-1.00-9.188.x86_64                     Mon Dec 10 16:22:58 2018
+libusb-1_0-0-1.0.20-5.3.x86_64                Mon Dec 10 16:22:58 2018
+libmodman1-2.0.1-15.75.x86_64                 Mon Dec 10 16:22:58 2018
+libaugeas0-1.2.0-17.3.1.x86_64                Mon Dec 10 16:22:58 2018
+info-4.13a-37.229.x86_64                      Mon Dec 10 16:22:58 2018
+diffutils-3.3-5.40.x86_64                     Mon Dec 10 16:22:58 2018
+SLES_SAP-release-12.4-1.131.x86_64            Mon Dec 10 16:22:58 2018
+libverto1-0.2.6-3.2.2.x86_64                  Mon Dec 10 16:22:57 2018
+libsepol1-2.5-3.143.x86_64                    Mon Dec 10 16:22:57 2018
+libselinux1-2.5-8.79.x86_64                   Mon Dec 10 16:22:57 2018
+libksba8-1.3.0-23.1.x86_64                    Mon Dec 10 16:22:57 2018
+insserv-compat-0.1-14.3.1.noarch              Mon Dec 10 16:22:57 2018
+libpth20-2.0.7-140.1.x86_64                   Mon Dec 10 16:22:56 2018
+liblua5_1-5.1.5-8.3.1.x86_64                  Mon Dec 10 16:22:56 2018
+libkeyutils1-1.5.9-3.29.x86_64                Mon Dec 10 16:22:56 2018
+libgpg-error0-1.13-1.79.x86_64                Mon Dec 10 16:22:56 2018
+libgmp10-5.1.3-2.121.x86_64                   Mon Dec 10 16:22:56 2018
+libattr1-2.4.47-3.143.x86_64                  Mon Dec 10 16:22:56 2018
+libassuan0-2.1.1-3.217.x86_64                 Mon Dec 10 16:22:56 2018
+fillup-1.42-270.64.x86_64                     Mon Dec 10 16:22:56 2018
+sle-sdk-release-POOL-12.4-1.52.x86_64         Mon Dec 10 16:22:55 2018
+sle-module-web-scripting-release-POOL-12-10.3.1.x86_64 Mon Dec 10 16:22:55 2018
+sle-module-toolchain-release-POOL-12-8.1.x86_64 Mon Dec 10 16:22:55 2018
+sle-module-public-cloud-release-POOL-12-7.3.1.x86_64 Mon Dec 10 16:22:55 2018
+sle-module-legacy-release-POOL-12-10.7.1.x86_64 Mon Dec 10 16:22:55 2018
+libustr-1_0-1-1.0.4-31.197.x86_64             Mon Dec 10 16:22:55 2018
+libpopt0-1.16-26.128.x86_64                   Mon Dec 10 16:22:55 2018
+filesystem-13.1-14.15.x86_64                  Mon Dec 10 16:22:55 2018
+SLES_SAP-release-POOL-12.4-1.131.x86_64       Mon Dec 10 16:22:55 2018
+sle-module-hpc-release-POOL-12-3.3.1.x86_64   Mon Dec 10 16:22:54 2018
+sle-module-containers-release-POOL-12-6.6.1.x86_64 Mon Dec 10 16:22:54 2018
+sle-module-adv-systems-management-release-POOL-12-4.3.1.x86_64 Mon Dec 10 16:22:54 2018
+lifecycle-data-sle-module-web-scripting-1-7.6.1.x86_64 Mon Dec 10 16:22:54 2018
+Filesystem                                          Size  Used Avail Use% Mounted on
+devtmpfs                                            7.7G     0  7.7G   0% /dev
+tmpfs                                                36G  268K   36G   1% /dev/shm
+tmpfs                                               7.7G   17M  7.7G   1% /run
+tmpfs                                               7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                                      100G   13G   88G  13% /
+/dev/mapper/usr_sap_TRE-usr_sap_TRE                 100G   23G   78G  23% /usr/sap/TRD
+/dev/nvme0n1p1                                      297M  139M  158M  47% /boot
+fs-b36da833.efs.us-east-1.amazonaws.com:/           8.0E   24T  8.0E   1% /SAPMedia
+fs-021b82436c7f5b360.efs.us-east-1.amazonaws.com:/  8.0E  2.0M  8.0E   1% /sapmnt/TRD
+tmpfs                                               1.6G     0  1.6G   0% /run/user/1002
+tmpfs                                               1.6G     0  1.6G   0% /run/user/1725064823
+12
+NAME                          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+nvme1n1                       259:0    0   32G  0 disk [SWAP]
+nvme3n1                       259:1    0  100G  0 disk 
+└─usr_sap_TRE-usr_sap_TRE     254:0    0  100G  0 lvm  /usr/sap/TRD
+nvme2n1                       259:2    0   20G  0 disk 
+└─var_log_audit-var_log_audit 254:1    0   20G  0 lvm  
+nvme4n1                       259:3    0   20G  0 disk 
+└─var_tmp-var_tmp             254:2    0   20G  0 lvm  
+nvme0n1                       259:4    0  100G  0 disk 
+├─nvme0n1p1                   259:5    0  300M  0 part /boot
+└─nvme0n1p2                   259:6    0 99.7G  0 part /
+LABEL=ROOT / xfs defaults 1 1
+LABEL=BOOT /boot xfs defaults 0 0
+UUID=2659ba2e-8956-4e37-b6c2-cd6cf3f7d14c swap swap defaults 0 0 
+tmpfs /dev/shm tmpfs defaults,nodev,nosuid 0 0
+#tmpfs /tmp tmpfs defaults,nodev,nosuid 0 0
+#fs-8ea36c0c.efs.us-east-1.amazonaws.com:/ /sapmnt/TRD nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=60,retrans=2,_netdev 0 0
+fs-b36da833.efs.us-east-1.amazonaws.com:/ /SAPMedia nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,soft,timeo=60,retrans=2,_netdev 0 0
+/dev/mapper/usr_sap_TRE-usr_sap_TRE /usr/sap/TRD xfs rw,relatime,attr2,nobarrier,inode64,logbsize=256k,noquota 0 0
+fs-b36da833.efs.us-east-1.amazonaws.com:/ /SAPMedia nfs4 rw,relatime,vers=4.1,rsize=1048576,wsize=1048576,namlen=255,hard,noresvport,proto=tcp,timeo=600,retrans=2,sec=sys,clientaddr=172.18.196.88,local_lock=none,addr=172.18.136.231 0 0
+fs-021b82436c7f5b360.efs.us-east-1.amazonaws.com:/ /sapmnt/TRD nfs4 rw,relatime,vers=4.1,rsize=1048576,wsize=1048576,namlen=255,hard,noresvport,proto=tcp,timeo=600,retrans=2,sec=sys,clientaddr=172.18.196.88,local_lock=none,addr=172.18.196.51 0 0
+#UUID=51a5b525-9b1b-4f39-b085-6dd2f4bc1ca4 /var xfs nodev,nosuid,noexec 0 0
+#UUID=bcf724d8-c6a3-4815-b5c9-93ab13a48f6d /var/tmp xfs nodev,nosuid,noexec 0 0
+#UUID=8e1dfd53-255d-44cf-a9e8-9979eae81873 /var/log xfs nodev,nosuid,noexec 0 0
+  PV           VG            Fmt  Attr PSize   PFree
+  /dev/nvme2n1 var_log_audit lvm2 a--   20.00g    0 
+  /dev/nvme3n1 usr_sap_TRE   lvm2 a--  100.00g    0 
+  /dev/nvme4n1 var_tmp       lvm2 a--   20.00g    0 
+  VG            #PV #LV #SN Attr   VSize   VFree
+  usr_sap_TRE     1   1   0 wz--n- 100.00g    0 
+  var_log_audit   1   1   0 wz--n-  20.00g    0 
+  var_tmp         1   1   0 wz--n-  20.00g    0 
+  LV            VG            Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  usr_sap_TRE   usr_sap_TRE   -wi-ao---- 100.00g                                                    
+  var_log_audit var_log_audit -wi-a-----  20.00g                                                    
+  var_tmp       var_tmp       -wi-a-----  20.00g                                                    
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+0.0.0.0         172.18.196.1    0.0.0.0         UG        0 0          0 eth0
+172.18.196.0    0.0.0.0         255.255.255.128 U         0 0          0 eth0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         ip-172-18-196-1 0.0.0.0         UG    0      0        0 eth0
+ip-172-18-196-0 *               255.255.255.128 U     0      0        0 eth0
+#
+# hosts         This file describes a number of hostname-to-address
+#               mappings for the TCP/IP subsystem.  It is mostly
+#               used at boot time, when no name servers are running.
+#               On small systems, this file can be used instead of a
+#               "named" name server.
+# Syntax:
+#    
+# IP-Address  Full-Qualified-Hostname  Short-Hostname
+#
+
+127.0.0.1	localhost
+
+# special IPv6 addresses
+::1             localhost ipv6-localhost ipv6-loopback
+
+fe00::0         ipv6-localnet
+
+ff00::0         ipv6-mcastprefix
+ff02::1         ipv6-allnodes
+ff02::2         ipv6-allrouters
+ff02::3         ipv6-allhosts
+
+
+#172.18.96.158 SAPTRDAP01.sap.lambweston.com SAPTRDAP01
+172.18.196.106 SAPGSEAP01.lambweston.com SAPGSEAP01
+172.18.196.88 SAPTREAP01.sap.lambweston.com SAPTREAP01
+172.18.139.109    sapsssumgr.sap.lambweston.com    sapsssumgr
+172.18.136.231  fs-b36da833.efs.us-east-1.amazonaws.com
+
+
+
+
+
+
+
+
+
+
+# Added by SMT registration do not remove, retain comment as well
+54.225.105.144	smt-ec2.susecloud.net	smt-ec2
+### /etc/resolv.conf file autogenerated by netconfig!
+#
+# Before you change this file manually, consider to define the
+# static DNS configuration using the following variables in the
+# /etc/sysconfig/network/config file:
+#     NETCONFIG_DNS_STATIC_SEARCHLIST
+#     NETCONFIG_DNS_STATIC_SERVERS
+#     NETCONFIG_DNS_FORWARDER
+# or disable DNS configuration updates via netconfig by setting:
+#     NETCONFIG_DNS_POLICY=''
+#
+# See also the netconfig(8) manual page and other documentation.
+#
+# Note: Manual change of this file disables netconfig too, but
+# may get lost when this file contains comments or empty lines
+# only, the netconfig settings are same with settings in this
+# file and in case of a "netconfig update -f" call.
+#
+### Please remove (at least) this line when you modify the file!
+search sap.lambweston.com lambweston.com ec2.internal
+nameserver 172.18.196.2
+#	default_realm = EXAMPLE.COM 
+[realms]
+
+
+***********************************************
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Complete !!!
+
+Audit of SAPTREAP01 server below
+This script is used for hardening perspective
+ 
+checking some basic packages which should not be installed:
+inetd, installed and needs Erasing/disabling
+xinetd, installed and needs Erasing/disabling
+ypserv, not installed
+tftp-server, installed and needs Erasing/disabling
+telnet-server, not installed
+rsh-serve, not installed
+ 
+Checking SElinux settings:
+SElinux, enforce mode
+ 
+Checking Permission for GRUB
+grub.conf, permission set to 
+ 
+Checking different parameters of Network
+net.ipv4.ip_forward, 
+net.ipv4.conf.default.secure_redirects, 
+net.ipv4.conf.all.secure_redirects, 
+net.ipv4.icmp_echo_ignore_broadcasts, 
+net.ipv4.conf.all.accept_redirects, 
+net.ipv4.tcp_syncookies, 
+net.ipv4.tcp_max_syn_backlog, 
+net.ipv4.conf.all.rp_filter, 
+net.ipv4.conf.default.rp_filter, 
+net.ipv4.conf.all.accept_source_route, 
+net.ipv4.conf.default.accept_source_route, 
+net.ipv4.conf.all.send_redirects, 
+net.ipv4.conf.default.send_redirects, 
+net.ipv4.icmp_ignore_bogus_error_responses, 
+Checking Permission for passwd group shadow and gshadow files
+/etc/passwd, permission set to 644
+ 
+/etc/group, permission set to 644
+ 
+/etc/shadow, permission set to 0
+ 
+/etc/gshadow, permission set to 
+ 
+/root, permission set to 700
+ 
+/usr/share/man, permission set to 755
+ 
+/usr/share/doc, permission set to 755
+ 
+/var/crash, permission set to 755
+ 
+Checking ownership for crash file
+/var/crash, owned by root
+Password expiration, 90
+Core dump, Disabled
+standard services that should be disabled...
+amanda, doesn't exist
+chargen, needs disable
+chargen-udp, needs disable
+cups, doesn't exist
+cups-lpd, doesn't exist
+daytime, needs disable
+daytime-udp, needs disable
+echo, needs disable
+echo-udp, needs disable
+eklogin, doesn't exist
+ekrb5-telnet, doesn't exist
+finger, doesn't exist
+gssftp, doesn't exist
+imap, doesn't exist
+imaps, doesn't exist
+ipop2, doesn't exist
+ipop3, doesn't exist
+klogin, doesn't exist
+krb5-telnet, doesn't exist
+kshell, doesn't exist
+ktalk, doesn't exist
+ntalk, doesn't exist
+rexec, doesn't exist
+rlogin, doesn't exist
+rsh, doesn't exist
+rsync, needs disable
+talk, doesn't exist
+tcpmux-server, doesn't exist
+telnet, doesn't exist
+tftp, doesn't exist
+time-dgram, doesn't exist
+time-stream, doesn't exist
+uucp, doesn't exist
+xinetd, disabled
+GUI Login, disabled
+xfont, disabled
+##
+## === When you're using remote logging, enable on-disk queues ===  
+## === in rsyslog.d/remote.conf. When neccesary also set the   ===
+## === SYSLOG_REQUIRES_NETWORK=yes in /etc/sysconfig/syslog,   ===
+## === e.g. when rsyslog has to receive on a specific IP only. ===
+##
+## Note, that when the MYSQL, PGSQL, GSSAPI, GnuTLS or SNMP modules
+## (provided in separate rsyslog-module-* packages) are enabled, the
+## configuration can't be used on a system with /usr on a remote
+## filesystem, except on newer systems where initrd mounts /usr.
+## [The modules are linked against libraries installed bellow of
+##  /usr thus also installed in /usr/lib*/rsyslog because of this.]
+##
+
+#
+# if you experience problems, check
+# http://www.rsyslog.com/troubleshoot for assistance
+# and report them at http://bugzilla.novell.com/
+#
+
+# since rsyslog v3: load input modules
+# If you do not load inputs, nothing happens!
+
+# provides --MARK-- message capability (every 1 hour)
+$ModLoad immark.so
+$MarkMessagePeriod      3600
+
+# provides support for local system logging (e.g. via logger command)
+$ModLoad imuxsock.so
+
+# reduce dupplicate log messages (last message repeated n times)
+$RepeatedMsgReduction   on
+
+# kernel logging (may be also provided by /sbin/klogd)
+# see also http://www.rsyslog.com/doc-imklog.html.
+$ModLoad imklog.so
+# set log level 1 (same as in /etc/sysconfig/syslog).
+$klogConsoleLogLevel    1
+
+#
+# Set the default permissions for all log files.
+#
+$FileOwner root
+$FileGroup root
+$FileCreateMode 0640
+$DirCreateMode 0750
+$Umask 0022
+
+# Use rsyslog native, rfc5424 conform log format as default
+# ($ActionFileDefaultTemplate RSYSLOG_FileFormat).
+#
+# To change a single file to use obsolete BSD syslog format
+# (rfc 3164, no high-precision timestamps), set the variable
+# bellow or append ";RSYSLOG_FileFormat" to the filename.
+# See
+#   http://www.rsyslog.com/doc/rsyslog_conf_templates.html
+# for more informations.
+#
+#$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
+
+#
+# Include config generated by /etc/init.d/syslog script
+# using the SYSLOGD_ADDITIONAL_SOCKET* variables in the
+# /etc/sysconfig/syslog file.
+#
+$IncludeConfig /run/rsyslog/additional-log-sockets.conf
+
+#
+# Include config files, that the admin provided? :
+#
+$IncludeConfig /etc/rsyslog.d/*.conf
+
+###
+# print most important on tty10 and on the xconsole pipe
+#
+if	( \
+	    /* kernel up to warning except of firewall  */ \
+	    ($syslogfacility-text == 'kern')      and      \
+	    ($syslogseverity <= 4 /* warning */ ) and not  \
+	    ($msg contains 'IN=' and $msg contains 'OUT=') \
+	) or ( \
+	    /* up to errors except of facility authpriv */ \
+	    ($syslogseverity <= 3 /* errors  */ ) and not  \
+	    ($syslogfacility-text == 'authpriv')           \
+	) \
+then {
+	/dev/tty10
+	|/dev/xconsole
+}
+
+
+# Emergency messages to everyone logged on (wall)
+*.emerg					 :omusrmsg:*
+
+# enable this, if you want that root is informed
+# immediately, e.g. of logins
+#*.alert				root
+
+
+#
+# firewall messages into separate file and stop their further processing
+#
+if	($syslogfacility-text == 'kern') and \
+	($msg contains 'IN=' and $msg contains 'OUT=') \
+then {
+	-/var/log/firewall
+	stop
+}
+
+
+#
+# acpid messages into separate file and stop their further processing
+#
+# => all acpid messages for debuging (uncomment if needed):
+#if	($programname == 'acpid' or $syslogtag == '[acpid]:') then \
+#	-/var/log/acpid
+#
+# => up to notice (skip info and debug)
+if	($programname == 'acpid' or $syslogtag == '[acpid]:') and \
+	($syslogseverity <= 5 /* notice */) \
+then {
+	-/var/log/acpid
+	stop
+}
+
+
+#
+# NetworkManager into separate file and stop their further processing
+#
+if      ($programname == 'NetworkManager') or \
+	($programname startswith 'nm-') \
+then {
+	-/var/log/NetworkManager
+	stop
+}
+
+
+#
+# email-messages
+#
+mail.*					-/var/log/mail
+mail.info				-/var/log/mail.info
+mail.warning				-/var/log/mail.warn
+mail.err				 /var/log/mail.err
+
+
+#
+# news-messages
+#
+news.crit				-/var/log/news/news.crit
+news.err				-/var/log/news/news.err
+news.notice				-/var/log/news/news.notice
+# enable this, if you want to keep all news messages
+# in one file
+#news.*					-/var/log/news.all
+
+
+#
+# Warnings in one file
+#
+*.=warning;*.=err			-/var/log/warn
+*.crit					 /var/log/warn
+
+
+#
+# the rest in one file
+#
+*.*;mail.none;news.none			-/var/log/messages
+
+
+#
+# enable this, if you want to keep all messages
+# in one file
+#*.*					-/var/log/allmessages
+
+
+#
+# Some foreign boot scripts require local7
+#
+local0.*;local1.*			-/var/log/localmessages
+local2.*;local3.*			-/var/log/localmessages
+local4.*;local5.*			-/var/log/localmessages
+local6.*;local7.*			-/var/log/localmessages
+
+###
+#*.info;mail.none;authpriv.none;cron.none   @172.18.129.32:5140
+*.info;mail.none;authpriv.none;cron.none   @172.18.129.214:514
+*.* @@172.18.129.214:514
+● ds_agent.service - LSB: Trend Micro Deep Security Agent
+   Loaded: loaded (/etc/init.d/ds_agent; bad; vendor preset: disabled)
+  Drop-In: /etc/systemd/system/ds_agent.service.d
+           └─allow_exit.conf, override.conf
+   Active: active (running) since Tue 2022-05-17 12:59:32 UTC; 9h ago
+     Docs: man:systemd-sysv-generator(8)
+  Process: 1523 ExecStart=/etc/init.d/ds_agent start (code=exited, status=0/SUCCESS)
+ Main PID: 1578 (ds_agent)
+    Tasks: 26
+   CGroup: /system.slice/ds_agent.service
+           ├─1578 /opt/ds_agent/ds_agent -w /var/opt/ds_agent -b -i -e /opt/ds_agent/ext
+           └─1579 /opt/ds_agent/ds_agent -w /var/opt/ds_agent -b -i -e /opt/ds_agent/ext
+
+May 17 12:59:32 SAPTREAP01 systemd[1]: Starting LSB: Trend Micro Deep Security Agent...
+May 17 12:59:32 SAPTREAP01 ds_agent[1523]: Starting ds_agent: ..done
+May 17 12:59:32 SAPTREAP01 systemd[1]: Started LSB: Trend Micro Deep Security Agent.

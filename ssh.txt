@@ -1,0 +1,76 @@
+import paramiko
+import getpass
+
+def get_ssh(server, username, password):
+    try:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(server, port=22, username=username, password=password)
+        
+        return ssh
+    except:
+        print("Issue logging into " + server)
+        
+def upload_file(ssh, filename):
+    ftp_client=ssh.open_sftp()
+    ftp_client.put(filename, filename)
+    ftp_client.close()
+    
+    del ftp_client
+        
+def ssh_func(ssh, server, username, filename, password):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(server, port=22, username=username, password=password)
+    
+    stdin, stdout, stderr = ssh.exec_command('sudo su - -c "mv /home/' + username + '/' + filename + ' /root/"')
+    stdin.flush()
+    
+    stdin, stdout, stderr = ssh.exec_command('sudo su - -c "chmod 777 main.sh"')
+    stdin.flush()
+    
+    print("Currently running ...")    
+    stdin, stdout, stderr = ssh.exec_command('sudo su - -c "./main.sh"')
+    stdin.flush()
+    print("Successfully ran")
+    
+    stdin, stdout, stderr = ssh.exec_command('sudo su - -c "hostname"')
+    stdin.flush()
+    hostname = ""
+    for line in stdout.readlines():
+        hostname = line.replace("\n", "")
+    print(hostname)
+    
+    stdin, stdout, stderr = ssh.exec_command('sudo su - -c "mv /tmp/Imperial.' + hostname + '.user_audit.05-31-2022.csv /home/' + username + '/"')
+    stdin.flush()
+    
+    del stdin, stdout, stderr
+    
+# def get_file(ssh):
+#     stdin, stdout, stderr = ssh.exec_command('sudo su - -c "hostname"')
+#     stdin.flush()
+#     hostname = ""
+#     for line in stdout.readlines():
+#         hostname = line.replace("\n", "")
+        
+#     filename = 'Imperial.' + hostname + '.user_audit.05-31-2022.csv'
+    
+#     ftp_client=ssh.open_sftp()
+#     ftp_client.get(filename, filename)
+#     ftp_client.close()
+    
+#     del ftp_client
+
+servers = ['172.31.28.73']
+username = raw_input("Username: ")
+password = getpass.getpass()
+filename = raw_input("File to transfer: ")
+for server in servers:
+    print(server)
+    ssh = get_ssh(server, username, password)
+    upload_file(ssh, filename)
+    ssh_func(ssh, server, username, filename, password)
+    get_file(ssh)
+    
+    ssh.close()
+    del ssh

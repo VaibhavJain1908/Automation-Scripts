@@ -1,0 +1,77 @@
+import paramiko
+import getpass
+import datetime
+import time
+
+paramiko.util.log_to_file("/home/AVJ1007/filename.log")
+today = datetime.date.today()
+
+def get_ssh(server, username, password):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(server, port=22, username=username, password=password)
+
+    return ssh
+
+def ssh_func(ssh, server, username, password, parameter, value):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(server, port=22, username=username, password=password)
+
+    print("=========")
+
+    flag = 0
+    stdin, stdout, stderr = ssh.exec_command('sudo su - -c "cat /etc/audit/auditd.conf | grep ' + parameter + '"')
+    stdin.flush()
+    for line in stdout.readlines():
+        flag = 1
+        print(line),
+
+        if value not in line:
+            stdin, stdout, stderr = ssh.exec_command('sudo su - -c "sed -i ' + "'s/" + line + "/" + parameter + " = " + value + "/' /etc/audit/auditd.conf" + '"')
+            stdin.flush()
+            for line in stdout.readlines():
+                print(line),
+
+            stdin, stdout, stderr = ssh.exec_command('sudo su - -c "cat /etc/audit/auditd.conf | grep ' + parameter + '"')
+            stdin.flush()
+            for line in stdout.readlines():
+                print(line),
+
+    if flag == 0:
+        stdin, stdout, stderr = ssh.exec_command('sudo su - -c "echo ' + "'" + parameter + " = " + value + "' >> /etc/audit/auditd.conf" + '"')
+        stdin.flush()
+        for line in stdout.readlines():
+            print(line),
+
+        stdin, stdout, stderr = ssh.exec_command('sudo su - -c "cat /etc/audit/auditd.conf | grep ' + parameter + '"')
+        stdin.flush()
+        for line in stdout.readlines():
+            print(line),
+
+    print("=========")
+    del stdin, stdout, stderr
+
+num = raw_input("Number of servers: ")
+print("Enter ip of " + num + " servers below:")
+servers = [raw_input() for i in range(int(num))]
+
+username = raw_input("Username: ")
+password = getpass.getpass()
+parameter = raw_input("Parameter: ")
+value = raw_input("Value: ")
+
+start_time = time.time()
+for server in servers:
+    print(server)
+    try:
+        ssh = get_ssh(server, username, password)
+        ssh_func(ssh, server, username, password, parameter, value)
+
+        ssh.close()
+        del ssh
+    except Exception as exc:
+        print(exc)
+        print("Issue logging into " + server)
+
+print("--- %s seconds ---" % (time.time() - start_time))

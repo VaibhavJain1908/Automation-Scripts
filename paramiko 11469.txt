@@ -1,0 +1,75 @@
+import paramiko
+import getpass
+import time
+
+def get_ssh(server, username, password):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(server, port=22, username=username, password=password)
+    
+    return ssh
+        
+def ssh_func(ssh, server, username, password):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(server, port=22, username=username, password=password)
+    
+    print("=========")
+    out1 = ""
+    stdin, stdout, stderr = ssh.exec_command('sudo su - -c "cat /etc/pam.d/common-auth"')
+    stdin.flush()
+    for line in stdout.readlines():
+        out1 += line
+    
+    stdin, stdout, stderr = ssh.exec_command('sudo su - -c "echo ' + "'auth    required        pam_tally2.so   onerr=fail      audit   silent  deny=5 unlock_time=900' >> /etc/pam.d/common-auth" + '"')
+    stdin.flush()
+        
+    out2 = ""
+    stdin, stdout, stderr = ssh.exec_command('sudo su - -c "cat /etc/pam.d/common-auth"')
+    stdin.flush()
+    for line in stdout.readlines():
+        out2 += line
+        
+    print("\n=================Changes=================\n")
+
+    count = 0
+    for line in out1.splitlines():
+        if line not in out2:
+            if count == 0:
+                print("Before Deleting/Changing:")
+            count += 1
+            print(line)
+    print
+    
+    count = 0
+    for line in out2.splitlines():
+        if line not in out1:
+            if count == 0:
+                print("\nAfter Adding/Modifying:")
+            count += 1
+            print(line)
+    print
+    
+    print("=========")
+    del stdin, stdout, stderr
+
+num = raw_input("Number of servers: ")
+print("Enter ip of " + num + " servers below:")
+servers = [raw_input() for i in range(int(num))]
+
+username = raw_input("Username: ")
+password = getpass.getpass()
+
+start_time = time.time()
+for server in servers:
+    print(server)
+    try:
+        ssh = get_ssh(server, username, password)
+        ssh_func(ssh, server, username, password)
+        
+        ssh.close()
+        del ssh
+    except:
+        print("Issue logging into " + server)
+    
+print("--- %s seconds ---" % (time.time() - start_time))

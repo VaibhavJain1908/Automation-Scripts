@@ -1,0 +1,21 @@
+try:
+    file = open("/etc/ssh/sshd_conf", "r")
+    list_of_lines = []
+    count = 0
+    for line in file.readlines():
+        if "Banner" in line:
+            if count == 0:
+                line = "Banner /etc/issue.net"
+                count += 1
+            else:
+                continue
+        list_of_lines.append(line)
+        
+    if count == 0:
+        list_of_lines.append("Banner /etc/issue.net")
+    
+    file = open("/etc/ssh/sshd_conf", "w")    
+    file.writelines(list_of_lines)
+
+except:
+    print("File doesn't exist")

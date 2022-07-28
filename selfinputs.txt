@@ -1,0 +1,35 @@
+1 change
+92 incidents
+1 task
+
+========================================================================
+I have taken care of 92 incidents, 1 change request and 1 Task
+
+I have made 30 python scripts for automating and remediating CIS policy compliance and performing patching.
+
+I have completed classroom trainings - AZ-104 and Powershell
+
+I have completed my TQ 11/11.
+========================================================================
+
+My role in the project is of Cloud operational Engineer.
+
+This role helps me in completing my priorities as all my priorities are aligned on cloud platforms and I'm further looking to get certifications related to my role as it will further help me complete my priorities on time.
+
+=======================================================================
+
+I'm learning and improving my Microsoft Azure and AWS cloud skills as these are important for my ongoing projects.
+
+I am proficient in Python, Java and C++.
+
+I also have web development related skills like HTML, CSS, Spring, MVC etc.
+
+I'm also building up my windows and linux skills so I think trainings related to these skills as well as on cloud skills would help me most to complete my priorities.
+
+I'm developing development related skills for the future.
+
+=======================================================================
+
+Success is what motivates me to do a good job. Knowing the fact that my hard work and perseverance will help me achieve greater professional success is what keeps me going. I feel that aligning the company’s vision and values with my own is one way to achieve that. When I know that my efforts are following the correct path, it encourages me to push more. Hence, for me, success is important both at a personal as well as at an organizational level. Motivation is seeing the organization grow which ultimately leads to personal achievement and success. There might be instances of failure or stagnation but it does not demotivate me anyhow. On the other hand, I feel re-invigorated to perform even more. The taste of success after a failure is what keeps the fire going within me no matter what the circumstance. 
+
+I want to further my career in development field as I feel I'm at my best when I'm coding and making scripts for automation of manual repeatitive processes.

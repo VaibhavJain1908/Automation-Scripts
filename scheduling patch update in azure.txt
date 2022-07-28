@@ -1,0 +1,13 @@
+automation machine
+
+schedule update
+
+Name: CHG0706534 - Windows Dev Patching 17th Feb
+
+Machines to configure - Type Machine - Choose servers to patch
+
+Schedule time - 2 hours before start time
+
+Choose updates - Update rollups, Definition updates, Security updates, Critical updates.
+
+Never reboot.

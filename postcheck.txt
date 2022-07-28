@@ -1,0 +1,47 @@
+import paramiko
+import re
+import getpass
+
+def get_ssh(server, username, password):
+    try:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(server, port=22, username=username, password=password)
+
+        return ssh
+    except:
+        print("Issue faced logging into " + server)
+
+def ssh_func(ssh, password):
+    cmd = ["/opt/splunkforwarder/bin/splunk status", "systemctl status amazon-ssm-agent.service"]
+    ansi_escape = re.compile(r'(?:\x1B[@-_]|[\x80-\x9F])[0-?]*[ -/]*[@-~]')
+    output = ssh.get_transport().getpeername()[0] + ":~ # " + cmd[0] + "\n"
+
+    stdin, stdout, stderr = ssh.exec_command('sudo su - -c "' + cmd[0] + '"', get_pty=True)
+    stdin.write(password + '\n')
+    stdin.flush()
+    output += ansi_escape.sub('', str(stdout.read())) + "\n"
+    
+    output += ssh.get_transport().getpeername()[0] + ":~ # " + cmd[1] + "\n"
+    stdin, stdout, stderr = ssh.exec_command('sudo su - -c "' + cmd[1] + '"', get_pty=True)
+    stdin.write(password + '\n')
+    stdin.flush()
+    output += ansi_escape.sub('', str(stdout.read())) + "\n"
+
+    del stdin, stdout, stderr
+    return output
+
+servers = ['20.204.154.200', '40.117.63.85']
+username = input("Username: ")
+password = getpass.getpass()
+output = ""
+for server in servers:
+
+    ssh = get_ssh(server, username, password)
+    output += ssh_func(ssh, password)
+    ssh.close()
+    del ssh
+
+file = open("output.txt", "w")
+file.write(output)
+file.close()

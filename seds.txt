@@ -1,0 +1,10 @@
+cat /opt/splunkforwarder/etc/system/local/deploymentclient.conf
+
+cd /opt/splunkforwarder/etc/system/local/
+172.18.139.140
+
+cat /opt/splunkforwarder/etc/system/local/deploymentclient.conf
+sed -i 's/172.18.139.133/172.18.139.140/' /opt/splunkforwarder/etc/system/local/deploymentclient.conf
+sed -i 's/SAPMWINDEX/SAPMWINDEXER/' /opt/splunkforwarder/etc/system/local/deploymentclient.conf
+cat /opt/splunkforwarder/etc/system/local/deploymentclient.conf
+/opt/splunkforwarder/bin/splunk restart

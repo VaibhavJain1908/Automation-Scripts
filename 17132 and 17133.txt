@@ -1,0 +1,65 @@
+import subprocess
+
+process = subprocess.Popen(["cat", "/etc/systemd/journald.conf"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+out1 = process.communicate()[0]
+
+try:
+    file = open("/etc/systemd/journald.conf", "r")
+    list_of_lines = []
+    
+    countHardCore = 0
+    countStorage = 0
+    for line in file.readlines():
+        
+        if "Compress" in line:
+            if countHardCore == 0:
+                line = "Compress=yes\n"
+                countHardCore += 1
+            else:
+                continue
+            
+        elif "Storage" in line:
+            if countStorage == 0:
+                line = "Storage=persistent\n"
+                countStorage += 1
+            else:
+                continue
+            
+        list_of_lines.append(line)
+    
+    file.close()
+    if countHardCore == 0:
+        list_of_lines.append("\nCompress=yes")
+        
+    if countStorage == 0:
+        list_of_lines.append("\nStorage=persistent")
+    
+    file = open("/etc/systemd/journald.conf", "w")    
+    file.writelines(list_of_lines)
+    file.close()
+
+except:
+    print "File doesn't exist"
+    
+process = subprocess.Popen(["cat", "/etc/systemd/journald.conf"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+out2 = process.communicate()[0]
+
+print "\n=================Changes=================\n"
+count = 0
+
+for line in out1.splitlines():
+    if line not in out2:
+        if count == 0:
+            print "Before Deleting/Changing:"
+        count += 1
+        print line
+print
+
+count = 0
+for line in out2.splitlines():
+    if line not in out1:
+        if count == 0:
+            print "\nAfter Adding/Modifying:"
+        count += 1
+        print line
+print

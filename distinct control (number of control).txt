@@ -1,0 +1,6 @@
+with open("file.txt", "r") as f:
+    control = []
+    for line in f.readlines():
+        control.append(line.replace("\n", ""))
+        
+    print(*set(control), sep="\n")

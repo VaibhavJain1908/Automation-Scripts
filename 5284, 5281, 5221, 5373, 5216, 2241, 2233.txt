@@ -1,0 +1,123 @@
+import subprocess
+
+process = subprocess.Popen(["cat", "/etc/ssh/sshd_config"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+out1 = process.communicate()[0]
+
+try:
+    file = open("/etc/ssh/sshd_config", "r")
+    list_of_lines = []
+    
+    countX11Forwarding = 0
+    countBanner = 0
+    countAllowTcpForwarding = 0
+    countClientAliveCountMax = 0
+    countLoginGraceTime = 0
+    countMaxStartups = 0
+    countCMaxSessions = 0
+    
+    for line in file.readlines():
+        
+        if "X11Forwarding" in line:
+            if countX11Forwarding == 0:
+                line = "X11Forwarding no\n"
+                countX11Forwarding += 1
+            else:
+                continue
+        
+        elif "Banner" in line:
+            if countBanner == 0:
+                line = "Banner /etc/issue.net\n"
+                countBanner += 1
+            else:
+                continue
+            
+        elif "AllowTcpForwarding" in line:
+            if countAllowTcpForwarding == 0:
+                line = "AllowTcpForwarding no\n"
+                countAllowTcpForwarding += 1
+            else:
+                continue
+            
+        elif "ClientAliveCountMax" in line:
+            if countClientAliveCountMax == 0:
+                line = "ClientAliveCountMax 3\n"
+                countClientAliveCountMax += 1
+            else:
+                continue
+            
+        elif "LoginGraceTime" in line:
+            if countLoginGraceTime == 0:
+                line = "LoginGraceTime 60\n"
+                countLoginGraceTime += 1
+            else:
+                continue
+            
+        elif "MaxStartups" in line:
+            if countMaxStartups == 0:
+                line = "MaxStartups 10:30:60\n"
+                countMaxStartups += 1
+            else:
+                continue
+            
+        elif "MaxSessions" in line:
+            if countCMaxSessions == 0:
+                line = "MaxSessions 3\n"
+                countCMaxSessions += 1
+            else:
+                continue
+            
+        list_of_lines.append(line)
+
+    file.close()
+    if countX11Forwarding == 0:
+        list_of_lines.append("X11Forwarding no\n")
+        
+    if countBanner == 0:
+        list_of_lines.append("Banner /etc/issue.net\n")
+        
+    if countAllowTcpForwarding == 0:
+        list_of_lines.append("AllowTcpForwarding no\n")
+        
+    if countClientAliveCountMax == 0:
+        list_of_lines.append("ClientAliveCountMax 3\n")
+    
+    if countLoginGraceTime == 0:
+        list_of_lines.append("LoginGraceTime 60\n")
+        
+    if countMaxStartups == 0:
+        list_of_lines.append("MaxStartups 10:30:60\n")
+        
+    if countCMaxSessions == 0:
+        list_of_lines.append("MaxSessions 3\n")
+    
+    file = open("/etc/ssh/sshd_config", "w")    
+    file.writelines(list_of_lines)
+    file.close()
+
+except:
+    print("File doesn't exist")
+
+process = subprocess.Popen(["cat", "/etc/ssh/sshd_config"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+out2 = process.communicate()[0]
+
+print "\n=================Changes=================\n"
+count = 0
+
+for line in out1.splitlines():
+    if line not in out2:
+        if count == 0:
+            print "Before Deleting/Changing:"
+        count += 1
+        print line
+
+count = 0
+for line in out2.splitlines():
+    if line not in out1:
+        if count == 0:
+            print "\nAfter Adding/Modifying:"
+        count += 1
+        print line
+
+print "Restarting sshd service"
+process = subprocess.Popen(["systemctl", "restart", "sshd"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+print process.communicate()[0]

@@ -1,0 +1,16 @@
+out1 = []
+out2 = []
+
+with open("/etc/audit/rules.d/audit.rules", "r") as f:
+    for line in f.readlines():
+        out1.append(line)
+        
+with open("/etc/audit/audit.rules", "r") as f:
+    for line in f.readlines():
+        out2.append(line)
+        
+with open("/etc/audit/rules.d/audit.rules", "w") as f:
+    f.writelines(out1)
+        
+with open("/etc/audit/audit.rules", "w") as f:
+    f.writelines(out2)

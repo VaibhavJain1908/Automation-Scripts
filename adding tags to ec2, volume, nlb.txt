@@ -1,0 +1,245 @@
+import boto3
+import time
+import warnings
+warnings.filterwarnings("ignore")
+start_time = time.time()
+
+
+# For EC2 Instances
+def add_tags_to_ec2(session, tags, region):
+    instanceIds = []
+    ec2 = session.resource('ec2', region_name=region)
+    
+    # Describing all EC2s in a region of an environment
+    """
+    For the testing we will instead use below
+    instances = ec2.instances.filter(
+        Filters = [{  
+        'Name': 'tag:Name',
+        'Values': <instance_names_list>
+        }])
+    """
+    instances = ec2.instances.all()
+    for instance in instances:
+        instanceIds.append(instance.id)
+    
+    print("=================\nEC2 Instances\n=================")
+    
+    # Adding tags to all EC2 instances in a region of an environment using instance ids
+    try:
+        ec2.create_tags(
+            Resources=instanceIds,
+            Tags=tags
+        )
+        for id in instanceIds:
+            print("Adding tags to " + id)
+            
+    except Exception as exc:
+        print(exc)
+        exit(1)
+            
+        
+# For Volumes
+def add_tags_to_volumes(session, tags, region):
+    volumeIds = []
+    ec2 = session.resource('ec2', region_name=region)
+    
+    # Describing all Volumes in a region of an environment
+    """
+    For the testing we will instead use below
+    instances = ec2.volumes.filter(
+        VolumeIds = [<volume_ids_list>])
+    """
+    volumes = ec2.volumes.all()
+    for volume in volumes:
+        volumeIds.append(volume.id)
+        
+    print("=================\nVolumes\n=================")
+    
+    # Since the number of volumes in a region of an environment is pretty large, we are adding the tags in batches of 100 volumes
+    batch = 0
+    while batch < len(volumeIds):
+        previous = batch
+        batch += 100
+        
+        # Adding tags to 100 volumes in a region of an environment at a time using volume ids
+        try:
+            ec2.create_tags(
+                Resources=volumeIds[previous : batch],
+                Tags=tags
+            )
+        
+        except Exception as exc:
+            print(exc)
+            print("Problem in batch: " + str(batch))
+            exit(1)
+            
+    for id in volumeIds:
+        print("Adding tags to " + id)
+        
+        
+# For NLBs
+def add_tags_to_nlb(session, tags, region):
+    print("=================\nNLB\n=================")
+    def all_lb(lb_type,*args):
+        lbs = []
+        
+        # Describing all NLBs in a region of an environment
+        try:
+            if lb_type == 'alb':
+                elb = session.client('elbv2', region_name=region)
+                name = 'LoadBalancers'
+                
+                """
+                For the testing we will instead use below
+                bals = elb.describe_load_balancers(
+                    Names=<load_balancer_names_list>)
+                """
+                bals = elb.describe_load_balancers()
+            elif lb_type == 'elb':
+                elb = boto3.client('elb', region_name=region)
+                name = 'LoadBalancerDescriptions'
+                
+                """
+                For the testing we will instead use below
+                bals = elb.describe_load_balancers(
+                    LoadBalancerNames=<load_balancer_names_list>)
+                """
+                bals = elb.describe_load_balancers()
+        except Exception as exc:
+            print(exc)
+            exit(1)
+    
+        for elb2 in bals[name]:
+            lbs.append(elb2['LoadBalancerName'])
+        
+        # Adding tags to all NLBs in a region of an environment using Load Balancer Names
+        if len(lbs) != 0:
+            elb.add_tags(
+                LoadBalancerNames=lbs,
+                Tags=tags
+            )
+            
+            for lb_name in lbs:
+                print("Adding tags to " + lb_name)
+    
+    all_lb(lb_type='elb')
+    all_lb(lb_type='alb')
+   
+
+# For the Environment tag
+def add_environment_tag_to_ec2_volume(session, region):
+    
+    ec2 = session.resource('ec2', region_name=region)
+    
+    # Describing all EC2s in a region of an environment
+    """
+    For the testing we will instead use below
+    instances = ec2.instances.filter(
+        Filters = [{  
+        'Name': 'tag:Name',
+        'Values': <instance_names_list>
+        }])
+    """
+    instances = ec2.instances.all()
+    for instance in instances:
+        
+        # Getting the EC2 Instance's Environment
+        env = ""
+        for tag in instance.tags:
+            if tag["Key"] == "Environment":
+                env = tag["Value"]
+                break
+        
+        # Setting the value of environment tag
+        if env == "Development" or env == "Development-Internal Test Server":
+            env = "dev"
+        elif env == "Development2" or env == "Dev2":
+            env = "dev2"
+        elif env == "Test" :
+            env = "test"
+        elif env == "Test2":
+            env = "test2"
+        elif env == "Training":
+            env = "training"
+        elif env == "Sandbox":
+            env = "sbx"
+        elif env == "PreProd":
+            env = "preprod"
+        elif env == "Production":
+            env = "prod"
+        elif env == "Security":
+            env = "security"
+        elif env == "Shared Services":
+            env = "sharedservices"
+        elif env == "Shared Services DR":
+            env = "sharedservicesdr"
+        elif env == "Production DR":
+            env = "proddr"
+        elif env == "SIT1":
+            env = "sit1"
+        
+        resource_ids = [instance.id] 
+        
+        # Describing the volumes of a particular instance
+        for volume in instance.volumes.all():
+            resource_ids.append(volume.id)
+        
+        # Adding the environment tag to the EC2 Instance and its Volumes
+        try:
+            ec2.create_tags(
+                Resources=resource_ids,
+                Tags=[
+                    {"Key": "environment",
+                      "Value": env}])
+        
+        except Exception as exc:
+            print(exc)
+            
+
+# Driver Code
+if __name__ == "__main__":
+    
+    #Reading Account IDS, IAM Roles and tags to be added from the user
+    num = int(input("Enter number of account: "))
+    print("Enter {num} account ids below:".format(num=num))
+    account_ids = [input() for i in range(num)]
+
+    print("Enter {num} iam roles below:".format(num=num))
+    iam_roles = [input() for i in range(num)]
+
+    num = int(input("Enter number of tags to be added except the environment tag: "))
+    print("Enter the tags below in the 'Key = Value' format:")
+    tags = []
+    for i in range(num):
+        while(True):
+            tag = input()
+            if " = " in tag:
+                break
+            else:
+                print("Enter the tag again in 'Key = Value' format")
+        tags.append({'Key': tag.split(" = ")[0], 'Value': tag.split(" = ")[1]})
+    
+    # Assuming IAM Roles of different accounts through STS
+    client = boto3.client('sts')
+    for i in range(len(iam_roles)):
+        role_object = client.assume_role(
+            RoleArn = f'arn:aws:iam::{account_ids[i]}:role/{iam_roles[i]}',
+            RoleSessionName = f'{iam_roles[i]}-session')
+        
+        temp_credentials = role_object['Credentials']
+        
+        session = boto3.session(
+            aws_access_key_id = temp_credentials['AccessKeyId'],
+            aws_secret_access_key = temp_credentials['SecretAccessKey'],
+            aws_session_token = temp_credentials['SessionToken'], )
+        
+        # Running the script for the 2 regions if it exists in an environment
+        for region in ["us-east-1", "us-west-1"]:
+            add_tags_to_ec2(session, tags, region)
+            add_tags_to_volumes(session, tags, region)
+            add_tags_to_nlb(session, tags, region)
+            add_environment_tag_to_ec2_volume(session, region)
+    
+            
+print("--- %s seconds ---" % (time.time() - start_time))

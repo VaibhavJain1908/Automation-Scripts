@@ -1,0 +1,53 @@
+import paramiko
+import getpass
+import datetime
+import time
+
+today = datetime.date.today()
+
+def get_ssh(server, username, password):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(server, port=22, username=username, password=password)
+    
+    return ssh
+        
+def ssh_func(ssh, server, username, password):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(server, port=22, username=username, password=password)
+    
+    print("=========")
+    stdin, stdout, stderr = ssh.exec_command('sudo su - -c "chmod 600 /etc/cron.d /etc/cron.daily /etc/cron.weekly /etc/cron.monthly /etc/cron.hourly"')
+    stdin.flush()
+    for line in stdout.readlines():
+        print(line),
+
+    stdin, stdout, stderr = ssh.exec_command('sudo su - -c "ls -lhtr /etc | grep cron"')
+    stdin.flush()
+    for line in stdout.readlines():
+        print(line),
+    
+    print("=========")
+    del stdin, stdout, stderr
+
+num = raw_input("Number of servers: ")
+print("Enter ip of " + num + " servers below:")
+servers = [raw_input() for i in range(int(num))]
+
+username = raw_input("Username: ")
+password = getpass.getpass()
+
+start_time = time.time()
+for server in servers:
+    print(server)
+    try:
+        ssh = get_ssh(server, username, password)
+        ssh_func(ssh, server, username, password)
+        
+        ssh.close()
+        del ssh
+    except:
+        print("Issue logging into " + server)
+    
+print("--- %s seconds ---" % (time.time() - start_time))

@@ -1,0 +1,53 @@
+import subprocess
+
+process = subprocess.Popen(["cat", "/etc/profile"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+out1 = process.communicate()[0]
+
+try:
+    file = open("/etc/profile", "r")
+    list_of_lines = []
+    countCiphers = 0
+    for line in file.readlines():
+        
+        if "umask" in line:
+            if countCiphers == 0:
+                line = "umask 027\n"
+                countCiphers += 1
+            else:
+                continue
+            
+        list_of_lines.append(line)
+    
+    file.close()
+    if countCiphers == 0:
+        list_of_lines.append("\numask 027\n")
+    
+    file = open("/etc/profile", "w")
+    file.writelines(list_of_lines)
+    file.close()
+
+except:
+    print "File doesn't exist"
+    
+process = subprocess.Popen(["cat", "/etc/profile"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+out2 = process.communicate()[0]
+
+print "\n=================Changes=================\n"
+count = 0
+
+for line in out1.splitlines():
+    if line not in out2:
+        if count == 0:
+            print "Before Deleting/Changing:"
+        count += 1
+        print line
+print
+
+count = 0
+for line in out2.splitlines():
+    if line not in out1:
+        if count == 0:
+            print "\nAfter Adding/Modifying:"
+        count += 1
+        print line
+print

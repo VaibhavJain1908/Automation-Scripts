@@ -1,0 +1,356 @@
+import boto3
+import csv
+import time
+import warnings
+warnings.filterwarnings("ignore")
+
+# For EC2 Instances
+def add_tags_to_ec2(session, tags, region):
+    instanceIds = []
+    data = []
+    ec2 = session.resource('ec2', region_name=region)
+    
+    # Describing all EC2s in a region of an environment
+    """
+    For the testing we will instead use below
+    
+    instances = ec2.instances.filter(
+        Filters = [{
+        'Name': 'tag:Name',
+        'Values': ['sapdsusevul']
+        }])
+    """
+    instances = ec2.instances.all()
+    for instance in instances:
+        instanceIds.append(instance.id)
+    
+    print("=================\nEC2 Instances\n=================")
+    
+    # Adding tags to all EC2 instances in a region of an environment using instance ids
+    try:
+        ec2.create_tags(
+            Resources=instanceIds,
+            Tags=tags
+        )
+        
+        # Adding resource ids on which the tags are added successfully to the csv file data
+        for id in instanceIds:
+            data.append({})
+            data[-1]["Resource ID"] = id
+            print("Adding tags to " + id)
+    
+    # If there is any error while adding tags to the ec2 instances, it will print the error.
+    except Exception as exc:
+        print(exc)
+        
+        if len(instanceIds) == 0:
+            print(region + " not present in environment !!")
+        for id in instanceIds:
+            print("Could not add tags to " + id)
+        
+        
+    return data
+            
+        
+# For Volumes
+def add_tags_to_volumes(session, tags, region):
+    volumeIds = []
+    data = []
+    ec2 = session.resource('ec2', region_name=region)
+    
+    # Describing all Volumes in a region of an environment
+    """
+    For the testing we will instead use below
+    
+    volumes = ec2.volumes.filter(
+        VolumeIds = ['vol-00de1e9aaafd412c8', 'vol-0a9d99c06450c2013', 'vol-0ad2f6c32e6a11b9a', 'vol-0b9ef73f0d1a72396'])
+    """
+    volumes = ec2.volumes.all()
+    for volume in volumes:
+        volumeIds.append(volume.id)
+        
+    print("=================\nVolumes\n=================")
+    
+    # Since the number of volumes in a region of an environment is pretty large, we are adding the tags in batches of 100 volumes
+    batch = 0
+    while batch < len(volumeIds):
+        previous = batch
+        batch += 100
+        
+        # Adding tags to 100 volumes in a region of an environment at a time using volume ids
+        try:
+            ec2.create_tags(
+                Resources=volumeIds[previous : batch],
+                Tags=tags
+            )
+            
+            # Adding resource ids on which the tags are added successfully to the csv file data
+            for id in volumeIds[previous : batch]:
+                data.append({})
+                data[-1]["Resource ID"] = id
+                print("Adding tags to " + id)
+        
+        # If there is any error while adding tags to the volumes, it will print the error with the conflicted volume ids
+        except Exception as exc:
+            print(exc)
+            print("Problem in batch: " + str(batch))
+            for id in volumeIds[previous : batch]:
+                print("Could not add tags to " + id)
+                
+    return data
+        
+        
+# For NLBs
+def add_tags_to_nlb(session, tags, region):
+    print("=================\nNLB\n=================")
+    
+    data = []
+    def all_lb(lb_type,*args):
+        lbs = []
+        
+        # Describing all NLBs in a region of an environment
+        try:
+            if lb_type == 'alb':
+                elb = session.client('elbv2', region_name=region)
+                name = 'LoadBalancers'
+                
+                """
+                For the testing we will instead use below
+                bals = elb.describe_load_balancers(
+                    Names=<load_balancer_names_list>)
+                """
+                bals = elb.describe_load_balancers()
+            elif lb_type == 'elb':
+                elb = session.client('elb', region_name=region)
+                name = 'LoadBalancerDescriptions'
+                
+                """
+                For the testing we will instead use below
+                bals = elb.describe_load_balancers(
+                    LoadBalancerNames=<load_balancer_names_list>)
+                """
+                bals = elb.describe_load_balancers()
+        except Exception as exc:
+            print(exc)
+        
+        if name == 'LoadBalancers':
+            for elb2 in bals[name]:
+                lbs.append(elb2['LoadBalancerArn'])
+                
+            # Adding tags to all NLBs in a region of an environment using Load Balancer Names
+            if len(lbs) != 0:
+                for lb_name in lbs:
+                    try:
+                        elb.add_tags(
+                            ResourceArns=[lb_name],
+                            Tags=tags
+                        )
+                        
+                        # Adding resource ids on which the tags are added successfully to the csv file data
+                        data.append({})
+                        data[-1]["Resource ID"] = lb_name
+                        print("Adding tags to " + lb_name)
+                        
+                    except Exception as exc:
+                        print(exc)
+                        print("Could not add tags to " + lb_name)
+                
+        else:
+            for elb2 in bals[name]:
+                lbs.append(elb2['LoadBalancerName'])
+                
+            # Adding tags to all NLBs in a region of an environment using Load Balancer Names
+            if len(lbs) != 0:
+                for lb_name in lbs:
+                    try:
+                        elb.add_tags(
+                            LoadBalancerNames=[lb_name],
+                            Tags=tags
+                        )
+                        
+                        # Adding resource ids on which the tags are added successfully to the csv file data
+                        data.append({})
+                        data[-1]["Resource ID"] = lb_name
+                        print("Adding tags to " + lb_name)
+                        
+                    except Exception as exc:
+                        print(exc)
+                        print("Could not add tags to " + lb_name)  
+                
+    all_lb(lb_type='elb')
+    all_lb(lb_type='alb')
+    
+    return data
+
+# For the Environment tag
+def add_environment_tag_to_ec2_and_volume(session, region):
+    data = []  
+    ec2 = session.resource('ec2', region_name=region)
+    
+    # Describing all EC2s in a region of an environment
+    """
+    For the testing we will instead use below
+    
+    instances = ec2.instances.filter(
+        Filters = [{  
+        'Name': 'tag:Name',
+        'Values': ['sapdsusevul']
+        }])
+    """
+    instances = ec2.instances.all()
+    for instance in instances:
+        
+        # Getting the EC2 Instance's Environment
+        env = ""
+        for tag in instance.tags:
+            if tag["Key"] == "Environment":
+                env = tag["Value"]
+                break
+        
+        # Setting the value of environment tag
+        if env == "Development" or env == "Development-Internal Test Server":
+            env = "dev"
+        elif env == "Development2" or env == "Dev2":
+            env = "dev2"
+        elif env == "Test" :
+            env = "test"
+        elif env == "Test2":
+            env = "test2"
+        elif env == "Training":
+            env = "training"
+        elif env == "Sandbox":
+            env = "sbx"
+        elif env == "PreProd":
+            env = "preprod"
+        elif env == "Production":
+            env = "prod"
+        elif env == "Security":
+            env = "security"
+        elif env == "Shared Services":
+            env = "sharedservices"
+        elif env == "Shared Services DR":
+            env = "sharedservicesdr"
+        elif env == "Production DR":
+            env = "proddr"
+        elif env == "SIT1":
+            env = "sit1"
+        
+        resource_ids = [instance.id] 
+        
+        # Describing the volumes of a particular instance
+        for volume in instance.volumes.all():
+            resource_ids.append(volume.id)
+        
+        # Adding the environment tag to the EC2 Instance and its Volumes
+        try:
+            ec2.create_tags(
+                Resources=resource_ids,
+                Tags=[
+                    {"Key": "environment",
+                      "Value": env}])
+            
+            # Adding resource ids on which the environment tag is added successfully to the csv file data
+            for id in resource_ids:
+                data.append({})
+                data[-1]["Resource ID"] = id
+        
+        # If there is any error while adding environment tag to the ec2 instance and its volumes, it will print the error along with instance id.
+        except Exception as exc:
+            print(exc)
+            print("Problem in adding Environment tag to " + instance.id + " and its volumes.")
+            
+
+# Driver Code
+if __name__ == "__main__":
+    
+    # Reading Account IDS, IAM Roles and tags to be added from the user
+    num = int(input("Enter number of account: "))
+    print("Enter {num} account ids below:".format(num=num))
+    account_ids = [input() for i in range(num)]
+
+    print("\nEnter {num} iam roles below:".format(num=num))
+    iam_roles = [input() for i in range(num)]
+
+    num = int(input("\nEnter number of tags to be added except the environment tag: "))
+    print("Enter the tags below in the 'Key = Value' format:")
+    tags = []
+    for i in range(num):
+        while(True):
+            tag = input()
+            if " = " in tag:
+                break
+            else:
+                print("Enter the tag again in 'Key = Value' format")
+        tags.append({'Key': tag.split(" = ")[0], 'Value': tag.split(" = ")[1]})
+    
+    # Reading the resources (ec2/volume/nlb) from the user on which the user wants to add tags on
+    while(True):
+        resources = input("\nEnter the name of the resources you want to add tags on (ec2/volume/nlb): ").split()
+        if ("ec2" in resources or "volume" in resources or "nlb" in resources):
+            break
+        else:
+            print("Wrong input, try again !!")
+    
+    # Calculating Time to execute the whole program
+    start_time = time.time()
+
+    # Data to be written on a csv file
+    csv_data = []
+            
+    # Assuming IAM Roles of different accounts through STS
+    client = boto3.client('sts')
+    for i in range(len(iam_roles)):
+        role_object = client.assume_role(
+            RoleArn = 'arn:aws:iam::{account_id}:role/{iam_role}'.format(account_id=account_ids[i], iam_role=iam_roles[i]),
+            RoleSessionName = '{iam_role}-session'.format(iam_role=iam_roles[i]))
+        
+        temp_credentials = role_object['Credentials']
+        
+        session = boto3.session.Session(
+            aws_access_key_id = temp_credentials['AccessKeyId'],
+            aws_secret_access_key = temp_credentials['SecretAccessKey'],
+            aws_session_token = temp_credentials['SessionToken'], )
+        
+        # Printing the current account ID
+        print("----------------------------------------\nAdding Tags to resources in " + account_ids[i] + "\n----------------------------------------")
+        
+        # Running the script for the 2 regions if it exists in an environment
+        """
+        For Testing we will only use "us-east-1" region
+        """
+        for region in ["us-east-1", "us-west-1"]:
+            
+            # If the user wants to add tags on ec2
+            if "ec2" in resources:
+                csv_data.extend(add_tags_to_ec2(session, tags, region))
+             
+            # If the user wants to add tags on volumes
+            if "volume" in resources:
+                csv_data.extend(add_tags_to_volumes(session, tags, region))
+            
+            # If the user wants to add tags on nlb
+            if "nlb" in resources:
+                csv_data.extend(add_tags_to_nlb(session, tags, region))
+                
+            # If the user wants to add tags on both ec2 and volumes
+            if "ec2" in resources and "volume" in resources:
+                add_environment_tag_to_ec2_and_volume(session, region)
+    
+    # Csv file for tagged resources
+    file_name = 'Tagged Resources Data.csv'
+    fields = ['Resource ID']
+    
+    # writing to csv file 
+    with open(file_name, 'w') as csvfile: 
+        # creating a csv dict writer object 
+        writer = csv.DictWriter(csvfile, fieldnames = fields) 
+            
+        # writing headers (field names)
+        writer.writeheader()
+            
+        # writing data rows 
+        writer.writerows(csv_data) 
+    print('\nResource IDs are written to Excel File successfully.\n')
+    
+            
+print("--- %s seconds ---" % (time.time() - start_time))

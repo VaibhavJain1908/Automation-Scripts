@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/40652440/how-to-assume-an-aws-role-from-another-aws-role

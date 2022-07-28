@@ -1,0 +1,57 @@
+import subprocess
+
+process = subprocess.Popen(["cat", "/etc/grub.d/41_custom"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+out1 = process.communicate()[0]
+
+try:
+    process = subprocess.Popen(["grub2-mkpasswd-pbkdf2"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    process.stdin.write("Init_password\nInit_password")
+    output = process.communicate()[0].split("\n")[2].split(" ")[6]
+except:
+    print "Issue in setting password"
+    quit()
+
+list_of_lines = []
+
+try:
+    file = open("/etc/grub.d/41_custom", "r")
+    for line in file.readlines():
+        if line == "cat <<EOF\n":
+            list_of_lines.append(line)
+            list_of_lines.append('set superusers="systems"\n')
+            list_of_lines.append('password_pbkdf2 systems ' + output + '\n')
+            continue
+        
+        list_of_lines.append(line)
+    
+    file.close()
+except:
+    print "File doesn't exist"
+    quit()
+    
+file = open("/etc/grub.d/41_custom", "w")
+file.writelines(list_of_lines)
+file.close()
+
+process = subprocess.Popen(["cat", "/etc/grub.d/41_custom"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+out2 = process.communicate()[0]
+
+print "\n=================Changes=================\n"
+count = 0
+
+for line in out1.splitlines():
+    if line not in out2:
+        if count == 0:
+            print "Before Deleting/Changing:"
+        count += 1
+        print line
+print
+
+count = 0
+for line in out2.splitlines():
+    if line not in out1:
+        if count == 0:
+            print "\nAfter Adding/Modifying:"
+        count += 1
+        print line
+print

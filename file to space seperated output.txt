@@ -1,0 +1,6 @@
+out = []
+with open("file.txt", "r") as f:
+    for line in f.readlines():
+        out.append(line.replace("\n", ""))
+        
+print(*out, sep=" ")

@@ -1,0 +1,138 @@
+import paramiko
+import getpass
+import datetime
+import time
+import csv
+from colorama import Fore
+from colorama import Style
+import warnings
+warnings.filterwarnings("ignore")
+
+paramiko.util.log_to_file("filename.log")
+today = datetime.date.today()
+
+data = []
+
+def get_ssh(server, username, password):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(server, port=22, username=username, password=password)
+
+    return ssh
+
+def ssh_func(ssh, server, username, password):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(server, port=22, username=username, password=password)
+
+    print("=========")
+    
+    stdin, stdout, stderr = ssh.exec_command('sudo su - -c "hostname"')
+    stdin.flush()
+    hostname = ""
+    for line in stdout.readlines():
+        hostname += line.replace("\n", "")
+    data[-1]["Server"] = hostname
+
+    stdin, stdout, stderr = ssh.exec_command('sudo su - -c "cat /etc/fstab"')
+    stdin.flush()
+    for line in stdout.readlines():
+        if "#" in line:
+            continue
+        words = line.split()
+        if "/var" == words[1] and ("rw,relatime,nofail" != words[3] or "0" != words[4] or "0" != words[5]):
+            print(line)
+            data[-1]["Reason"] = line
+            data[-1]["Valid Fstab"] = "No"
+            return
+        
+        elif "/dev/shm" == words[1] and ("defaults,noexec,nodev,nosuid,nofail" != words[3] or "0" != words[4] or "0" != words[5]):
+            print(line)
+            data[-1]["Reason"] = line
+            data[-1]["Valid Fstab"] = "No"
+            return
+        
+        elif "/tmp" in line.split() and ("defaults,rw,nosuid,nodev,noexec,relatime,nofail" != words[3] or "0" != words[4] or "0" != words[5]):
+            print(line)
+            data[-1]["Reason"] = line
+            data[-1]["Valid Fstab"] = "No"
+            return
+        
+        elif "/var/tmp" in line.split() and ("rw,nosuid,nodev,noexec,relatime,nofail" != words[3] or "0" != words[4] or "0" != words[5]):
+            print(line)
+            data[-1]["Reason"] = line
+            data[-1]["Valid Fstab"] = "No"
+            return
+        
+        elif "/var/log" in line.split() and ("rw,nosuid,nodev,noexec,relatime,nofail" != words[3] or "0" != words[4] or "0" != words[5]):
+            print(line)
+            data[-1]["Reason"] = line
+            data[-1]["Valid Fstab"] = "No"
+            return
+            
+        elif "/var/log/audit" in line.split() and ("rw,relatime,nofail" != words[3] or "0" != words[4] or "0" != words[5]):
+            print(line)
+            data[-1]["Reason"] = line
+            data[-1]["Valid Fstab"] = "No"
+            return
+        
+        elif "/home" == words[1] and ("rw,nodev,relatime,nofail" != words[3] or "0" != words[4] or "0" != words[5]):
+            print(line)
+            data[-1]["Reason"] = line
+            data[-1]["Valid Fstab"] = "No"
+            return
+        
+        elif "efs" in words[0] and ("nfs4" != words[2] or "nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport,_netdev" != words[3] or "0" != words[4] or "0" != words[5]):
+            print(line)
+            data[-1]["Reason"] = line
+            data[-1]["Valid Fstab"] = "No"
+            return
+        
+        elif "nofail" not in words[3] and "/" != words[1] and "swap" != words[1] and "efs" not in words[0]:
+            print(line)
+            data[-1]["Reason"] = line
+            data[-1]["Valid Fstab"] = "No"
+            return
+                      
+    data[-1]["Valid Fstab"] = "Yes"
+        
+    print("=========")
+
+num = raw_input("Number of servers: ")
+print("Enter ip of " + num + " servers below:")
+servers = [raw_input() for i in range(int(num))]
+
+username = raw_input("Username: ")
+password = getpass.getpass()
+
+start_time = time.time()
+for server in servers:
+    data.append({})
+    print(server)
+    try:
+        ssh = get_ssh(server, username, password)
+        ssh_func(ssh, server, username, password)
+
+        ssh.close()
+        del ssh
+    except Exception as exc:
+        print(exc)
+        print("Issue logging into " + server)
+        
+# Csv file for tagged resources
+file_name = 'Fstab.csv'
+fields = ['Server', 'Valid Fstab', 'Reason']
+
+# writing to csv file 
+with open(file_name, 'w') as csvfile: 
+    # creating a csv dict writer object 
+    writer = csv.DictWriter(csvfile, fieldnames = fields) 
+    
+    # writing headers (field names)
+    writer.writeheader()
+    
+    # writing data rows 
+    writer.writerows(data)
+    print('\nResource IDs are written to Excel File successfully.\n')
+
+print("--- %s seconds ---" % (time.time() - start_time))

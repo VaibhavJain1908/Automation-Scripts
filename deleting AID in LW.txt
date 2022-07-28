@@ -1,0 +1,6 @@
+1. Management console -> Systems Manager
+2. Run command -> Run commands -> AWS RunShellScript.
+3. Copy your commands -- rm -rf /home/AID
+4. Targets -> Choose instances manually.
+5. choose all instances.
+6. Run Script

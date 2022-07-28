@@ -1,0 +1,8 @@
+find /var/log/audit/ -mtime +1 -exec rm {} \;
+
+or
+
+cd /var/log/audit
+pwd
+rm -r audit.log.2*
+rm -r audit.log.1*

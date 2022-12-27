@@ -1,0 +1,87 @@
+mkdir /home1
+mount /dev/home/home /home1
+cd /home
+ls | wc -l
+cp -dpRx * /home1
+cd /home1
+ls | wc -l
+cd
+umount /home1
+mount /dev/home/home /home
+df -h
+rm -rf /home1
+
+mkdir /tmp1
+mount /dev/tmp/tmp /tmp1
+cd /tmp
+ls | wc -l
+cp -dpRx * /tmp1
+cp -dpRx .s* /tmp1
+cp -dpRx .c* /tmp1
+cp -dpRx .f* /tmp1
+cp -dpRx .I* /tmp1
+cp -dpRx .T* /tmp1
+cp -dpRx .X* /tmp1
+cd /tmp1
+ls | wc -l
+cd
+umount /tmp1
+mount /dev/tmp/tmp /tmp
+df -h
+rm -rf /tmp1
+
+mkdir /var_tmp1
+mount /dev/var_tmp/var_tmp /var_tmp1
+cd /var/tmp
+ls | wc -l
+cp -dpRx * /var_tmp1
+cd /var_tmp1
+ls | wc -l
+cd
+umount /var_tmp1
+mount /dev/var_tmp/var_tmp /var/tmp
+df -h
+
+mkdir /var_log_audit1
+mount /dev/var_log_audit/var_log_audit /var_log_audit1
+cd /var/log/audit
+ls | wc -l
+cp -dpRx * /var_log_audit1
+cd /var_log_audit1
+ls | wc -l
+cd
+umount /var_log_audit1
+mount /dev/var_log_audit/var_log_audit /var/log/audit
+df -h
+
+mkdir /var_log1
+mount /dev/var_log/var_log /var_log1
+cd /var/log
+ls | wc -l
+cp -dpRx !(audit) /var_log1
+cd /var_log1
+ls | wc -l
+cd
+umount /var_log1
+mount /dev/var_log/var_log /var/log
+df -h
+
+mkdir /var1
+mount /dev/var/var /var1
+cd /var
+ls | wc -l
+cp -dpRx !(log) /var1
+cp -dpRx .updated /var1
+cd /var1
+ls | wc -l
+cd
+umount /var1
+mount /dev/var/var /var
+df -h
+
+mount /dev/var_tmp/var_tmp /var/tmp
+mount /dev/var_log/var_log /var/log
+mkdir /var/log/audit
+mount /dev/var_log_audit/var_log_audit /var/log/audit
+df -h
+

@@ -24,7 +24,7 @@ print("\nStarting the process . . .\n")
 # Calculating Time to execute the whole program
 start_time = time.time()
 
-age = 29
+age = 6
 data = []
 
 # Traversing through Accounts
@@ -40,7 +40,7 @@ for i in range(len(iam_roles)):
         aws_access_key_id = temp_credentials['AccessKeyId'],
         aws_secret_access_key = temp_credentials['SecretAccessKey'],
         aws_session_token = temp_credentials['SessionToken'], )
-    
+        
     # Traversing the regions (If there are only one region in an environment, it will go through only one)
     for region in ["us-east-1", "us-west-1"]:
         ec2 = boto3.client('ec2', region_name = region)
@@ -64,11 +64,11 @@ for i in range(len(iam_roles)):
             except:
                 name = ""
             
-            # Checking if the AMI is one month older and is a post patch AMI
-            if day_old > age and 'post' in ami_name.lower() and 'patch' in ami_name.lower() and "golden" not in ami_name.lower() and not ('do' in ami_name.lower() and 'not' in ami_name.lower() and 'delete' in ami_name.lower()) \
+            # Checking if the AMI is one week older and is a pre patch AMI
+            if day_old > age and 'pre' in ami_name.lower() and 'patch' in ami_name.lower() and "golden" not in ami_name.lower() and not ('do' in ami_name.lower() and 'not' in ami_name.lower() and 'delete' in ami_name.lower()) \
                and "golden" not in name.lower() and not ('do' in name.lower() and 'not' in name.lower() and 'delete' in name.lower()):
         
-                # Deregestring one month older post patch AMI
+                # Deregestring one week older pre patch AMI
                 print("deleting -> " + ami_id + " - create_date = " + create_date)
                 ec2.deregister_image(ImageId=ami_id)
                 
@@ -85,7 +85,7 @@ for i in range(len(iam_roles)):
                 
                 data.append({'AMI Name':ami_name, 'AMI Id':ami_id,
                                              'SNAPSHOT Count':snap_count, 'SNAPSHOT Size (in GB)':snap_size, 'Creation Date':create_date})
-        
+     
 file_name = 'Deleted data.csv'
 fields = ['AMI Name', 'AMI Id', 'Creation Date', 'SNAPSHOT Count', 'SNAPSHOT Size (in GB)']
 

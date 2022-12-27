@@ -1,3 +1,4 @@
+import csv
 import paramiko
 import getpass
 import datetime
@@ -10,6 +11,7 @@ warnings.filterwarnings("ignore")
 paramiko.util.log_to_file("filename.log")
 today = datetime.date.today()
 
+data = []
 def get_ssh(server, username, password):
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -17,22 +19,17 @@ def get_ssh(server, username, password):
 
     return ssh
 
-def upload_file(ssh, filename):
-    ftp_client=ssh.open_sftp()
-    ftp_client.put(filename, filename)
-    ftp_client.close()
-    
-    del ftp_client
-
-def ssh_func(ssh, server, username, password, commands):
+def pre_checks(ssh, server, username, password):
     print("=========")
     
+    data.append({'Server':server})
     stdin, stdout, stderr = ssh.exec_command('sudo su - -c "hostname"')
     stdin.flush()
     hostname = ""
     for line in stdout.readlines():
         hostname += line.replace("\n", "")
 
+    commands = ["rpm -qa | grep -i odbc", "date"]
     if hostname == "":        
         for cmd in commands:
             print(Fore.RED + Style.BRIGHT + server + ":~ # " + Style.RESET_ALL + cmd)
@@ -44,6 +41,10 @@ def ssh_func(ssh, server, username, password, commands):
                 i += 1
                 if i==0 or i==1:
                     continue
+                if cmd == "rpm -qa | grep -i odbc":
+                    data[-1]["ODBC Installation Evidence"] = line + "\n"
+                else:
+                    data[-1]["Date"] = line + "\n"
                 print(line),
             
     else:
@@ -51,43 +52,67 @@ def ssh_func(ssh, server, username, password, commands):
             print(Fore.RED + Style.BRIGHT + hostname + ":~ # " + Style.RESET_ALL + cmd)
             stdin, stdout, stderr = ssh.exec_command('sudo su - -c "' + cmd + '"', get_pty=True)
             stdin.flush()
-            for line in stdout.readlines():
-                print(line),
+            lines = stdout.readlines()
+            if cmd == "rpm -qa | grep -i odbc":
+                data[-1]["ODBC Installation Evidence"] = "".join(lines)
+            else:
+                data[-1]["Date"] = "".join(lines)
+            print(lines),
 
     print("=========")
 
+chnge_num = raw_input("\nEnter Change Number: ")    
+
+print("--------------------\n       Menu       \n--------------------")
+print("1. Pre Checks")
+print("2. Post Checks")
+choice = int(raw_input("Enter your choice: "))
+
+if choice == 2:
+    with open(chnge_num + '_PIR.csv') as pscfile:
+        reader = csv.DictReader(pscfile)
+        for row in reader:
+            data.append(row)
+
+num = int(raw_input("\nEnter number of servers: "))
 print("\nEnter server names: ")
 servers = []
-while True:
-    server = raw_input()
-    if server == "":
-        break
-    servers.append(server)
+for i in range(num):
+    servers.append(raw_input())
 
 username = raw_input("Username: ")
 password = getpass.getpass()
-filename = raw_input("File Name to upload: ")
-
-print("\nEnter commands:")
-commands = []
-while True:
-    command = raw_input()
-    if command == "":
-        break
-    commands.append(command)
 
 start_time = time.time()
+
+print("\n=========")
 for server in servers:
     print(server)
     try:
         ssh = get_ssh(server, username, password)
-        upload_file(ssh, filename)
-        ssh_func(ssh, server, username, password, commands)
-
+        
+        if choice == 1:
+            pre_checks(ssh, server, username, password)
+            
         ssh.close()
         del ssh
     except Exception as exc:
         print(exc)
         print("Issue logging into " + server)
+    
+file_name = chnge_num + '_PIR_DR.csv'
+fields = ['Server', 'Date', 'ODBC Installation Evidence']
+
+# writing to csv file 
+with open(file_name, 'w') as csvfile: 
+    # creating a csv dict writer object 
+    writer = csv.DictWriter(csvfile, fieldnames = fields)
+        
+    # writing headers (field names)
+    writer.writeheader()
+        
+    # writing data rows 
+    writer.writerows(data)
+print('\nPIR is written to Excel File successfully.\n')
 
 print("--- %s seconds ---" % (time.time() - start_time))

@@ -37,7 +37,6 @@ for instance in instances:
             
             for iface in instance.network_interfaces:
                 service_statuses[i]["Region"] = iface.subnet.availability_zone
-                
         elif tag["Key"] == "environment":
             service_statuses[i]["environment"] = tag["Value"]
         elif tag["Key"] == "company":
@@ -54,17 +53,6 @@ for instance in instances:
             service_statuses[i]["OS"] = tag["Value"]
         elif tag["Key"] == "Application":
             service_statuses[i]["Application"] = tag["Value"]
-        elif tag["Key"] == "CoreApplicationGroup":
-            service_statuses[i]["CoreApplicationGroup"] = tag["Value"]
-        elif tag["Key"] == "Department":
-            service_statuses[i]["Department"] = tag["Value"]
-        elif tag["Key"] == "ServerType":
-            service_statuses[i]["ServerType"] = tag["Value"]
-        elif tag["Key"] == "Server Type":
-            service_statuses[i]["Server Type"] = tag["Value"]
-        elif tag["Key"] == "map-sap":
-            service_statuses[i]["map-sap"] = tag["Value"]
-            
     service_statuses[i]["Security Groups"] = ""
     for sg in instance.security_groups:
         service_statuses[i]["Security Groups"] += sg['GroupName'] + ","
@@ -128,55 +116,19 @@ for instance in instances:
             response = ssm_client.send_command(
                         InstanceIds=[instance.id],
                         DocumentName="AWS-RunShellScript",
-                        Parameters={'commands': ["cat /etc/sudoers.d/30-aws_basis_administrators"]}, )
-            
-            command_id = response['Command']['CommandId']
-            time.sleep(2)
-            
-            print("Currently checking sudoers entries !!")
-            output = ssm_client.get_command_invocation(
-                  CommandId=command_id,
-                  InstanceId=instance.id
-                )
-            service_statuses[i]['sudoers entries'] = output['StandardOutputContent']
-            
-            
-            response = ssm_client.send_command(
-                        InstanceIds=[instance.id],
-                        DocumentName="AWS-RunShellScript",
                         Parameters={'commands': ["rpm -qa -last | head"]}, )
             
             command_id = response['Command']['CommandId']
-            time.sleep(10)
+            time.sleep(2)
             
             print("Currently checking status of last patched", end=" - ")
             output = ssm_client.get_command_invocation(
                   CommandId=command_id,
                   InstanceId=instance.id
                 )
-            service_statuses[i]['last patched evidence'] = output['StandardOutputContent']
+            service_statuses[i]['patch evidence'] = output['StandardOutputContent']
             service_statuses[i]['last patched'] = " ".join(output['StandardOutputContent'].splitlines()[0].split()[1:])
             print(service_statuses[i]['last patched'])
-            
-            response = ssm_client.send_command(
-                        InstanceIds=[instance.id],
-                        DocumentName="AWS-RunShellScript",
-                        Parameters={'commands': ["zypper lu"]}, )
-            
-            command_id = response['Command']['CommandId']
-            time.sleep(120)
-            
-            print("Currently checking if the server is patched", end=" - ")
-            output = ssm_client.get_command_invocation(
-                  CommandId=command_id,
-                  InstanceId=instance.id
-                )
-            service_statuses[i]['patched evidence'] = output['StandardOutputContent']
-            if "No updates found." in output['StandardOutputContent']:
-                service_statuses[i]['patched'] = "Yes"
-            else:
-                service_statuses[i]['patched'] = "No"
-            print(service_statuses[i]['patched'])
             
             response = ssm_client.send_command(
                         InstanceIds=[instance.id],
@@ -197,60 +149,60 @@ for instance in instances:
                     continue
                 words = line.split()
                 if "/var" == words[1] and ("rw,relatime,nofail" != words[3] or "0" != words[4] or "0" != words[5]):
-                    print("Wrong Fstab entry - " + line)
+                    print(line)
                     service_statuses[i]["Wrong entry"] = line
                     service_statuses[i]["Valid Fstab"] = "No"
                     break
                 
                 elif "/dev/shm" == words[1] and ("defaults,noexec,nodev,nosuid,nofail" != words[3] or "0" != words[4] or "0" != words[5]):
-                    print("Wrong Fstab entry - " + line)
+                    print(line)
                     service_statuses[i]["Wrong entry"] = line
                     service_statuses[i]["Valid Fstab"] = "No"
                     break
         
                 elif "/tmp" in line.split() and ("defaults,rw,nosuid,nodev,noexec,relatime,nofail" != words[3] or "0" != words[4] or "0" != words[5]):
-                    print("Wrong Fstab entry - " + line)
+                    print(line)
                     service_statuses[i]["Wrong entry"] = line
                     service_statuses[i]["Valid Fstab"] = "No"
                     break
                 
                 elif "/var/tmp" in line.split() and ("rw,nosuid,nodev,noexec,relatime,nofail" != words[3] or "0" != words[4] or "0" != words[5]):
-                    print("Wrong Fstab entry - " + line)
+                    print(line)
                     service_statuses[i]["Wrong entry"] = line
                     service_statuses[i]["Valid Fstab"] = "No"
                     break
                 
                 elif "/var/log" in line.split() and ("rw,nosuid,nodev,noexec,relatime,nofail" != words[3] or "0" != words[4] or "0" != words[5]):
-                    print("Wrong Fstab entry - " + line)
+                    print(line)
                     service_statuses[i]["Wrong entry"] = line
                     service_statuses[i]["Valid Fstab"] = "No"
                     break
                     
                 elif "/var/log/audit" in line.split() and ("rw,relatime,nofail" != words[3] or "0" != words[4] or "0" != words[5]):
-                    print("Wrong Fstab entry - " + line)
+                    print(line)
                     service_statuses[i]["Wrong entry"] = line
                     service_statuses[i]["Valid Fstab"] = "No"
                     break
                 
                 elif "/home" == words[1] and ("rw,nodev,relatime,nofail" != words[3] or "0" != words[4] or "0" != words[5]):
-                    print("Wrong Fstab entry - " + line)
+                    print(line)
                     service_statuses[i]["Wrong entry"] = line
                     service_statuses[i]["Valid Fstab"] = "No"
                     break
                 
                 elif "efs" in words[0] and ("nfs4" != words[2] or "nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport,_netdev" != words[3] or "0" != words[4] or "0" != words[5]):
-                    print("Wrong Fstab entry - " + line)
+                    print(line)
                     service_statuses[i]["Wrong entry"] = line
                     service_statuses[i]["Valid Fstab"] = "No"
                     break
                 
-                elif "nofail" not in words[3] and "/" != words[1] and "/boot" != words[1] and "swap" != words[1] and "efs" not in words[0]:
-                    print("Wrong Fstab entry - " + line)
+                elif "nofail" not in words[3] and "/" != words[1] and "swap" != words[1] and "efs" not in words[0]:
+                    print(line)
                     service_statuses[i]["Wrong entry"] = line
                     service_statuses[i]["Valid Fstab"] = "No"
                     break
                               
-                service_statuses[i]["Valid Fstab"] = "Yes"
+            service_statuses[i]["Valid Fstab"] = "Yes"
                 
         else:
             print(service_statuses[i]["Instance Name"] + " is a windows server !!")
@@ -261,7 +213,7 @@ for instance in instances:
     
     i += 1
 
-fields = ['Instance Name', 'Instance Id', 'IP Address', 'Region', 'Instance Type', 'OS', 'Application', 'CoreApplicationGroup', 'Department', 'map-sap', 'ServerType', 'Server Type', 'Environment', 'environment', 'supervisory-organization', 'company', 'cost-center', 'Backup', 'splunk', 'splunk evidence', 'ntpd', 'ntpd evidence', 'chronyd', 'chronyd evidence', 'auditd', 'auditd evidence', 'amazon-ssm-agent', 'amazon-ssm-agent evidence', 'ds_agent', 'ds_agent evidence', 'sudoers entries', 'patched', 'patched evidence', 'last patched', 'last patched evidence', 'Valid Fstab', 'Wrong entry']
+fields = ['Instance Name', 'Instance Id', 'IP Address', 'Region', 'Instance Type', 'OS', 'Application', 'Environment', 'environment', 'supervisory-organization', 'company', 'cost-center', 'Backup', 'splunk', 'splunk evidence', 'ntpd', 'ntpd evidence', 'chronyd', 'chronyd evidence', 'auditd', 'auditd evidence', 'amazon-ssm-agent', 'amazon-ssm-agent evidence', 'ds_agent', 'ds_agent evidence', 'last patched', 'patch evidence', 'Valid Fstab', 'Wrong entry']
 file_name = "ORT Sheet.csv"
 fields.extend(["Security Groups"])
 

@@ -1,0 +1,7 @@
+tmpfs   /dev/shm        tmpfs   defaults,noexec,nodev,nosuid,nofail 0 0
+/dev/mapper/tmp-tmp       /tmp    xfs     defaults,rw,nosuid,nodev,noexec,relatime,nofail 0 0
+/dev/mapper/home-home       /home   xfs     rw,nodev,relatime,nofail 0 0
+/dev/mapper/var-var       /var    xfs     rw,relatime,nofail 0 0
+/dev/mapper/var_log-var_log       /var/log        xfs     rw,nosuid,nodev,noexec,relatime,nofail 0 0
+/dev/mapper/var_tmp-var_tmp       /var/tmp        xfs     rw,nosuid,nodev,noexec,relatime,nofail 0 0
+/dev/mapper/var_log_audit-var_log_audit       /var/log/audit  xfs     rw,relatime,nofail 0 0

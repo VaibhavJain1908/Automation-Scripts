@@ -1,1 +1,1 @@
-supportconfig -r <case_number>
+nohup supportconfig r 00356128 &

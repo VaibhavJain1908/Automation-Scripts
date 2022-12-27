@@ -17,15 +17,19 @@ def get_ssh(server, username, password):
 
     return ssh
 
-def ssh_func(ssh, server, username, password, commands):
+def ssh_func(ssh, server, username, password, files):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(server, port=22, username=username, password=password)
+
     print("=========")
-    
+
     stdin, stdout, stderr = ssh.exec_command('sudo su - -c "hostname"')
     stdin.flush()
     hostname = ""
     for line in stdout.readlines():
         hostname += line.replace("\n", "")
-
+        
     if hostname == "":  
         stdin, stdout, stderr = ssh.exec_command('sudo su - -c "hostname"', get_pty=True)
         stdin.write(password + '\n')
@@ -36,10 +40,10 @@ def ssh_func(ssh, server, username, password, commands):
             if i==0 or i==1 or "bash: /home/" + username + "/.bashrc: Not a directory" in line or "[sudo] password for " + username + ":" in line:
                 continue
             hostname += line.strip()
-                  
-        for cmd in commands:
-            print(Fore.RED + Style.BRIGHT + hostname + ":~ # " + Style.RESET_ALL + cmd)
-            stdin, stdout, stderr = ssh.exec_command('sudo su - -c "' + cmd + '"', get_pty=True)
+            
+        for file in files:
+            print(Fore.RED + Style.BRIGHT + hostname + ":~ # " + Style.RESET_ALL + "chmod 775 " + file)
+            stdin, stdout, stderr = ssh.exec_command('sudo su - -c "chmod 775 ' + file + '"', get_pty=True)
             stdin.write(password + '\n')
             stdin.flush()
             i = -1
@@ -48,49 +52,43 @@ def ssh_func(ssh, server, username, password, commands):
                 if i==0 or i==1 or "bash: /home/" + username + "/.bashrc: Not a directory" in line or "[sudo] password for " + username + ":" in line:
                     continue
                 print(line),
-            
+
     else:
-        for cmd in commands:
-            print(Fore.RED + Style.BRIGHT + hostname + ":~ # " + Style.RESET_ALL + cmd)
-            stdin, stdout, stderr = ssh.exec_command('sudo su - -c "' + cmd + '"', get_pty=True)
+        for file in files:
+            print(Fore.RED + Style.BRIGHT + hostname + ":~ # " + Style.RESET_ALL + "chmod 775 " + file)
+            stdin, stdout, stderr = ssh.exec_command('sudo su - -c "chmod 775 ' + file + '"')
             stdin.flush()
             for line in stdout.readlines():
                 print(line),
 
     print("=========")
+    del stdin, stdout, stderr
 
-print("\nEnter server names: ")
-servers = []
-while True:
-    server = raw_input()
-    if server == "":
-        break
-    servers.append(server)
+num = raw_input("Number of servers: ")
+print("Enter ip of " + num + " servers below:")
+servers = [raw_input() for i in range(int(num))]
 
 username = raw_input("Username: ")
 password = getpass.getpass()
 
-print("\nEnter commands:")
-commands = []
-while True:
-    command = raw_input()
-    if command == "":
-        break
-    commands.append(command)
-
 start_time = time.time()
-
-print("=========")
 for server in servers:
     print(server)
+    print("Enter files: ")
+    files = []
+    while True:
+        file = raw_input()
+        if file == "":
+            break
+        files.append(file)
     try:
         ssh = get_ssh(server, username, password)
-        ssh_func(ssh, server, username, password, commands)
+        ssh_func(ssh, server, username, password, files)
 
         ssh.close()
         del ssh
-    except Exception as exc:
-        print(exc)
+    except Exception as e:
+        print(e)
         print("Issue logging into " + server)
 
 print("--- %s seconds ---" % (time.time() - start_time))

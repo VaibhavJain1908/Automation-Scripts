@@ -1,0 +1,9 @@
+lsblk -o +SERIAL
+Verify swap volume
+increase volume as suggested
+lsblk
+swapoff /dev/nvme2n1
+dd if=/dev/zero of=/dev/nvme2n1 bs=1M count=32768
+mkswap /dev/nvme2n1
+swapon /dev/nvme2n1
+swapon -a

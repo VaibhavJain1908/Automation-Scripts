@@ -11,7 +11,7 @@ num = int(input("Enter number of servers: "))
 print("Enter names of {num} servers below:".format(num=num))
 instance_names = [input() for i in range(num)]
 
-ec2 = boto3.resource('ec2')
+ec2 = boto3.resource('ec2', region_name="us-west-1")
 instances = ec2.instances.filter(
     Filters = [{  
     'Name': 'tag:Name',
@@ -19,7 +19,7 @@ instances = ec2.instances.filter(
     }]
 )
 
-ssm_client = boto3.client('ssm')
+ssm_client = boto3.client('ssm', region_name="us-west-1")
 service_statuses = [{} for i in instance_names]
 
 i = 0

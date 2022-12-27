@@ -1,6 +1,7 @@
 import paramiko
 import getpass
 import datetime
+import csv
 import time
 from colorama import Fore
 from colorama import Style
@@ -9,6 +10,7 @@ warnings.filterwarnings("ignore")
 
 paramiko.util.log_to_file("filename.log")
 today = datetime.date.today()
+data = []
 
 def get_ssh(server, username, password):
     ssh = paramiko.SSHClient()
@@ -20,6 +22,7 @@ def get_ssh(server, username, password):
 def ssh_func(ssh, server, username, password, commands):
     print("=========")
     
+    data.append({'IP Address':server})
     stdin, stdout, stderr = ssh.exec_command('sudo su - -c "hostname"')
     stdin.flush()
     hostname = ""
@@ -43,23 +46,30 @@ def ssh_func(ssh, server, username, password, commands):
             stdin.write(password + '\n')
             stdin.flush()
             i = -1
+            
+            data[-1][cmd] = ""
             for line in stdout.readlines():
                 i += 1
                 if i==0 or i==1 or "bash: /home/" + username + "/.bashrc: Not a directory" in line or "[sudo] password for " + username + ":" in line:
                     continue
                 print(line),
+                data[-1][cmd] += line.strip().encode('UTF-8')
             
     else:
         for cmd in commands:
             print(Fore.RED + Style.BRIGHT + hostname + ":~ # " + Style.RESET_ALL + cmd)
             stdin, stdout, stderr = ssh.exec_command('sudo su - -c "' + cmd + '"', get_pty=True)
             stdin.flush()
+            
+            data[-1][cmd] = ""
             for line in stdout.readlines():
                 print(line),
-
+                data[-1][cmd] += line.strip().encode('UTF-8')
+                
+    data[-1]["Server"] = hostname
     print("=========")
 
-print("\nEnter server names: ")
+print("\nEnter IP Addresses: ")
 servers = []
 while True:
     server = raw_input()
@@ -92,5 +102,21 @@ for server in servers:
     except Exception as exc:
         print(exc)
         print("Issue logging into " + server)
+ 
+file_name = "Output.csv"
+fields = ["Server", "IP Address"]
+fields.extend(commands)
+
+# writing to csv file 
+with open(file_name, 'w') as csvfile: 
+    # creating a csv dict writer object 
+    writer = csv.DictWriter(csvfile, fieldnames = fields)
+        
+    # writing headers (field names)
+    writer.writeheader()
+        
+    # writing data rows 
+    writer.writerows(data)
+print('\nOutput is written to Excel File successfully.\n')
 
 print("--- %s seconds ---" % (time.time() - start_time))

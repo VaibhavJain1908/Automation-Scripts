@@ -31,8 +31,8 @@ for instance in instances:
             break
     
     instance.wait_until_stopped()
-    print("Creating Pre Patch AMI for " + instanceName)
-    client.create_image(InstanceId=instance.id, Name=instanceName + '_PrePatchWithReboot_' + str(today.day).rjust(2, '0') + str(today.month).rjust(2, '0') + str(today.year))
+    print("Creating Post Patch AMI for " + instanceName)
+    client.create_image(InstanceId=instance.id, Name=instanceName + '_PostPatchWithReboot_' + str(today.day).rjust(2, '0') + str(today.month).rjust(2, '0') + str(today.year))
     time.sleep(2)
 
 print("=========Starting Instances=========")        

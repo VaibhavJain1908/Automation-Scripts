@@ -18,6 +18,7 @@ def get_ssh(server, username, password):
     return ssh
 
 def ssh_func(ssh, server, username, password, commands):
+    output.append("=========\n")
     print("=========")
     
     stdin, stdout, stderr = ssh.exec_command('sudo su - -c "hostname"')
@@ -26,62 +27,53 @@ def ssh_func(ssh, server, username, password, commands):
     for line in stdout.readlines():
         hostname += line.replace("\n", "")
 
-    if hostname == "":  
-        stdin, stdout, stderr = ssh.exec_command('sudo su - -c "hostname"', get_pty=True)
-        stdin.write(password + '\n')
-        stdin.flush()
-        i = -1
-        for line in stdout.readlines():
-            i += 1
-            if i==0 or i==1 or "bash: /home/" + username + "/.bashrc: Not a directory" in line or "[sudo] password for " + username + ":" in line:
-                continue
-            hostname += line.strip()
-                  
+    if hostname == "":        
         for cmd in commands:
-            print(Fore.RED + Style.BRIGHT + hostname + ":~ # " + Style.RESET_ALL + cmd)
+            output.append(server + ":~ # " + cmd + "\n")
+            print(Fore.RED + Style.BRIGHT + server + ":~ # " + Style.RESET_ALL + cmd)
             stdin, stdout, stderr = ssh.exec_command('sudo su - -c "' + cmd + '"', get_pty=True)
             stdin.write(password + '\n')
             stdin.flush()
             i = -1
             for line in stdout.readlines():
                 i += 1
-                if i==0 or i==1 or "bash: /home/" + username + "/.bashrc: Not a directory" in line or "[sudo] password for " + username + ":" in line:
+                if i==0 or i==1:
                     continue
+                output.append(line)
                 print(line),
             
     else:
         for cmd in commands:
+            output.append(hostname + ":~ # " + cmd + "\n")
             print(Fore.RED + Style.BRIGHT + hostname + ":~ # " + Style.RESET_ALL + cmd)
             stdin, stdout, stderr = ssh.exec_command('sudo su - -c "' + cmd + '"', get_pty=True)
             stdin.flush()
             for line in stdout.readlines():
+                output.append(line)
                 print(line),
 
+    output.append("=========\n")
     print("=========")
 
-print("\nEnter server names: ")
-servers = []
-while True:
-    server = raw_input()
-    if server == "":
-        break
-    servers.append(server)
+output = []
+
+num = raw_input("Number of servers: ")
+print("Enter names of " + num + " servers below:")
+servers = [raw_input() for i in range(int(num))]
 
 username = raw_input("Username: ")
 password = getpass.getpass()
 
-print("\nEnter commands:")
-commands = []
-while True:
-    command = raw_input()
-    if command == "":
-        break
-    commands.append(command)
+num = raw_input("Number of commands: ")
+print("Enter " + num + " commands below:")
+commands = [raw_input() for i in range(int(num))]
 
 start_time = time.time()
 
+output.append("=========\n")
 print("=========")
 for server in servers:
+    output.append(server + "\n")
     print(server)
     try:
         ssh = get_ssh(server, username, password)
@@ -90,7 +82,12 @@ for server in servers:
         ssh.close()
         del ssh
     except Exception as exc:
+        output.append(str(exc) + "\n")
         print(exc)
+        output.append("Issue logging into " + server + "\n")
         print("Issue logging into " + server)
+        
+with open("output.txt", "w") as f:
+    f.writelines(output)
 
 print("--- %s seconds ---" % (time.time() - start_time))

@@ -1,0 +1,25 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::891108200673:role/Test_AMI_Snapshot_Role"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": "sts:AssumeRole",
+            "Resource": "arn:aws:iam::706212970319:role/Test_IAM_Role_Tagging",
+            "Effect": "Allow"
+        }
+    ]
+}
+

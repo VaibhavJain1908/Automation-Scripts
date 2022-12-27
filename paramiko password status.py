@@ -2,8 +2,6 @@ import paramiko
 import getpass
 import datetime
 import time
-from colorama import Fore
-from colorama import Style
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -17,14 +15,8 @@ def get_ssh(server, username, password):
 
     return ssh
 
-def upload_file(ssh, filename):
-    ftp_client=ssh.open_sftp()
-    ftp_client.put(filename, filename)
-    ftp_client.close()
-    
-    del ftp_client
-
-def ssh_func(ssh, server, username, password, commands):
+def ssh_func(ssh, server, username, password, users):
+    output.append("=========\n")
     print("=========")
     
     stdin, stdout, stderr = ssh.exec_command('sudo su - -c "hostname"')
@@ -34,9 +26,10 @@ def ssh_func(ssh, server, username, password, commands):
         hostname += line.replace("\n", "")
 
     if hostname == "":        
-        for cmd in commands:
-            print(Fore.RED + Style.BRIGHT + server + ":~ # " + Style.RESET_ALL + cmd)
-            stdin, stdout, stderr = ssh.exec_command('sudo su - -c "' + cmd + '"', get_pty=True)
+        for user in users:
+            output.append(server + ":~ # passwd --status " + user + "\n")
+            print(server + ":~ # passwd --status " + user)
+            stdin, stdout, stderr = ssh.exec_command('sudo su - -c "passwd --status ' + user + '"', get_pty=True)
             stdin.write(password + '\n')
             stdin.flush()
             i = -1
@@ -44,50 +37,58 @@ def ssh_func(ssh, server, username, password, commands):
                 i += 1
                 if i==0 or i==1:
                     continue
+                output.append(line)
                 print(line),
             
     else:
-        for cmd in commands:
-            print(Fore.RED + Style.BRIGHT + hostname + ":~ # " + Style.RESET_ALL + cmd)
-            stdin, stdout, stderr = ssh.exec_command('sudo su - -c "' + cmd + '"', get_pty=True)
+        for user in users:
+            output.append(hostname + ":~ # passwd --status " + user + "\n")
+            print(hostname + ":~ # passwd --status " + user)
+            stdin, stdout, stderr = ssh.exec_command('sudo su - -c "passwd --status ' + user + '"', get_pty=True)
             stdin.flush()
             for line in stdout.readlines():
+                output.append(line)
                 print(line),
 
+    output.append("=========\n")
     print("=========")
 
-print("\nEnter server names: ")
-servers = []
-while True:
-    server = raw_input()
-    if server == "":
-        break
-    servers.append(server)
+output = []
+
+num = raw_input("Number of servers: ")
+print("Enter names of " + num + " servers below:")
+servers = [raw_input() for i in range(int(num))]
 
 username = raw_input("Username: ")
 password = getpass.getpass()
-filename = raw_input("File Name to upload: ")
-
-print("\nEnter commands:")
-commands = []
-while True:
-    command = raw_input()
-    if command == "":
-        break
-    commands.append(command)
 
 start_time = time.time()
+
+output.append("=========\n")
+print("=========")
 for server in servers:
+    output.append(server + "\n")
     print(server)
+    print("Enter users: ")
+    users = []
+    while True:
+        user = raw_input()
+        if user == "":
+            break
+        users.append(user.replace(":", ""))
     try:
         ssh = get_ssh(server, username, password)
-        upload_file(ssh, filename)
-        ssh_func(ssh, server, username, password, commands)
+        ssh_func(ssh, server, username, password, users)
 
         ssh.close()
         del ssh
     except Exception as exc:
+        output.append(str(exc) + "\n")
         print(exc)
+        output.append("Issue logging into " + server + "\n")
         print("Issue logging into " + server)
+        
+with open("output.txt", "w") as f:
+    f.writelines(output)
 
 print("--- %s seconds ---" % (time.time() - start_time))

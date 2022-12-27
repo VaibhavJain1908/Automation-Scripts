@@ -2,4 +2,4 @@ rsync -avzh --progress shared /hana/shared/
 rsync -avzh AVJ1007@172.18.139.69:/etc/SUSEConnect /home/AVJ1007
 
 
-rsync -avzh *adm AVJ1007@172.18.88.115:/home/AVJ1007/
+rsync -avzh jre1.8-1.8.0_351-fcs.x86_64 AVJ1007@172.18.96.147:/home/AVJ1007/

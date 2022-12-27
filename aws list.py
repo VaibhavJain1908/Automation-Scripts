@@ -36,7 +36,7 @@ for i in range(len(iam_roles)):
             data.append({})
             data[i]["Instance ID"] = instance.id
             for tag in instance.tags:
-                if tag["Key"] in ['Name', 'Backup', 'Environment', 'Server Type', 'CoreApplicationGroup', 'OS', 'Application', 'PROJECT', 'ServerType']:
+                if tag["Key"] in ['Name', 'Backup', 'Environment', 'Server Type', 'CoreApplicationGroup', 'OS', 'Application', 'PROJECT', 'ServerType', 'environment', 'cost-center', 'company', 'supervisory-organization']:
                     data[i][tag["Key"]] = tag["Value"]
                     
             if instance.state['Name'] == 'running':      
@@ -88,7 +88,7 @@ for i in range(len(iam_roles)):
                 
             i+=1
 
-fields = ['Name', 'Backup', 'Environment', 'Server Type', 'CoreApplicationGroup', 'OS', 'Application', 'PROJECT', 'ServerType', 'Instance ID', 'Instance state', 'Instance type', 'Status check', 'Availability Zone', 'Private IP address', 'Monitoring', 'Security group name', 'Key name', 'Image ID', 'Launch time', 'IAM instance profile ARN']
+fields = ['Name', 'Backup', 'Environment', 'Server Type', 'CoreApplicationGroup', 'OS', 'Application', 'PROJECT', 'environment', 'cost-center', 'company', 'supervisory-organization', 'ServerType', 'Instance ID', 'Instance state', 'Instance type', 'Status check', 'Availability Zone', 'Private IP address', 'Monitoring', 'Security group name', 'Key name', 'Image ID', 'Launch time', 'IAM instance profile ARN']
 file_name = "AWS Server List.csv"
 
 # writing to csv file

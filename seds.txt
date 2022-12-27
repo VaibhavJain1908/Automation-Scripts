@@ -4,7 +4,15 @@ cd /opt/splunkforwarder/etc/system/local/
 172.18.139.140
 
 cat /opt/splunkforwarder/etc/system/local/deploymentclient.conf
-sed -i 's/172.18.139.133/172.18.139.140/' /opt/splunkforwarder/etc/system/local/deploymentclient.conf
-sed -i 's/SAPMWINDEX/SAPMWINDEXER/' /opt/splunkforwarder/etc/system/local/deploymentclient.conf
+sed -i 's/targetUri = DRMWSPLUNK.sap.lambweston.com:8089/targetUri = 172.28.138.115:8089/' /opt/splunkforwarder/etc/system/local/deploymentclient.conf
 cat /opt/splunkforwarder/etc/system/local/deploymentclient.conf
+
+sed -i 's/targetUri = SAPMWINDEXER.sap.lambweston.com:8089/targetUri = targetUri = 172.28.138.115:8089/' /opt/splunkforwarder/etc/system/local/deploymentclient.conf
+
+cat /opt/splunkforwarder/etc/system/local/deploymentclient.conf
+cat /opt/splunkforwarder/etc/system/local/server.conf
+cat /opt/splunkforwarder/etc/system/local/inputs.conf
 /opt/splunkforwarder/bin/splunk restart
+
+sed -i 's/server_name/SAPTWDAP01/' /opt/splunkforwarder/etc/system/local/server.conf
+sed -i 's/server_name/SAPTWDAP01/' /opt/splunkforwarder/etc/system/local/inputs.conf

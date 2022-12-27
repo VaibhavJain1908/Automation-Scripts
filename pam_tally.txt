@@ -1,0 +1,5 @@
+pam_tally2 --user=Deepika.Chauhan@imperial.local --reset
+pam_tally2 --user=tejashva.narain@imperial.local --reset
+pam_tally2 --user=Anshul.Kamal@imperiallogistics.com --reset
+pam_tally2 --user=ashutosh.upadhyay@imperial.local --reset
+pam_tally2 --user=sarah.patro@imperial.local --reset

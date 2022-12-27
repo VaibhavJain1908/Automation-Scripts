@@ -1,0 +1,47 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeImages",
+                "ec2:DeregisterImage",
+                "ec2:DeleteSnapshot",
+                "ec2:DescribeSnapshots"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "ForAllValues:StringLike": {
+                    "aws:ResourceTag/Name": "Patch"
+                }
+            }
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "kms:Decrypt",
+                "kms:DescribeKey",
+                "kms:Encrypt",
+                "kms:GenerateDataKey",
+                "kms:ReEncrypt*",
+                "s3:PutObjectAcl",
+                "s3:GetObject",
+                "s3:GetObjectAcl"
+            ],
+            "Resource": [
+                "arn:aws:s3:::lw-ami-deletion/*",
+                "arn:aws:kms:us-east-1:864273633830:key/a169f020-b587-44b4-8a06-f0a4310aa98e",
+                "arn:aws:kms:us-east-1:864273633830:key/532bf833-95ae-43cd-8712-38fa1be3483c"
+            ]
+        },
+        {
+            "Sid": "VisualEditor2",
+            "Effect": "Allow",
+            "Action": "sns:Publish",
+            "Resource": "*"
+        }
+    ]
+}

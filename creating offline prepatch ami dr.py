@@ -11,8 +11,8 @@ num = int(input("Enter number of servers: "))
 print("Enter names of {num} servers below:".format(num=num))
 instance_names = [input() for i in range(num)]
 
-client = boto3.client('ec2')
-ec2 = boto3.resource('ec2')
+client = boto3.client('ec2', region_name="us-west-1")
+ec2 = boto3.resource('ec2', region_name="us-west-1")
 instances = ec2.instances.filter(
     Filters = [{  
     'Name': 'tag:Name',

@@ -1,0 +1,22 @@
+Project Number
+
+Project Name
+
+Application Name
+
+Run Cost(Approved Run Budget)-USD
+
+Application Owner
+
+Business Owner
+
+Environment
+
+RPO-RTO
+
+Infra Availability Classification
+
+AppSupport Team
+
+InfraSupport Team
+

@@ -1,0 +1,506 @@
+=========
+DRSAPPPODB01
+=========
+DRSAPPPODB01:~ # df -h
+Filesystem                                   Size  Used Avail Use% Mounted on
+devtmpfs                                     125G  8.0K  125G   1% /dev
+tmpfs                                        189G  188K  189G   1% /dev/shm
+tmpfs                                        125G  553M  125G   1% /run
+tmpfs                                        125G     0  125G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                               100G   28G   72G  28% /
+/dev/mapper/usr_sap-usr_sap                   50G  995M   50G   2% /usr/sap
+/dev/mapper/sapbackup-sapbackup              600G  175G  426G  30% /SAPBackup
+/dev/mapper/hana_shared_HPP-hana_shared_HPP  300G  244G   57G  82% /hana/shared/HPP
+/dev/mapper/hana_data_HPP-hana_data_HPP      399G   32G  368G   8% /hana/data/HPP
+/dev/mapper/hana_log_HPP-hana_log_HPP        300G  2.6G  298G   1% /hana/log/HPP
+/dev/nvme0n1p1                               297M  103M  194M  35% /boot
+fs-6b226e72.efs.us-west-1.amazonaws.com:/    8.0E  1.7G  8.0E   1% /sapmnt/POP
+tmpfs                                         25G     0   25G   0% /run/user/3000
+tmpfs                                         25G     0   25G   0% /run/user/486
+tmpfs                                         25G     0   25G   0% /run/user/1725029451
+=========
+DRSAPPPOCIPA
+=========
+DRSAPPPOCIPA:~ # df -h
+Filesystem                                 Size  Used Avail Use% Mounted on
+devtmpfs                                   7.6G  8.0K  7.6G   1% /dev
+tmpfs                                       36G  408K   36G   1% /dev/shm
+tmpfs                                      7.7G  313M  7.3G   5% /run
+tmpfs                                      7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                             100G   11G   90G  11% /
+/dev/mapper/usr_sap-usr_sap                 10G  302M  9.7G   3% /usr/sap
+/dev/mapper/usr_sap_POP-usr_sap_POP        100G   16G   85G  16% /usr/sap/POP
+/dev/mapper/usr_sap_DAA-usr_sap_DAA         30G  1.5G   29G   5% /usr/sap/DAA
+/dev/nvme0n1p1                             297M  103M  194M  35% /boot
+fs-2226763b.efs.us-west-1.amazonaws.com:/  8.0E  5.5G  8.0E   1% /sapmnt/POP
+fs-4f742556.efs.us-west-1.amazonaws.com:/  8.0E  4.0M  8.0E   1% /SAPInterfaces
+tmpfs                                      1.6G     0  1.6G   0% /run/user/2001
+tmpfs                                      1.6G     0  1.6G   0% /run/user/4000
+tmpfs                                      1.6G     0  1.6G   0% /run/user/2000
+tmpfs                                      1.6G     0  1.6G   0% /run/user/1725029451
+=========
+DRSAPPPOAP01
+=========
+DRSAPPPOAP01:~ # df -h
+Filesystem                                 Size  Used Avail Use% Mounted on
+devtmpfs                                   7.6G  8.0K  7.6G   1% /dev
+tmpfs                                       36G  408K   36G   1% /dev/shm
+tmpfs                                      7.7G  313M  7.3G   5% /run
+tmpfs                                      7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                             100G   12G   88G  12% /
+/dev/mapper/usr_sap-usr_sap                 10G  1.4G  8.7G  14% /usr/sap
+/dev/mapper/usr_sap_POP-usr_sap_POP        100G   11G   90G  11% /usr/sap/POP
+/dev/mapper/usr_sap_DAA-usr_sap_DAA         20G  1.6G   19G   8% /usr/sap/DAA
+/dev/nvme0n1p1                             297M  103M  194M  35% /boot
+fs-2226763b.efs.us-west-1.amazonaws.com:/  8.0E  5.5G  8.0E   1% /sapmnt/POP
+fs-4f742556.efs.us-west-1.amazonaws.com:/  8.0E  4.0M  8.0E   1% /SAPInterfaces
+tmpfs                                      1.6G     0  1.6G   0% /run/user/2001
+tmpfs                                      1.6G     0  1.6G   0% /run/user/4000
+tmpfs                                      1.6G     0  1.6G   0% /run/user/2000
+tmpfs                                      1.6G     0  1.6G   0% /run/user/1725029451
+=========
+DRSAPPF4DB01
+=========
+DRSAPPF4DB01:~ # df -h
+Filesystem                                       Size  Used Avail Use% Mounted on
+devtmpfs                                         125G  8.0K  125G   1% /dev
+tmpfs                                            189G  228K  189G   1% /dev/shm
+tmpfs                                            125G  553M  125G   1% /run
+tmpfs                                            125G     0  125G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                                   100G   20G   81G  20% /
+/dev/mapper/hana_data_HFP-hana_data_HFP          498G  116G  382G  24% /hana/data/HFP
+/dev/mapper/sapbackup-sapbackup                  600G  110G  491G  19% /SAPBackup
+/dev/mapper/hana_log_HFP-hana_log_HFP            300G  2.6G  298G   1% /hana/log/HFP
+/dev/mapper/hana_shared_HFP-hana_shared_HFP      300G  138G  163G  46% /hana/shared/HFP
+/dev/mapper/usr_sap-usr_sap                       50G  997M   49G   2% /usr/sap
+/dev/nvme0n1p1                                   297M  103M  194M  35% /boot
+fs-6504497c.efs.us-west-1.amazonaws.com:/        8.0E  1.0M  8.0E   1% /usr/sap/trans
+fs-88044991.efs.us-west-1.amazonaws.com:/sapmnt  8.0E  7.0G  8.0E   1% /sapmnt/F4P
+fs-88044991.efs.us-west-1.amazonaws.com:/        8.0E  7.0G  8.0E   1% /efs
+tmpfs                                             25G     0   25G   0% /run/user/3000
+tmpfs                                             25G     0   25G   0% /run/user/486
+tmpfs                                             25G     0   25G   0% /run/user/1725029451
+=========
+DRSAPPF4AP01
+=========
+DRSAPPF4AP01:~ # df -h
+Filesystem                                       Size  Used Avail Use% Mounted on
+devtmpfs                                         7.6G  8.0K  7.6G   1% /dev
+tmpfs                                             36G  188K   36G   1% /dev/shm
+tmpfs                                            7.7G  313M  7.3G   5% /run
+tmpfs                                            7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                                   100G  7.1G   93G   8% /
+/dev/mapper/usr_sap-usr_sap                       50G  5.2G   45G  11% /usr/sap
+/dev/mapper/usr_sap_F4P-usr_sap_F4P              100G  2.8G   98G   3% /usr/sap/F4P
+/dev/mapper/usr_sap_DAA-usr_sap_DAA               30G  1.5G   29G   5% /usr/sap/DAA
+/dev/nvme0n1p1                                   297M  103M  194M  35% /boot
+fs-6504497c.efs.us-west-1.amazonaws.com:/        8.0E  1.0M  8.0E   1% /usr/sap/trans
+fs-88044991.efs.us-west-1.amazonaws.com:/sapmnt  8.0E  7.0G  8.0E   1% /sapmnt/F4P
+fs-88044991.efs.us-west-1.amazonaws.com:/SYS     8.0E  7.0G  8.0E   1% /usr/sap/F4P/SYS
+tmpfs                                            1.6G     0  1.6G   0% /run/user/2001
+tmpfs                                            1.6G     0  1.6G   0% /run/user/2000
+tmpfs                                            1.6G     0  1.6G   0% /run/user/1725029451
+=========
+DRSAPPF4MS01
+=========
+DRSAPPF4MS01:~ # df -h
+Filesystem                                       Size  Used Avail Use% Mounted on
+devtmpfs                                         7.7G  8.0K  7.7G   1% /dev
+tmpfs                                             36G  528K   36G   1% /dev/shm
+tmpfs                                            7.7G  313M  7.4G   4% /run
+tmpfs                                            7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                                   100G  6.3G   94G   7% /
+/dev/mapper/usr_sap-usr_sap                       20G  298M   20G   2% /usr/sap
+/dev/mapper/usr_sap_DAA-usr_sap_DAA               30G  1.5G   29G   5% /usr/sap/DAA
+/dev/mapper/usr_sap_F4P-usr_sap_F4P              100G   33M  100G   1% /usr/sap/F4P
+/dev/nvme0n1p1                                   297M  103M  194M  35% /boot
+fs-6504497c.efs.us-west-1.amazonaws.com:/        8.0E  1.0M  8.0E   1% /usr/sap/trans
+fs-88044991.efs.us-west-1.amazonaws.com:/SYS     8.0E  7.0G  8.0E   1% /usr/sap/F4P/SYS
+fs-88044991.efs.us-west-1.amazonaws.com:/sapmnt  8.0E  7.0G  8.0E   1% /sapmnt/F4P
+fs-88044991.efs.us-west-1.amazonaws.com:/ASCS01  8.0E  7.0G  8.0E   1% /usr/sap/F4P/ASCS01
+tmpfs                                            1.6G     0  1.6G   0% /run/user/2001
+tmpfs                                            1.6G     0  1.6G   0% /run/user/2000
+tmpfs                                            1.6G     0  1.6G   0% /run/user/3000
+tmpfs                                            1.6G     0  1.6G   0% /run/user/1725029451
+=========
+DRSAPPB4AP01
+=========
+DRSAPPB4AP01:~ # df -h
+Filesystem                                 Size  Used Avail Use% Mounted on
+devtmpfs                                   7.6G  8.0K  7.6G   1% /dev
+tmpfs                                       36G  308K   36G   1% /dev/shm
+tmpfs                                      7.6G  273M  7.3G   4% /run
+tmpfs                                      7.6G     0  7.6G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                             100G   11G   90G  11% /
+/dev/mapper/usr_sap-usr_sap                 50G  5.0G   46G  10% /usr/sap
+/dev/mapper/usr_sap_DAA-usr_sap_DAA         20G  1.5G   19G   8% /usr/sap/DAA
+/dev/nvme0n1p1                             297M  103M  194M  35% /boot
+/dev/mapper/usr_sap_B4P-usr_sap_B4P        100G  2.8G   98G   3% /usr/sap/B4P
+fs-af2777b6.efs.us-west-1.amazonaws.com:/  8.0E  2.0G  8.0E   1% /sapmnt/B4P
+tmpfs                                      1.6G     0  1.6G   0% /run/user/1725029451
+=========
+DRSAPPB4AP02
+=========
+DRSAPPB4AP02:~ # df -h
+Filesystem                                 Size  Used Avail Use% Mounted on
+devtmpfs                                   7.6G  8.0K  7.6G   1% /dev
+tmpfs                                       36G  268K   36G   1% /dev/shm
+tmpfs                                      7.7G  313M  7.3G   5% /run
+tmpfs                                      7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                             100G   11G   90G  11% /
+/dev/mapper/usr_sap-usr_sap                 50G  4.3G   46G   9% /usr/sap
+/dev/mapper/usr_sap_B4P-usr_sap_B4P        100G  2.8G   98G   3% /usr/sap/B4P
+/dev/mapper/usr_sap_DAA-usr_sap_DAA         20G  1.5G   19G   8% /usr/sap/DAA
+/dev/nvme0n1p1                             297M  103M  194M  35% /boot
+fs-af2777b6.efs.us-west-1.amazonaws.com:/  8.0E  2.0G  8.0E   1% /sapmnt/B4P
+tmpfs                                      1.6G     0  1.6G   0% /run/user/1725029451
+=========
+DRSAPPB4DB01
+=========
+DRSAPPB4DB01:~ # df -h
+Filesystem                                          Size  Used Avail Use% Mounted on
+devtmpfs                                            250G     0  250G   0% /dev
+tmpfs                                               422G  228K  422G   1% /dev/shm
+tmpfs                                               250G  1.5M  250G   1% /run
+tmpfs                                               250G     0  250G   0% /sys/fs/cgroup
+/dev/nvme0n1p1                                      100G   11G   90G  11% /
+tmpfs                                               250G  296K  250G   1% /tmp
+/dev/mapper/sapbackup-sapbackup                     3.4T  1.9T  1.5T  58% /SAPBackup
+/dev/mapper/usr_sap-usr_sap                          50G  1.1G   49G   3% /usr/sap
+/dev/mapper/hana_shared_BHP-hana_shared_BHP         400G   17G  383G   5% /hana/shared/BHP
+/dev/mapper/hana_data_BHP-hana_data_BHP             1.6T  885G  679G  57% /hana/data/BHP
+/dev/mapper/hana_log_BHP-hana_log_BHP               400G  4.2G  396G   2% /hana/log/BHP
+/dev/mapper/home-home                                20G  381M   20G   2% /home
+/dev/mapper/var-var                                  20G  652M   20G   4% /var
+/dev/mapper/var_log-var_log                          20G  2.2G   18G  11% /var/log
+/dev/mapper/var_log_audit-var_log_audit              20G  1.2G   19G   6% /var/log/audit
+/dev/mapper/var_tmp-var_tmp                          20G  163M   20G   1% /var/tmp
+fs-025bcc70a8057afa0.efs.us-west-1.amazonaws.com:/  8.0E  2.1G  8.0E   1% /sapmnt/B4P
+tmpfs                                                50G     0   50G   0% /run/user/1002
+tmpfs                                                50G     0   50G   0% /run/user/486
+tmpfs                                                50G     0   50G   0% /run/user/1725029451
+=========
+DRSAPPB4CIPA
+=========
+DRSAPPB4CIPA:~ # df -h
+Filesystem                                 Size  Used Avail Use% Mounted on
+devtmpfs                                   7.6G  8.0K  7.6G   1% /dev
+tmpfs                                       36G  428K   36G   1% /dev/shm
+tmpfs                                      7.7G  313M  7.3G   5% /run
+tmpfs                                      7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                             100G   11G   89G  11% /
+/dev/mapper/usr_sap-usr_sap                 30G  4.4G   26G  15% /usr/sap
+/dev/mapper/usr_sap_DAA-usr_sap_DAA         20G  1.5G   19G   8% /usr/sap/DAA
+/dev/mapper/usr_sap_B4P-usr_sap_B4P         60G  3.0G   58G   5% /usr/sap/B4P
+/dev/nvme0n1p1                             297M  103M  194M  35% /boot
+fs-af2777b6.efs.us-west-1.amazonaws.com:/  8.0E  2.0G  8.0E   1% /sapmnt/B4P
+tmpfs                                      1.6G     0  1.6G   0% /run/user/2001
+tmpfs                                      1.6G     0  1.6G   0% /run/user/4000
+tmpfs                                      1.6G     0  1.6G   0% /run/user/2000
+tmpfs                                      1.6G     0  1.6G   0% /run/user/1725029451
+=========
+DRSAPPBJDB01
+=========
+DRSAPPBJDB01:~ # df -h
+Filesystem                                   Size  Used Avail Use% Mounted on
+devtmpfs                                     125G  8.0K  125G   1% /dev
+tmpfs                                        189G  348K  189G   1% /dev/shm
+tmpfs                                        125G  601M  124G   1% /run
+tmpfs                                        125G     0  125G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                               100G   28G   72G  29% /
+/dev/mapper/hana_shared_HBP-hana_shared_HBP  300G   95G  206G  32% /hana/shared/HBP
+/dev/mapper/sapbackup-sapbackup              600G   69G  532G  12% /SAPBackup
+/dev/mapper/usr_sap-usr_sap                   50G  269M   50G   1% /usr/sap
+/dev/mapper/hana_log_HBP-hana_log_HBP        300G  4.2G  296G   2% /hana/log/HBP
+/dev/mapper/hana_data_HBP-hana_data_HBP      498G  9.4G  489G   2% /hana/data/HBP
+/dev/nvme0n1p1                               297M  103M  194M  35% /boot
+tmpfs                                         25G     0   25G   0% /run/user/3000
+tmpfs                                         25G     0   25G   0% /run/user/486
+tmpfs                                         25G     0   25G   0% /run/user/1725064823
+=========
+DRSAPPBJCIPA
+=========
+DRSAPPBJCIPA:~ # df -h
+Filesystem                           Size  Used Avail Use% Mounted on
+devtmpfs                              16G  8.0K   16G   1% /dev
+tmpfs                                 23G  408K   23G   1% /dev/shm
+tmpfs                                 16G  337M   15G   3% /run
+tmpfs                                 16G     0   16G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                       100G   57G   43G  57% /
+/dev/mapper/usr_sap-usr_sap           25G  960M   25G   4% /usr/sap
+/dev/mapper/usr_sap_DAA-usr_sap_DAA   20G  1.5G   19G   8% /usr/sap/DAA
+/dev/mapper/usr_sap_BJP-usr_sap_BJP  100G   49G   51G  49% /usr/sap/BJP
+/dev/nvme0n1p1                       297M  103M  194M  35% /boot
+tmpfs                                3.1G     0  3.1G   0% /run/user/4001
+tmpfs                                3.1G     0  3.1G   0% /run/user/4000
+tmpfs                                3.1G     0  3.1G   0% /run/user/1725064823
+=========
+DRSAPPWDAP01
+=========
+DRSAPPWDAP01:~ # df -h
+Filesystem                           Size  Used Avail Use% Mounted on
+devtmpfs                             7.6G  8.0K  7.6G   1% /dev
+tmpfs                                 36G  168K   36G   1% /dev/shm
+tmpfs                                7.7G  313M  7.3G   5% /run
+tmpfs                                7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                       150G  6.1G  144G   5% /
+/dev/mapper/sapmnt_WDP-sapmnt_WDP     10G  757M  9.3G   8% /sapmnt/WDP
+/dev/mapper/usr_sap_WDP-usr_sap_WDP  100G  192M  100G   1% /usr/sap/WDP
+/dev/nvme0n1p1                       297M  103M  194M  35% /boot
+tmpfs                                1.6G     0  1.6G   0% /run/user/1003
+tmpfs                                1.6G     0  1.6G   0% /run/user/1002
+tmpfs                                1.6G     0  1.6G   0% /run/user/1725064823
+=========
+DRSAPPVRTXAP01
+=========
+DRSAPPVRTXAP01:~ # df -h
+Filesystem                                 Size  Used Avail Use% Mounted on
+devtmpfs                                   3.8G  8.0K  3.8G   1% /dev
+tmpfs                                       18G  328K   18G   1% /dev/shm
+tmpfs                                      3.8G  319M  3.5G   9% /run
+tmpfs                                      3.8G     0  3.8G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                             100G   11G   90G  11% /
+/dev/mapper/vertex-vertex                  100G  3.2G   97G   4% /vertex
+/dev/nvme0n1p1                             297M  103M  194M  35% /boot
+fs-09bb7d89.efs.us-east-1.amazonaws.com:/  8.0E   33T  8.0E   1% /SAPMedia
+tmpfs                                      762M     0  762M   0% /run/user/1725064823
+=========
+DRSAPTRPAP01
+=========
+DRSAPTRPAP01:~ # df -h
+Filesystem                                 Size  Used Avail Use% Mounted on
+devtmpfs                                    16G  8.0K   16G   1% /dev
+tmpfs                                       72G  268K   72G   1% /dev/shm
+tmpfs                                       16G  609M   15G   4% /run
+tmpfs                                       16G     0   16G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                             100G  5.2G   95G   6% /
+/dev/mapper/usr_sap_TRP-usr_sap_TRP        100G  6.4G   94G   7% /usr/sap/TRP
+/dev/nvme0n1p1                             297M  103M  194M  35% /boot
+fs-b36da833.efs.us-east-1.amazonaws.com:/  8.0E   44T  8.0E   1% /SAPMedia
+tmpfs                                      3.1G     0  3.1G   0% /run/user/1002
+tmpfs                                      3.1G     0  3.1G   0% /run/user/1725064823
+=========
+DRSAPPS4MS01
+=========
+DRSAPPS4MS01:~ # df -h
+Filesystem                                                Size  Used Avail Use% Mounted on
+devtmpfs                                                   16G     0   16G   0% /dev
+tmpfs                                                      71G  428K   71G   1% /dev/shm
+tmpfs                                                      16G  1.2M   16G   1% /run
+tmpfs                                                      16G     0   16G   0% /sys/fs/cgroup
+/dev/nvme0n1p1                                            100G   11G   90G  11% /
+tmpfs                                                      16G  296K   16G   1% /tmp
+/dev/mapper/usr_sap-usr_sap                                50G  295M   50G   1% /usr/sap
+/dev/mapper/usr_sap_DAA-usr_sap_DAA                        20G   33M   20G   1% /usr/sap/DAA
+/dev/mapper/usr_sap_S4P-usr_sap_S4P                       100G   33M  100G   1% /usr/sap/S4P
+/dev/mapper/var-var                                        20G  487M   20G   3% /var
+/dev/mapper/var_tmp-var_tmp                                20G   55M   20G   1% /var/tmp
+/dev/mapper/home-home                                      20G  426M   20G   3% /home
+/dev/mapper/var_log-var_log                                20G  1.6G   19G   8% /var/log
+/dev/mapper/var_log_audit-var_log_audit                    20G  1.5G   19G   8% /var/log/audit
+fs-699ad870.efs.us-west-1.amazonaws.com:/                 8.0E     0  8.0E   0% /usr/sap/trans
+fs-07fac334fc0b7ff59.efs.us-west-1.amazonaws.com:/SYS     8.0E   11G  8.0E   1% /usr/sap/S4P/SYS
+fs-07fac334fc0b7ff59.efs.us-west-1.amazonaws.com:/sapmnt  8.0E   11G  8.0E   1% /sapmnt/S4P
+fs-07fac334fc0b7ff59.efs.us-west-1.amazonaws.com:/ASCS01  8.0E   11G  8.0E   1% /usr/sap/S4P/ASCS01
+fs-07fac334fc0b7ff59.efs.us-west-1.amazonaws.com:/        8.0E   11G  8.0E   1% /efs
+fs-09bb7d89.efs.us-east-1.amazonaws.com:/                 8.0E   33T  8.0E   1% /SAPMedia
+tmpfs                                                     3.1G     0  3.1G   0% /run/user/2001
+tmpfs                                                     3.1G     0  3.1G   0% /run/user/2000
+tmpfs                                                     3.1G     0  3.1G   0% /run/user/1725064823
+=========
+DRSAPPS4AP02
+=========
+DRSAPPS4AP02:~ # df -h
+Filesystem                                                Size  Used Avail Use% Mounted on
+devtmpfs                                                   16G     0   16G   0% /dev
+tmpfs                                                      72G  304K   72G   1% /dev/shm
+tmpfs                                                      16G  1.2M   16G   1% /run
+tmpfs                                                      16G     0   16G   0% /sys/fs/cgroup
+/dev/nvme0n1p1                                            100G   11G   90G  11% /
+tmpfs                                                      16G  264K   16G   1% /tmp
+/dev/mapper/usr_sap-usr_sap                                50G  306M   50G   1% /usr/sap
+/dev/mapper/usr_sap_DAA-usr_sap_DAA                        20G  1.2G   19G   6% /usr/sap/DAA
+/dev/mapper/usr_sap_S4P-usr_sap_S4P                       100G  1.5G   99G   2% /usr/sap/S4P
+/dev/mapper/usr_sap_S4P_D00-usr_sap_S4P_D00               130G  1.5G  129G   2% /usr/sap/S4P/D00
+/dev/mapper/var-var                                        20G  275M   20G   2% /var
+/dev/mapper/home-home                                      20G  368M   20G   2% /home
+/dev/mapper/var_log-var_log                                20G  1.7G   19G   9% /var/log
+/dev/mapper/var_tmp-var_tmp                                20G   55M   20G   1% /var/tmp
+/dev/mapper/var_log_audit-var_log_audit                    20G  1.5G   19G   8% /var/log/audit
+fs-4f742556.efs.us-west-1.amazonaws.com:/                 8.0E  4.0M  8.0E   1% /SAPInterfaces
+fs-699ad870.efs.us-west-1.amazonaws.com:/                 8.0E     0  8.0E   0% /usr/sap/trans
+fs-07fac334fc0b7ff59.efs.us-west-1.amazonaws.com:/SYS     8.0E   11G  8.0E   1% /usr/sap/S4P/SYS
+fs-07fac334fc0b7ff59.efs.us-west-1.amazonaws.com:/sapmnt  8.0E   11G  8.0E   1% /sapmnt/S4P
+fs-09bb7d89.efs.us-east-1.amazonaws.com:/                 8.0E   33T  8.0E   1% /SAPMedia
+tmpfs                                                     3.1G     0  3.1G   0% /run/user/2000
+tmpfs                                                     3.1G     0  3.1G   0% /run/user/1725064823
+=========
+DRSAPPS4AP01
+=========
+DRSAPPS4AP01:~ # df -h
+Filesystem                                                Size  Used Avail Use% Mounted on
+devtmpfs                                                   16G     0   16G   0% /dev
+tmpfs                                                      71G  284K   71G   1% /dev/shm
+tmpfs                                                      16G  1.2M   16G   1% /run
+tmpfs                                                      16G     0   16G   0% /sys/fs/cgroup
+/dev/nvme0n1p1                                            100G   11G   90G  11% /
+tmpfs                                                      16G  264K   16G   1% /tmp
+/dev/mapper/usr_sap-usr_sap                                50G  326M   50G   1% /usr/sap
+/dev/mapper/usr_sap_DAA-usr_sap_DAA                        20G  1.2G   19G   6% /usr/sap/DAA
+/dev/mapper/var-var                                        20G  285M   20G   2% /var
+/dev/mapper/var_log-var_log                                20G  1.9G   19G  10% /var/log
+/dev/mapper/var_tmp-var_tmp                                20G   55M   20G   1% /var/tmp
+/dev/mapper/usr_sap_S4P-usr_sap_S4P                       100G  1.5G   99G   2% /usr/sap/S4P
+/dev/mapper/var_log_audit-var_log_audit                    20G  1.5G   19G   8% /var/log/audit
+/dev/mapper/home-home                                      20G  368M   20G   2% /home
+/dev/mapper/usr_sap_S4P_D00-usr_sap_S4P_D00               130G  1.8G  129G   2% /usr/sap/S4P/D00
+fs-699ad870.efs.us-west-1.amazonaws.com:/                 8.0E     0  8.0E   0% /usr/sap/trans
+fs-07fac334fc0b7ff59.efs.us-west-1.amazonaws.com:/sapmnt  8.0E   11G  8.0E   1% /sapmnt/S4P
+fs-07fac334fc0b7ff59.efs.us-west-1.amazonaws.com:/SYS     8.0E   11G  8.0E   1% /usr/sap/S4P/SYS
+fs-07fac334fc0b7ff59.efs.us-west-1.amazonaws.com:/        8.0E   11G  8.0E   1% /efs
+fs-4f742556.efs.us-west-1.amazonaws.com:/                 8.0E  4.0M  8.0E   1% /SAPInterfaces
+fs-09bb7d89.efs.us-east-1.amazonaws.com:/                 8.0E   33T  8.0E   1% /SAPMedia
+tmpfs                                                     3.1G     0  3.1G   0% /run/user/2001
+tmpfs                                                     3.1G     0  3.1G   0% /run/user/2000
+tmpfs                                                     3.1G     0  3.1G   0% /run/user/1725064823
+=========
+DRSAPPS4DB01
+=========
+DRSAPPS4DB01:~ # df -h
+Filesystem                                                Size  Used Avail Use% Mounted on
+devtmpfs                                                  250G  8.0K  250G   1% /dev
+tmpfs                                                     376G  468K  376G   1% /dev/shm
+tmpfs                                                     250G  1.5M  250G   1% /run
+tmpfs                                                     250G     0  250G   0% /sys/fs/cgroup
+/dev/nvme0n1p1                                            100G   16G   85G  16% /
+tmpfs                                                     250G  316K  250G   1% /tmp
+/dev/mapper/usr_sap-usr_sap                                50G  1.1G   49G   3% /usr/sap
+/dev/mapper/hana_shared_HSP-hana_shared_HSP               300G  128G  173G  43% /hana/shared/HSP
+/dev/mapper/var-var                                        20G  572M   20G   3% /var
+/dev/mapper/sapbackup-sapbackup                           1.3T  483G  818G  38% /SAPBackup
+/dev/mapper/hana_data_HSP-hana_data_HSP                  1000G  469G  531G  47% /hana/data/HSP
+/dev/mapper/var_tmp-var_tmp                                20G 1005M   20G   5% /var/tmp
+/dev/mapper/hana_log_HSP-hana_log_HSP                     600G   18G  583G   3% /hana/log/HSP
+/dev/mapper/var_log-var_log                                20G  2.2G   18G  11% /var/log
+/dev/mapper/home-home                                      20G  232M   20G   2% /home
+/dev/mapper/var_log_audit-var_log_audit                    20G  1.9G   19G  10% /var/log/audit
+fs-699ad870.efs.us-west-1.amazonaws.com:/                 8.0E     0  8.0E   0% /usr/sap/trans
+fs-07fac334fc0b7ff59.efs.us-west-1.amazonaws.com:/sapmnt  8.0E   11G  8.0E   1% /sapmnt/S4P
+fs-09bb7d89.efs.us-east-1.amazonaws.com:/                 8.0E   33T  8.0E   1% /SAPMedia
+tmpfs                                                      50G     0   50G   0% /run/user/3000
+tmpfs                                                      50G     0   50G   0% /run/user/486
+tmpfs                                                      50G     0   50G   0% /run/user/1725064823
+=========
+DRSAPPSODB01
+=========
+DRSAPPSODB01:~ # df -h
+Filesystem                                   Size  Used Avail Use% Mounted on
+devtmpfs                                     125G     0  125G   0% /dev
+tmpfs                                        189G  300K  189G   1% /dev/shm
+tmpfs                                        125G  1.5M  125G   1% /run
+tmpfs                                        125G     0  125G   0% /sys/fs/cgroup
+/dev/nvme0n1p1                               100G   20G   81G  20% /
+tmpfs                                        125G  160K  125G   1% /tmp
+/dev/mapper/usr_sap-usr_sap                   30G  1.7G   29G   6% /usr/sap
+/dev/mapper/hana_shared_HOP-hana_shared_HOP  300G   16G  285G   6% /hana/shared/HOP
+/dev/mapper/sap_backup-sap_backup            1.2T  273G  928G  23% /SAPBackup
+/dev/mapper/var-var                           20G  325M   20G   2% /var
+/dev/mapper/hana_log_HOP-hana_log_HOP        400G  4.6G  396G   2% /hana/log/HOP
+/dev/mapper/home-home                         20G  136M   20G   1% /home
+/dev/mapper/hana_data_HOP-hana_data_HOP      800G  275G  526G  35% /hana/data/HOP
+/dev/mapper/var_log-var_log                   20G  5.3G   15G  27% /var/log
+/dev/mapper/var_tmp-var_tmp                   20G  1.1G   19G   6% /var/tmp
+/dev/mapper/var_log_audit-var_log_audit       20G  5.1G   15G  26% /var/log/audit
+/dev/mapper/usr_sap_DAA-usr_sap_DAA           20G  1.5G   19G   8% /usr/sap/DAA
+fs-09bb7d89.efs.us-east-1.amazonaws.com:/    8.0E   33T  8.0E   1% /SAPMedia
+tmpfs                                         25G     0   25G   0% /run/user/5002
+tmpfs                                         25G     0   25G   0% /run/user/5003
+tmpfs                                         25G     0   25G   0% /run/user/1725047238
+fs-d5f2becc.efs.us-west-1.amazonaws.com:/    8.0E  9.5G  8.0E   1% /sapmnt
+tmpfs                                         25G     0   25G   0% /run/user/1725064823
+=========
+DRSAPPSOCIPA
+=========
+DRSAPPSOCIPA:~ # df -h
+Filesystem                                       Size  Used Avail Use% Mounted on
+devtmpfs                                          16G  8.0K   16G   1% /dev
+tmpfs                                             72G  568K   72G   1% /dev/shm
+tmpfs                                             16G  298M   16G   2% /run
+tmpfs                                             16G     0   16G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                                   100G   23G   78G  23% /
+/dev/mapper/usr_sap-usr_sap                       30G  4.3G   26G  15% /usr/sap
+/dev/mapper/usr_sap_DAA-usr_sap_DAA               20G  1.9G   19G  10% /usr/sap/DAA
+/dev/mapper/usr_sap_SOP-usr_sap_SOP               50G  3.2G   47G   7% /usr/sap/SOP
+/dev/mapper/usr_apmintroscope-usr_apmintroscope   50G  2.7G   48G   6% /usr/sap/ccms/apmintroscope
+/dev/mapper/usr_sap_SJP-usr_sap_SJP               50G   15G   36G  29% /usr/sap/SJP
+/dev/nvme0n1p1                                   297M  103M  194M  35% /boot
+fs-d5f2becc.efs.us-west-1.amazonaws.com:/        8.0E  9.5G  8.0E   1% /sapmnt
+fs-6e2b7b77.efs.us-west-1.amazonaws.com:/        8.0E  5.1G  8.0E   1% /sapmnt/SOP
+tmpfs                                            3.1G     0  3.1G   0% /run/user/5001
+tmpfs                                            3.1G     0  3.1G   0% /run/user/4000
+tmpfs                                            3.1G     0  3.1G   0% /run/user/5000
+tmpfs                                            3.1G     0  3.1G   0% /run/user/2000
+tmpfs                                            3.1G     0  3.1G   0% /run/user/1725064824
+tmpfs                                            3.1G     0  3.1G   0% /run/user/1725056406
+tmpfs                                            3.1G     0  3.1G   0% /run/user/1725064823
+=========
+DRSAPPSOAP01
+=========
+DRSAPPSOAP01:~ # df -h
+Filesystem                                    Size  Used Avail Use% Mounted on
+devtmpfs                                       16G  8.0K   16G   1% /dev
+tmpfs                                          72G  468K   72G   1% /dev/shm
+tmpfs                                          16G  297M   16G   2% /run
+tmpfs                                          16G     0   16G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                                100G   11G   90G  11% /
+/dev/mapper/usr_sap-usr_sap                    30G  4.3G   26G  15% /usr/sap
+/dev/mapper/usr_sap_SOP-usr_sap_SOP            50G  3.4G   47G   7% /usr/sap/SOP
+/dev/mapper/usr_sap_DAA-usr_sap_DAA            20G  1.9G   19G  10% /usr/sap/DAA
+/dev/mapper/usr_sap_SJP-usr_sap_SJP            50G   23G   28G  45% /usr/sap/SJP
+/dev/nvme0n1p1                                297M  103M  194M  35% /boot
+fs-d5f2becc.efs.us-west-1.amazonaws.com:/SOP  8.0E  9.5G  8.0E   1% /sapmnt/SOP
+tmpfs                                         3.1G     0  3.1G   0% /run/user/5001
+tmpfs                                         3.1G     0  3.1G   0% /run/user/5000
+tmpfs                                         3.1G     0  3.1G   0% /run/user/4000
+tmpfs                                         3.1G     0  3.1G   0% /run/user/1725056406
+tmpfs                                         3.1G     0  3.1G   0% /run/user/1725064823
+=========
+DRSAPPGRCIPA
+=========
+DRSAPPGRCIPA:~ # df -h
+Filesystem                                 Size  Used Avail Use% Mounted on
+devtmpfs                                   7.6G  8.0K  7.6G   1% /dev
+tmpfs                                       36G  508K   36G   1% /dev/shm
+tmpfs                                      7.7G  313M  7.3G   5% /run
+tmpfs                                      7.7G     0  7.7G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                             100G  6.4G   94G   7% /
+/dev/mapper/usr_sap-usr_sap                 50G  319M   50G   1% /usr/sap
+/dev/mapper/usr_sap_GRP-usr_sap_GRP        100G  3.4G   97G   4% /usr/sap/GRP
+/dev/mapper/usr_sap_DAA-usr_sap_DAA         20G  2.4G   18G  12% /usr/sap/DAA
+/dev/nvme0n1p1                             297M  103M  194M  35% /boot
+fs-22ccea3b.efs.us-west-1.amazonaws.com:/  8.0E  6.4G  8.0E   1% /sapmnt/GRP
+tmpfs                                      1.6G     0  1.6G   0% /run/user/2001
+tmpfs                                      1.6G     0  1.6G   0% /run/user/4000
+tmpfs                                      1.6G     0  1.6G   0% /run/user/1725064823
+=========
+DRSAPPGRDB01
+=========
+DRSAPPGRDB01:~ # df -h
+Filesystem                                   Size  Used Avail Use% Mounted on
+devtmpfs                                     125G  8.0K  125G   1% /dev
+tmpfs                                        189G  248K  189G   1% /dev/shm
+tmpfs                                        125G  2.2G  123G   2% /run
+tmpfs                                        125G     0  125G   0% /sys/fs/cgroup
+/dev/nvme0n1p2                               100G   23G   78G  23% /
+/dev/mapper/usr_sap-usr_sap                   50G  2.5G   48G   5% /usr/sap
+/dev/mapper/hana_shared_HGP-hana_shared_HGP  300G   16G  285G   6% /hana/shared/HGP
+/dev/mapper/hana_log_HGP-hana_log_HGP        300G  4.2G  296G   2% /hana/log/HGP
+/dev/mapper/sapbackup-sapbackup              600G  7.2G  593G   2% /SAPBackup
+/dev/mapper/hana_data_HGP-hana_data_HGP      498G   24G  475G   5% /hana/data/HGP
+/dev/nvme0n1p1                               297M  103M  194M  35% /boot
+fs-1a4e469a.efs.us-east-1.amazonaws.com:/    8.0E   14G  8.0E   1% /usr/sap/trans
+fs-09bb7d89.efs.us-east-1.amazonaws.com:/    8.0E   33T  8.0E   1% /SAPMedia
+tmpfs                                         25G     0   25G   0% /run/user/3002
+tmpfs                                         25G     0   25G   0% /run/user/487
+tmpfs                                         25G     0   25G   0% /run/user/3000
+tmpfs                                         25G     0   25G   0% /run/user/1725064823

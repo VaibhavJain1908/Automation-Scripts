@@ -1,0 +1,27 @@
+SLES 12
+
+rm -f /etc/SUSEConnect
+rm -rf /etc/zypp/credentials.d/*
+rm -rf /etc/zypp/repos.d/*
+rm -f /etc/zypp/services.d/*
+
+SUMA
+
+spacecmd system_delete SAPDVRTXAP01.sap.lambweston.com -u AVJ1007
+salt-key -d SAPDVRTXAP01.sap.lambweston.com
+cat /etc/hosts | grep -e SAPDVRTXAP01 -e 172.18.96.252
+
+SLES 15
+
+rm -f /etc/SUSEConnect
+rm -rf /etc/zypp/credentials.d/*
+rm -rf /etc/zypp/repos.d/*
+rm -f /etc/zypp/services.d/*
+rm /etc/machine-id
+rm /var/lib/dbus/machine-id
+systemd-machine-id-setup
+rm /etc/salt/minion_id
+rm -r /etc/salt/pki/minion/
+systemctl restart salt-minion
+systemctl status salt-minion
+aws ec2 modify-instance-metadata-options  --instance-id <instance_id> --region us-east-1 --http-tokens required

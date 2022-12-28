@@ -16,6 +16,7 @@ account_ids = [input() for i in range(num)]
 print("\nEnter {num} iam roles below:".format(num=num))
 iam_roles = [input() for i in range(num)]
 
+print("\n=========================\nFetching the List\n=========================\n")
 client = boto3.client('sts')
 for i in range(len(iam_roles)):
     role_object = client.assume_role(
@@ -34,39 +35,39 @@ for i in range(len(iam_roles)):
         instances = ec2.instances.all()
         for instance in instances:
             data.append({})
-            data[i]["Instance ID"] = instance.id
+            data[-1]["Instance ID"] = instance.id
             for tag in instance.tags:
                 if tag["Key"] in ['Name', 'Backup', 'Environment', 'Server Type', 'CoreApplicationGroup', 'OS', 'Application', 'PROJECT', 'ServerType', 'environment', 'cost-center', 'company', 'supervisory-organization']:
-                    data[i][tag["Key"]] = tag["Value"]
+                    data[-1][tag["Key"]] = tag["Value"]
                     
             if instance.state['Name'] == 'running':      
-                data[i]["Instance state"] = "Running"
+                data[-1]["Instance state"] = "Running"
             else:
-                data[i]["Instance state"] = "Stopped"            
+                data[-1]["Instance state"] = "Stopped"            
     
-            data[i]["Instance type"] = instance.instance_type
-            data[i]["Private IP address"] = instance.private_ip_address
-            data[i]["Image ID"] = instance.image_id
-            data[i]["Launch time"] = instance.launch_time
+            data[-1]["Instance type"] = instance.instance_type
+            data[-1]["Private IP address"] = instance.private_ip_address
+            data[-1]["Image ID"] = instance.image_id
+            data[-1]["Launch time"] = instance.launch_time
             try:
-                data[i]["IAM instance profile ARN"] = instance.iam_instance_profile["Arn"]
+                data[-1]["IAM instance profile ARN"] = instance.iam_instance_profile["Arn"]
             except:
-                data[i]["IAM instance profile ARN"] = "-"
-            data[i]["Monitoring"] = instance.monitoring["State"]
+                data[-1]["IAM instance profile ARN"] = "-"
+            data[-1]["Monitoring"] = instance.monitoring["State"]
             
             if None == instance.key_pair:
-                data[i]["Key name"] = "-"
+                data[-1]["Key name"] = "-"
             else:
-                data[i]["Key name"] = instance.key_pair.name
+                data[-1]["Key name"] = instance.key_pair.name
             
             for iface in instance.network_interfaces:
-                data[i]["Availability Zone"] = iface.subnet.availability_zone
-            data[i]["Security group name"] = ""
+                data[-1]["Availability Zone"] = iface.subnet.availability_zone
+            data[-1]["Security group name"] = ""
             for sg in instance.security_groups:
-                data[i]["Security group name"] += sg['GroupName'] + ","
+                data[-1]["Security group name"] += sg['GroupName'] + ","
                 
-            client = session.client('ec2', region_name=region)
-            response = client.describe_instance_status(
+            ec2_client = session.client('ec2', region_name=region)
+            response = ec2_client.describe_instance_status(
                 InstanceIds=[
                     instance.id
                 ],
@@ -82,13 +83,13 @@ for i in range(len(iam_roles)):
                 except:
                     continue
             if count == 0:
-                data[i]["Status check"] = "-"
+                data[-1]["Status check"] = "-"
             else:
-                data[i]["Status check"] = str(count) + "/2 checks passed"
+                data[-1]["Status check"] = str(count) + "/2 checks passed"
                 
             i+=1
 
-fields = ['Name', 'Backup', 'Environment', 'Server Type', 'CoreApplicationGroup', 'OS', 'Application', 'PROJECT', 'environment', 'cost-center', 'company', 'supervisory-organization', 'ServerType', 'Instance ID', 'Instance state', 'Instance type', 'Status check', 'Availability Zone', 'Private IP address', 'Monitoring', 'Security group name', 'Key name', 'Image ID', 'Launch time', 'IAM instance profile ARN']
+fields = ['Name', 'Backup', 'Environment', 'Server Type', 'CoreApplicationGroup', 'OS', 'Application', 'PROJECT', 'ServerType', 'environment', 'cost-center', 'company', 'supervisory-organization', 'Instance ID', 'Instance state', 'Instance type', 'Status check', 'Availability Zone', 'Private IP address', 'Monitoring', 'Security group name', 'Key name', 'Image ID', 'Launch time', 'IAM instance profile ARN']
 file_name = "AWS Server List.csv"
 
 # writing to csv file
@@ -104,4 +105,3 @@ with open(file_name, 'w') as csvfile:
 print('\nDataFrame is written to Excel File successfully.\n')
     
 print("--- %s seconds ---" % (time.time() - start_time))
-

@@ -8,6 +8,15 @@ from colorama import Style
 import warnings
 warnings.filterwarnings("ignore")
 
+print(Fore.BLUE + Style.BRIGHT + "\n\n*****************************************************\n***************************************************")
+print("******" + Style.RESET_ALL + "##" + Fore.BLUE + Style.BRIGHT + "********" + Style.RESET_ALL + "##" + Fore.BLUE + Style.BRIGHT + "**********" + Style.RESET_ALL + "##" + Fore.BLUE + Style.BRIGHT + "*******************")
+print("*******" + Style.RESET_ALL + "##" + Fore.BLUE + Style.BRIGHT + "******" + Style.RESET_ALL + "##" + Fore.BLUE + Style.BRIGHT + "***********" + Style.RESET_ALL + "##" + Fore.BLUE + Style.BRIGHT + "*****************")
+print("********" + Style.RESET_ALL + "##" + Fore.BLUE + Style.BRIGHT + "****" + Style.RESET_ALL + "##" + Fore.BLUE + Style.BRIGHT + "************" + Style.RESET_ALL + "##" + Fore.BLUE + Style.BRIGHT + "***************")
+print("*********" + Style.RESET_ALL + "##" + Fore.BLUE + Style.BRIGHT + "**" + Style.RESET_ALL + "##" + Fore.BLUE + Style.BRIGHT + "*******" + Style.RESET_ALL + "##" +  Fore.BLUE + Style.BRIGHT + "****" + Style.RESET_ALL + "##" + Fore.BLUE + Style.BRIGHT + "*************")
+print("**********" + Style.RESET_ALL + "####" + Fore.BLUE + Style.BRIGHT + "*********" + Style.RESET_ALL + "##" +  Fore.BLUE + Style.BRIGHT + "**" + Style.RESET_ALL + "##" + Fore.BLUE + Style.BRIGHT + "************")
+print("***********" + Style.RESET_ALL + "##" + Fore.BLUE + Style.BRIGHT + "************" + Style.RESET_ALL + "##" + Fore.BLUE + Style.BRIGHT + "************")
+print("*************************************\n***********************************\n\n" + Style.RESET_ALL)
+
 paramiko.util.log_to_file("filename.log")
 today = datetime.date.today()
 
@@ -29,7 +38,7 @@ def pre_checks(ssh, server, username, password):
     for line in stdout.readlines():
         hostname += line.replace("\n", "")
 
-    commands = ["uname -a", "uptime", "date"]
+    commands = ["uname -a", "uptime", "date", "free -gh"]
     if hostname == "":        
         for cmd in commands:
             print(Fore.RED + Style.BRIGHT + server + ":~ # " + Style.RESET_ALL + cmd)
@@ -43,6 +52,8 @@ def pre_checks(ssh, server, username, password):
                     continue
                 if cmd == "uname -a":
                     data[-1]["kernel (before)"] = line + "\n"
+                elif cmd == "free -gh":
+                    data[-1]["swap (before)"] = line + "\n"
                 else:
                     data[-1][cmd + " (before)"] = line + "\n"
                 print(line),
@@ -55,6 +66,8 @@ def pre_checks(ssh, server, username, password):
             for line in stdout.readlines():
                 if cmd == "uname -a":
                     data[-1]["kernel (before)"] = line + "\n"
+                elif cmd == "free -gh":
+                    data[-1]["swap (before)"] = line + "\n"
                 else:
                     data[-1][cmd + " (before)"] = line + "\n"
                 print(line),
@@ -98,7 +111,7 @@ def post_checks(ssh, server, username, password):
             for line in stdout.readlines():
                 print(line),
     
-    commands = ["uname -a", "uptime", "date"]
+    commands = ["uname -a", "uptime", "date", "free -gh"]
     if hostname == "":        
         for cmd in commands:
             print(Fore.RED + Style.BRIGHT + server + ":~ # " + Style.RESET_ALL + cmd)
@@ -112,6 +125,8 @@ def post_checks(ssh, server, username, password):
                     continue
                 if cmd == "uname -a":
                     data[j]["kernel (after)"] = line + "\n"
+                elif cmd == "free -gh":
+                    data[-1]["swap (after)"] = line + "\n"
                 else:
                     data[j][cmd + " (after)"] = line + "\n"
                 print(line),
@@ -124,6 +139,8 @@ def post_checks(ssh, server, username, password):
             for line in stdout.readlines():
                 if cmd == "uname -a":
                     data[j]["kernel (after)"] = line + "\n"
+                elif cmd == "free -gh":
+                    data[-1]["swap (after)"] = line + "\n"
                 else:
                     data[j][cmd + " (after)"] = line + "\n"
                 print(line),
@@ -227,7 +244,7 @@ servers = []
 for i in range(num):
     servers.append(raw_input())
 
-username = raw_input("Username: ")
+username = raw_input("\nUsername: ")
 password = getpass.getpass()
 
 start_time = time.time()
@@ -251,7 +268,7 @@ for server in servers:
         print("Issue logging into " + server)
     
 file_name = chnge_num + '_PIR.csv'
-fields = ['server', 'kernel (before)', 'kernel (after)', 'uptime (before)', 'uptime (after)', 'date (before)', 'date (after)', 'patching status', 'resolv.conf status', 'splunk status', 'splunk evidence', 'amazon-ssm-agent status', 'ssm evidence']
+fields = ['server', 'kernel (before)', 'kernel (after)', 'uptime (before)', 'uptime (after)', 'date (before)', 'date (after)', 'swap (before)', 'swap (after)', 'patching status', 'resolv.conf status', 'splunk status', 'splunk evidence', 'amazon-ssm-agent status', 'ssm evidence']
 
 # writing to csv file 
 with open(file_name, 'w') as csvfile: 

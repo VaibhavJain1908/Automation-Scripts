@@ -17,7 +17,7 @@ data = []
 
 start_time = time.time()
 
-ec2 = boto3.resource('ec2')
+ec2 = boto3.resource('ec2', region_name="us-west-1")
 for ins in ec2.instances.filter(InstanceIds=ids):
     data.append({})
     data[-1]['Instance ID'] = ins.id
@@ -35,7 +35,7 @@ for id in ids:
             break
         j+=1
     
-    process = subprocess.Popen(["sh", "-c", "aws ec2 modify-instance-metadata-options --instance-id {0} --region us-east-1 --http-tokens required".format(id)], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    process = subprocess.Popen(["sh", "-c", "aws ec2 modify-instance-metadata-options --instance-id {0} --region us-west-1 --http-tokens required".format(id)], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     print(process.communicate()[0].decode())
     
     time.sleep(2)
@@ -43,7 +43,7 @@ for id in ids:
         data[j]['HttpTokens(after)'] = ins.metadata_options['HttpTokens']
         print(data[j]['Server'], data[j]['Instance ID'], data[j]['HttpTokens(before)'], ins.metadata_options['HttpTokens'])
         
-file_name = chnge_num  + "_PIR.csv"
+file_name = chnge_num + "_PIR.csv"
 fields = ["Server", "Instance ID", "HttpTokens(before)", "HttpTokens(after)"]
 
 # writing to csv file 

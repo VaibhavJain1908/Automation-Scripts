@@ -2,7 +2,17 @@ import boto3
 import csv
 import time
 import warnings
+from termcolor import colored
 warnings.filterwarnings("ignore")
+
+print(colored("\n\n*****************************************************\n***************************************************","blue",attrs=["bold"]))
+print(colored("******","blue",attrs=["bold"]) + "##" + colored("********","blue",attrs=["bold"]) + "##" + colored("**********","blue",attrs=["bold"]) + "##" + colored("*******************","blue",attrs=["bold"]))
+print(colored("*******","blue",attrs=["bold"]) + "##" + colored("******","blue",attrs=["bold"]) + "##" + colored("***********","blue",attrs=["bold"]) + "##" + colored("*****************","blue",attrs=["bold"]))
+print(colored("********","blue",attrs=["bold"]) + "##" + colored("****","blue",attrs=["bold"]) + "##" + colored("************","blue",attrs=["bold"]) + "##"  + colored("***************","blue",attrs=["bold"]))
+print(colored("*********","blue",attrs=["bold"]) + "##" + colored("**","blue",attrs=["bold"]) + "##" + colored("*******","blue",attrs=["bold"]) + "##" + colored("****","blue",attrs=["bold"]) + "##" + colored("*************","blue",attrs=["bold"]))
+print(colored("**********","blue",attrs=["bold"]) + "####" + colored("*********","blue",attrs=["bold"]) + "##" + colored("**","blue",attrs=["bold"]) + "##" + colored("************","blue",attrs=["bold"]))
+print(colored("***********","blue",attrs=["bold"]) + "##" + colored("************","blue",attrs=["bold"]) + "##" + colored("************","blue",attrs=["bold"]))
+print(colored("*************************************\n***********************************\n\n","blue",attrs=["bold"]))
 
 data = []
 
@@ -277,8 +287,8 @@ for i in range(len(iam_roles)):
                 for tag in dbi['TagList']:
                     data[-1]["Tags"] += tag["Key"] + " = " + tag["Value"] + "\n"
 
-                    if "name" in tag["Key"].lower():
-                        data[-1]["Resource Name"] = tag["Value"]
+                    if dbi["DBInstanceIdentifier"]:
+                        data[-1]["Resource Name"] = dbi["DBInstanceIdentifier"]
 
                 if "company" in data[-1]["Tags"] and "cost-center" in data[-1]["Tags"] and "supervisory-organization" in data[-1]["Tags"]:
                     data[-1]["Tags present"] = "Yes"
@@ -312,7 +322,7 @@ for i in range(len(iam_roles)):
             data[-1]["Resource ID"] = dbsg['DBSubnetGroupArn']
             data[-1]["Tags"] = ""
             try:
-                for tag in dbsg['TagList']:
+                for tag in rds.list_tags_for_resource(ResourceName=data[-1]["Resource ID"]):
                     data[-1]["Tags"] += tag["Key"] + " = " + tag["Value"] + "\n"
 
                     if "name" in tag["Key"].lower():

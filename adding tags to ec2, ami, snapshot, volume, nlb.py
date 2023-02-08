@@ -929,7 +929,7 @@ if __name__ == "__main__":
             aws_session_token = temp_credentials['SessionToken'], )
 
         # Printing the current account ID
-        print("----------------------------------------\nAdding Tags to resources in " + account_ids[i] + "\n----------------------------------------")
+        print("----------------------------------------\nAdding Tags to resources in " + iam_roles[i].split("_")[0] + "\n----------------------------------------")
 
         # Running the script for the 2 regions if it exists in an environment
         """
@@ -938,7 +938,7 @@ if __name__ == "__main__":
         for region in ["us-east-1", "us-west-1"]:
             
             # For non-prod environments DR region is not there
-            if region == "us-west-1" and not ("prod" in iam_roles[i].lower() or "security" in iam_roles[i].lower() or "sharedservices" in iam_roles[i].lower()):
+            if region == "us-west-1" and not ("prod" in iam_roles[i].lower() or "security" in iam_roles[i].lower() or "sharedservices" in iam_roles[i].lower()) or ("preprod" in iam_roles[i].lower() and region == "us-west-1"):
                 continue
             
             # If the user wants to add tags on all the resources

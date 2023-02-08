@@ -126,7 +126,7 @@ def post_checks(ssh, server, username, password):
                 if cmd == "uname -a":
                     data[j]["kernel (after)"] = line + "\n"
                 elif cmd == "free -gh":
-                    data[-1]["swap (after)"] = line + "\n"
+                    data[j]["swap (after)"] = line + "\n"
                 else:
                     data[j][cmd + " (after)"] = line + "\n"
                 print(line),
@@ -140,7 +140,7 @@ def post_checks(ssh, server, username, password):
                 if cmd == "uname -a":
                     data[j]["kernel (after)"] = line + "\n"
                 elif cmd == "free -gh":
-                    data[-1]["swap (after)"] = line + "\n"
+                    data[j]["swap (after)"] = line + "\n"
                 else:
                     data[j][cmd + " (after)"] = line + "\n"
                 print(line),

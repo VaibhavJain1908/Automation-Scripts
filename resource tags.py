@@ -41,10 +41,13 @@ for i in range(len(iam_roles)):
         aws_access_key_id = temp_credentials['AccessKeyId'],
         aws_secret_access_key = temp_credentials['SecretAccessKey'],
         aws_session_token = temp_credentials['SessionToken'], )
+    
+    # Printing the current account ID
+    print("----------------------------------------\nFetching Tags from resources in " + iam_roles[i].split("_")[0] + "\n----------------------------------------")
 
     for region in ["us-east-1", "us-west-1"]:
         
-        if region == "us-west-1" and not ("prod" in iam_roles[i].lower() or "security" in iam_roles[i].lower() or "sharedservices" in iam_roles[i].lower()):
+        if region == "us-west-1" and not ("prod" in iam_roles[i].lower() or "security" in iam_roles[i].lower() or "sharedservices" in iam_roles[i].lower()) or ("preprod" in iam_roles[i].lower() and region == "us-west-1"):
             continue
         
         ec2 = session.resource('ec2', region_name=region)

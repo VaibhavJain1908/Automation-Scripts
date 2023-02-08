@@ -10,7 +10,7 @@ print(colored("**********","blue",attrs=["bold"]) + "####" + colored("*********"
 print(colored("***********","blue",attrs=["bold"]) + "##" + colored("************","blue",attrs=["bold"]) + "##" + colored("************","blue",attrs=["bold"]))
 print(colored("*************************************\n***********************************\n\n","blue",attrs=["bold"]))
 
-ec2 = boto3.client('ec2')
+ec2 = boto3.client('ec2', region_name='us-west-1')
 
 print("\nEnter Volumes to change Type from Gp2 to Gp3 below:")
 volumes = []

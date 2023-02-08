@@ -1,3 +1,5 @@
 /dev/mapper/usr_sap-usr_sap /usr/sap xfs rw,attr2,inode64,logbufs=8,noatime,nodiratime,logbsize=256k,noquota,nofail 0 0
+/dev/mapper/hana_shared_HCD-hana_shared_HCD /hana/shared/HCD xfs rw,attr2,inode64,logbufs=8,noatime,nodiratime,logbsize=256k,noquota,nofail 0 0
+
 /dev/mapper/usr_sap_WDC-usr_sap_WDC /usr/sap/WDC xfs rw,attr2,inode64,logbufs=8,noatime,nodiratime,logbsize=256k,noquota,nofail 0 0
 /dev/mapper/vertex-vertex /vertex xfs rw,attr2,inode64,logbufs=8,noatime,nodiratime,logbsize=256k,noquota,nofail 0 0

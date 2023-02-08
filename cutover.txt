@@ -7,9 +7,9 @@ rm -f /etc/zypp/services.d/*
 
 SUMA
 
-spacecmd system_delete SAPSVRTXAP01.sap.lambweston.com -u AVJ1007
-salt-key -d SAPSVRTXAP01.sap.lambweston.com
-cat /etc/hosts | grep -e SAPSVRTXAP01 -e 172.18.121.100
+spacecmd system_delete SAPTRQAP01.sap.lambweston.com -u AVJ1007
+salt-key -d SAPTRQAP01.sap.lambweston.com
+cat /etc/hosts | grep -e SAPTRQAP01 -e 172.18.89.192
 
 SLES 15
 
@@ -24,4 +24,5 @@ rm /etc/salt/minion_id
 rm -r /etc/salt/pki/minion/
 systemctl restart salt-minion
 systemctl status salt-minion
-aws ec2 modify-instance-metadata-options --instance-id i-0f6b6d78c8abded7b --region us-east-1 --http-tokens required
+
+aws ec2 modify-instance-metadata-options --instance-id i-00798a449e06cca08 --region us-east-1 --http-tokens required

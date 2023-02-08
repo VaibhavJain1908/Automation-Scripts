@@ -1,0 +1,1 @@
+for i in `ls -lrt /SAPBackup/HPP/DB_HPP/ | grep "Jan 14" | awk '{print $9}' `;do aws s3 cp /SAPBackup/HPP/DB_HPP/$i s3://lw-sap-sharedservices-hanadb-p-bkp-useast1/PROD/2023/01/14/SAPPPODB01/DB_HPP/ --sse aws:kms --sse-kms-key-id arn:aws:kms:us-east-1:864273633830:key/0eb518ef-9768-414f-9cb9-59ebf5f0e132 --acl bucket-owner-full-control;done

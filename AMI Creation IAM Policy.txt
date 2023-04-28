@@ -1,0 +1,34 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeImages",
+                "ec2:DescribeInstances",
+                "ec2:StartInstances",
+                "ec2:CreateImage",
+                "ec2:DescribeSnapshots",
+                "ec2:StopInstances",
+                "ec2:DescribeInstanceStatus"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "kms:Decrypt",
+                "kms:Encrypt",
+                "kms:RevokeGrant",
+                "kms:GenerateDataKey",
+                "kms:DescribeKey",
+                "kms:CreateGrant",
+                "kms:ListGrants",
+                "kms:ReEncrypt*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}

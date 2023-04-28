@@ -16,13 +16,11 @@ print(colored("*************************************\n**************************
 
 data = []
 
-# Reading Account IDS and IAM Roles from the user
-num = int(input("Enter number of account: "))
-print("Enter {num} account ids below:".format(num=num))
-account_ids = [input() for i in range(num)]
+# Account IDS
+account_ids = ["891108200673", "782515806757", "706212970319"]
 
-print("\nEnter {num} iam roles below:".format(num=num))
-iam_roles = [input() for i in range(num)]
+# IAM Roles
+iam_roles = ["Dev_IAM_Role_Tagging", ""]
 
 print("\nStarting the process . . .\n")
 # Calculating Time to execute the whole program
@@ -325,7 +323,7 @@ for i in range(len(iam_roles)):
             data[-1]["Resource ID"] = dbsg['DBSubnetGroupArn']
             data[-1]["Tags"] = ""
             try:
-                for tag in rds.list_tags_for_resource(ResourceName=data[-1]["Resource ID"]):
+                for tag in rds.list_tags_for_resource(ResourceName=data[-1]["Resource ID"])["TagList"]:
                     data[-1]["Tags"] += tag["Key"] + " = " + tag["Value"] + "\n"
 
                     if "name" in tag["Key"].lower():

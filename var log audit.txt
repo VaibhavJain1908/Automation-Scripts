@@ -1,0 +1,7 @@
+vaibhav.jain@imperial.local
+!+bq}EK!SL
+sudo su -
+clear
+df -h
+find /var/log/audit -mtime +1 -exec rm {} \;
+df -h

@@ -1,0 +1,8 @@
+2023-04-20 09:10:00,001Z [c360_Pioneer_uat]  INFO: Starting scheduled best-practice job de0283b6-4cd2-49ad-bf47-fb5a90e07a4f (MainThread)
+2023-04-20 09:15:00,001Z [c360_Pioneer_uat]  INFO: Starting scheduled best-practice job 7a426207-a73c-4127-851e-5a0e0a7b8f42 (MainThread)
+2023-04-20 09:20:00,000Z [c360_Pioneer_uat]  INFO: Starting scheduled best-practice job f2be03d0-2148-485f-8309-db31b30ad1c2 (MainThread)
+2023-04-20 09:25:00,001Z [c360_Pioneer_uat]  INFO: Starting scheduled best-practice job 71d62f32-cb48-4281-90ec-9bf8ed3dadb8 (MainThread)
+2023-04-20 09:30:00,001Z [c360_Pioneer_uat]  INFO: Starting scheduled best-practice job 4066b18a-078f-436e-8ca6-9d32ffd5d42e (MainThread)
+2023-04-20 09:33:00,000Z [c360_Pioneer_uat]  INFO: Starting scheduled best-practice job 87fff640-1e7a-4434-a308-b9c34eb1d216 (MainThread)
+2023-04-20 09:35:00,157Z [c360_Pioneer_uat]  INFO: Starting scheduled best-practice job db5715a3-3ce4-4cfd-ac10-06c644e0d16c (MainThread)2023-04-19 09:00:00,001Z [c360_Pioneer_uat]  INFO: Starting scheduled best-practice job 8929e9cc-423f-4400-8405-f45321704646 (MainThread)
+2023-04-19 09:05:00,000Z [c360_Pioneer_uat]  INFO: Starting scheduled best-practice job 4e0ff1a8-c227-412b-928a-90106450ee72 (MainThread)

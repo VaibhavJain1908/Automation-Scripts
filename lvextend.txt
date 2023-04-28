@@ -1,3 +1,3 @@
-pvresize /dev/nvme7n1
-lvextend -l+100%FREE /dev/hana_log_HSC/hana_log_HSC
-xfs_growfs /hana/log/HSC
+pvresize /dev/nvme4n1
+lvextend -l+100%FREE /dev/hana_data_BHR/hana_data_BHR
+xfs_growfs /hana/data/BHR

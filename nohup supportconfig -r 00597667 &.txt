@@ -1,0 +1,3 @@
+nohup supportconfig -r 00597667 &
+
+/var/log/scc_SR00597667_SAPXTEST15_230404_1640

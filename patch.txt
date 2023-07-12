@@ -1,0 +1,41 @@
+#ServerName_Pre/PostPatchAMI_Date
+
+SAPUIES01_PrePatch_02062022
+SAPTF4DB01_PostPatch_02062022
+SAPSS4MS02_PrePatchWithReboot_04052022
+SAPTB4DB01_PostPatchRebootAMI_02062022
+
+# Pre check Evidence
+
+uname -a
+uptime
+date
+free -gh
+
+# Post check Evidence
+
+registercloudguest --clean
+/opt/splunkforwarder/bin/splunk restart
+systemctl restart amazon-ssm-agent
+clear
+zypper lu
+uname -a
+date
+uptime
+cat /etc/resolv.conf
+rm /usr/bin/scp
+/opt/splunkforwarder/bin/splunk status
+systemctl status amazon-ssm-agent | head
+
+zypper update
+date
+uptime
+
+/opt/splunkforwarder/bin/splunk restart
+clear
+uname -a
+uptime
+date
+yum update
+/opt/splunkforwarder/bin/splunk status
+free -gh
